@@ -1,0 +1,144 @@
+Eastern Canada, 1, 9, Central Unites States, Eastern United States
+1, Eastern Canada, 2, 9
+2, Greenland, Iceland, Erie, United Kingdom
+3, Norway, United Kingdom, 2, 4
+4, Archangel, Karelia, 3
+5, Sweden, Norway, Karelia, Eastern Europe, Germany, France, 6
+6, United Kingdom, 3, Norway, 5, France, 7, 12
+7, 8, United Kingdom, 6, France,
+8, 12, 9, 1, 2, 7, Eire
+9, Eastern Canada, 8, 10, 11, 12, 1
+10, Panama, 19, 11, 9, Eastern United States, Panama
+11, 19, 10, 9, 12, 18, Azores
+12, Spain, Morocco Algeria, 17, 18, 11, 9, 8, 7
+13, Spain, Gibraltar
+14, Malta, Italy, 15, Libya, 13
+15, Turkey, Trans-Jordan, Anglo-Egypt Sudan, 14, 16
+16, 15, 14, Balkans, Ukraine, Caucasus, Turkey
+17, Sahara, French West Africa
+18, Brazil, 22, 17, 12, 11, 19
+19, Panama, Venezuela, West Indies, 10, 11
+20, Panama, Venezuela, 21
+21, 20, Peru, Argentina, 25
+22, 18, 17, 23, 24, 25, Brazil
+23, French Equatorial Africa, Belgian Congo, 27
+24, 25, 22, 23, 26, 27
+25, 21, Argentina, 22, 24, 26
+26, 25, 24, 27
+27, 26, 24, 23, Angola, Union of South Africa
+28, Union of South Africa, 33, French Madagascar, 29, 27
+29, French Madagascar, 32, 30, 28
+30, 29, 32, 31, 38, 39
+31, 30, 32, 35, 37, 38
+32, French Madagascar, 33, 34, 35, 31, 30, 29
+33, French Madagascar, Mozambique, Rhodesia, 34, 32, 28
+34, Saudi Arabia, Persia, 35, 32, 33, Italian East Africa, Anglo-Egypt Sudan
+35, India, 36, 37, 31, 32, 34
+36, French Indo-China, 59, 49, 48, 37, 35
+37, East Indies, 38, 31, 35, 36, 48, 47
+38, 37, 47, 46, 39, 30, 31, Australia
+39, 30, 38, 40, Australia
+40, 39, 46, 41, Australia
+41, New Zealand, 42, 44, 45, 46, 40
+42, 41, 44, 43
+43, 42, 44, 53, 54
+44, 45, 52, 53, 43, 42, 41
+45, 41, 46, 47, 50, 51, 52, 44, Solomon Islands
+46, Australia, 47, 45, 41, 40, 38
+47, 46, 38, 37, 48, 50, 45, New Guinea
+48, 37, 36, 49, 50, 47, Borneo
+49, 48, 36, 59, 60, 58, 50, Philippine Islands
+50, 47, 48, 49, 58, 51, 52, 45, Caroline Islands
+51, 50, 58, 60, 57, 52, 45, Wake Island
+52, 51, 57, 56, 55, 53, 44, 45, Hawaiian Islands
+53, 43, 44, 52, 55, 54
+54, 43, 53, 55, Mexico, Western United States
+55, 54, 53, 52, 56, 64, Western Unites States
+56, Midway, 55, 52, 57, 63, 64
+57, 56, 52, 51, 60, 62, 63
+58, Okinawa, 60, 51, 50, 49
+59, Kwangtung, 61, 60, 49, 36
+60, Japan, 61, 57, 62, 51, 58, 49, 59
+61, Japan, 60, Mancuria, 59
+62, Soviet Far East, 63, 57, 60, Buryatia
+63, 62, Alaska, 64, 56, 57
+64, Alaska, Western Canada, 55, 56, 63
+Malta, 14
+Azores, 11
+Greenland, 2
+Iceland, 2
+Eastern United States, 10, Central United States, Eastern Canada
+Central United States, Eastern United States, Panama, Eastern Canada
+Panama, Central United States, Venezuela, 20, 19, 10
+West Indies, 19
+Venezuela, Panama, 20, 19, Peru, Brazil
+Peru, Venezuela, 21, Argentina, Brazil
+Argentina, Peru, Brazil, 21, 25
+Brazil, Venezuela, Peru, Argentina, 18, 22
+Eire, United Kingdom, 8, 2
+United Kingdom, Eire, 2, 3, 6, 7, 8
+Spain, Gibraltar, 12, 13
+Gibraltar, Spain, 13
+France, Spain, Switzerland, Italy, Germany, 7, 13, 6, 5
+Germany, France, Switzerland, Italy, Eastern Europe, Balkans, 5
+Italy, 14, France, Switzerland, Germnay, Balkans
+Balkans, Italy, Germany, Eastern Europe, Ukraine, 16
+Switzerland, France, Germany, Italy
+Sweden, Norway, 5
+Eastern Europe, Belorussia, Ukraine, Balkans, Germany, 5, Karelia
+Ukraine, Eastern Europe, Belorussia, West Russia, Caucasus, 16
+Belorussia, Eastern Europe, Karelia, West Russia, Ukraine
+Karelia, Norway, Eastern Europe, Belorussia, West Russia, Archangel
+West Russia, Caucasus, Ukraine, Belorussia, Karelia, Archangel, Russia
+Caucasus, Ukraine, West Russia, Russia, Novosibirsk, Kazakh, Persia, Turkey, 16
+Turkey 16, 15, Trans-Jordan, Caucasus, Persia
+Trans-Jordan, Persia, Turkey, Saudi Arabia, 15, 34
+Saudi Arabia, 34, Trans-Jordan
+Anglo-Egypt Sudan, Trans-Jordan, 15, 34, Libya, Sahara, French Equatorial Africa, Belgian Congo, Rhodesia, Italian East Africa
+Sahara, Morocco Algeria, Libya, ANglo-Egypt Sudan, French Equatorial Africa, French West Africa
+Libya, 14, Anglo-Egypt Sudan, Sahara, Morocco Algeria
+Morocco Algeria, 13, Libya, Sahara, 12
+French West Africa, 17, Sahara, French Equatorial Africa
+French Equatorial Africa, Sahara, French West Africa, Anglo-Egypt Sudan, Belgian Congo, 23
+Belgian Congo, French Equatorial Africa, Anglo-Egypt Sudan, Italian East Africa, Rhodesia, Angola, 23
+Italian East Africa, 34, Anglo-Egypt Sudan, Belgian Congo, Rhodesia
+Rhodesia, 33, Italian East Africa, Belgian Congo, Angola, Union of South Africa, Mozambique
+Angola, Belgian Congo, Rhodesia, Union of South Africa, 27
+Union of South Africa, Angola, Rhodesia, Mozambique, 27, 28
+Mozambique, Rhodesia, 33, Union of South Africa
+Frenc Madagascar, 33, 32, 29, 28
+Archangel, West Russia, Karelia, Russia
+Russia, West Russia, Archangel, Evenki National Okrug, Novosibirsk, Kazakh, Caucasus
+Novosibirsk, Russia, Evenski National Okrug, Mongolia, Sinkiang, Kazakh
+Kazakh, Caucasus, Russia, Novosibirsk, Sinkiang, Himalaya, Afghanistan, Persia
+Persia, Trans-Jordan, Turkey, Caucasus, Kazakh, Afghanistan, India
+Afghanistan, Kazakh, Himalaya, India, Persia
+India, Persia, Afghanistan, Himalaya, French Indo-China, 35
+French Indo-China, India, Himalaya, China, Kwangtung, 36
+Kwangtung, 59, Manchuria, China, French Indo-China
+China, Kwangtung, Manchuria, Mongolia, Sinkiang, Himalaya, French Indo-China
+Sinkiang, China, Mongolia, Novosibirsk, Kazakh, Himalaya
+Himalaya, India, French Indo-China, China, Sinkiang, Kazakh, Afghanistan
+Mongolia, Sinkiang, China, Manchuria, Buryatia, Yakut, Novosibirsk
+Manchuria, Kwangtung, China, Mongolia, Buryatia, 61
+Evenki National Okrug, Russia, Novosibirsk, Yakut
+Yakut, Evenki National Okrug, Novosibirsk, Mongolia, Buryatia, Soviet Far East
+Buryatia, 60, Manchuria, Mongolia, Yakut, Soviet Far East
+Soviet Far East, Buryatia, Yakut, 62
+Japan, 60, 61
+Philippine Islands, 49
+Okinawa, 58
+Wake Island, 51
+Caroline Islands, 50
+New Guinea, 47
+Borneo, 48
+East Indies, 37
+Solomon Islands, 45
+Hawaiian Islands, 52
+New Zealand, 41
+Australia, 46, 40, 39, 38
+Midway, 56
+Alaska, 63, 64, Western Canada
+Western Canada, Alaska, Western United States
+Western United States, 55, Mexico
+Mexico, 54
