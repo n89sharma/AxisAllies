@@ -24,9 +24,9 @@ public class Board {
     private static final String NATION = "NATION";
     private static final String IPC = "IPC";
 
-    public static MutableGraph<String> getBoardMap() throws IOException {
+    public static MutableGraph<String> getTerritoryGraph() throws IOException {
 
-        MutableGraph<String> graph = GraphBuilder.undirected().build();
+        MutableGraph<String> territoryGraph = GraphBuilder.undirected().build();
         Iterable<CSVRecord> records = getFileRecords(BOARD_GAME_SETUP_FILE);
 
         for(CSVRecord record : records) {
@@ -38,10 +38,10 @@ public class Board {
             String territory = territoryAndNeighbours.get(0);
             territoryAndNeighbours.remove(0);
             for(String neighbour: territoryAndNeighbours) {
-                graph.putEdge(territory, neighbour);
+                territoryGraph.putEdge(territory, neighbour);
             }
         }
-        return graph;
+        return territoryGraph;
     }
 
     public static Map<String, Map<String, String>> getTerritoryDetails() throws IOException {
