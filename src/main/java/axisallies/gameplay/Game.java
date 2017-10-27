@@ -13,6 +13,7 @@ import axisallies.units.UnitType;
 import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.board.Board;
+import axisallies.board.Territory;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
@@ -23,25 +24,29 @@ import static axisallies.nations.NationType.JAPAN;
 public class Game {
     
     private static final String NATION = "NATION";
+    private static final String IPC_KEY = "IPC";
 
-    private MutableGraph<String> boardSetup;
-    private Map<String, Map<String, String>> unitSetup;
+    private MutableGraph<String> boardMap;
     private Map<String, NationType> players = new HashMap<>();
     private Map<NationType, Nation> nations = new HashMap<>();
     
     public Game() throws IOException {
-        this.boardSetup = Board.boardSetup();
-        this.unitSetup = Board.unitSetup();
+        this.boardMap = Board.getBoardMap();
         defaultPlayers();
         defaultNations();
     }
 
     public MutableGraph<String> getBoardSetup() {
-        return boardSetup;
+        return boardMap;
     }
 
     public Map<NationType, Nation> getNations() {
         return nations;
+    }
+
+    public void run() {
+        System.out.println(nations.get(GERMANY).getTerritories().get(0).getIpc());
+        System.out.println(nations.get(GERMANY).getTerritories().get(0).getTerritoryName());
     }
 
     private void defaultPlayers() {
@@ -52,24 +57,26 @@ public class Game {
         players.put("Vik",      UK);
     }
 
-    private void defaultNations() {
+    private void defaultNations() throws IOException{
 
-        Map<NationType, List<String>>   territoriesByNation = new HashMap<>();
-        Map<NationType, List<Unit>>     unitsByNation       = new HashMap<>(); 
+        Map<String, Map<String, String>> territoryDetails   =  Board.getTerritoryDetails();
+        Map<NationType, List<Territory>>    territoriesByNation = new HashMap<>();
+        Map<NationType, List<Unit>>      unitsByNation       = new HashMap<>(); 
 
         for(NationType nationType : NationType.values()) {
             territoriesByNation.put(nationType, new ArrayList<>());
             unitsByNation.put(      nationType, new ArrayList<>());
         }
         
-        Map<String, String> tableRow;
+        Map<String, String> territoryData;
         NationType nationType;
+        int ipcValue;
+        for(String territoryName : territoryDetails.keySet()) {
+            territoryData   = territoryDetails.get(territoryName);
+            nationType      = NationType.valueOf(territoryData.get(NATION));
+            ipcValue        = Integer.parseInt(territoryData.get(IPC_KEY));
 
-        for(String territoryName : unitSetup.keySet()) {
-            tableRow    = unitSetup.get(territoryName);
-            nationType  = NationType.valueOf(tableRow.get(NATION));
-
-            territoriesByNation.get(nationType).add(territoryName);         
+            territoriesByNation.get(nationType).add(new Territory(territoryName, nationType, ipcValue));       
             for (UnitType unitType : UnitType.values()) {
                 unitsByNation.get(nationType).add(new Unit(territoryName, nationType, unitType));
             }

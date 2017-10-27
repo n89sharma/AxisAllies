@@ -18,12 +18,13 @@ import org.apache.commons.csv.CSVRecord;
 
 public class Board {
     
-    private static final String BOARD_GAME_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/axis-allies-1942-map.csv";
-    private static final String INITIAL_UNIT_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/board-setup.csv";
+    private static final String BOARD_GAME_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/1942-map.csv";
+    private static final String INITIAL_UNIT_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/1942-territory-details.csv";
     private static final String TERRITORY = "TERRITORY";
     private static final String NATION = "NATION";
+    private static final String IPC = "IPC";
 
-    public static MutableGraph<String> boardSetup() throws IOException {
+    public static MutableGraph<String> getBoardMap() throws IOException {
 
         MutableGraph<String> graph = GraphBuilder.undirected().build();
         Iterable<CSVRecord> records = getFileRecords(BOARD_GAME_SETUP_FILE);
@@ -43,20 +44,21 @@ public class Board {
         return graph;
     }
 
-    public static Map<String, Map<String, String>> unitSetup() throws IOException {
+    public static Map<String, Map<String, String>> getTerritoryDetails() throws IOException {
 
-        Map<String, Map<String, String>> unitSetup = new HashMap<>();
+        Map<String, Map<String, String>> territoryDetails = new HashMap<>();
         Iterable<CSVRecord> records = getFileRecords(INITIAL_UNIT_SETUP_FILE);
         
         for (CSVRecord record : records) {
-            Map<String, String> unitsAndNationByTerritory = new HashMap<>();
-            unitSetup.put(trimGet(record, TERRITORY), unitsAndNationByTerritory);
-            unitsAndNationByTerritory.put(NATION, trimGet(record, NATION));
+            Map<String, String> territory = new HashMap<>();
+            territoryDetails.put(trimGet(record, TERRITORY), territory);
+            territory.put(NATION,   trimGet(record, NATION));
+            territory.put(IPC,      trimGet(record, IPC));
             for (UnitType unitType : UnitType.values()) {
-                unitsAndNationByTerritory.put(unitType.name(), trimGet(record, unitType.name()));
+                territory.put(unitType.name(), trimGet(record, unitType.name()));
             }
         }
-        return unitSetup;
+        return territoryDetails;
     }
 
     private static Iterable<CSVRecord> getFileRecords(String fileName) throws FileNotFoundException, IOException {

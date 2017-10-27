@@ -4,15 +4,26 @@ import axisallies.nations.NationType;
 
 public class Territory {
 
-    private String regionName;
+    private String territoryName;
     private NationType nationType;
+    private int IPC;
 
-    public String getRegionName(){
-        return this.regionName;
+    public Territory(String territoryName, NationType nationType, int IPC) {
+        this.territoryName = territoryName;
+        this.nationType = nationType;
+        this.IPC = IPC;
+    }
+
+    public String getTerritoryName(){
+        return this.territoryName;
     }
 
     public NationType getNationType() {
         return this.nationType;
+    }
+
+    public int getIpc() {
+        return IPC;
     }
 
 }

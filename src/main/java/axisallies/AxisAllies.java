@@ -8,6 +8,7 @@ public class AxisAllies {
     public static void main (String[] args) throws IOException {
         System.out.println("Hello!");
         Game aGame = new Game();
+        aGame.run();
     }
 }
 
