@@ -1,3 +1,4 @@
+TERRITORY,NATION,INFANTRY,ARTILLERY,TANK,FIGHTER,BOMBER,AA_GUN,DESTROYER,TRANSPORT,CRUISER,AIRCRAFT_CARRIER,SUBMARINE,BATTLESHIP
 Russia                  , USSR,     4, 1, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
 Karelia                 , USSR,     4, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0
 Archangel               , USSR,     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0

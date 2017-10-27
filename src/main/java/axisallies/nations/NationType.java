@@ -1,9 +1,5 @@
 package axisallies.nations;
 
-import java.util.Arrays;
-
-import com.fasterxml.jackson.annotation.JsonValue;
-
 public enum NationType {
     USSR("USSR"),
     USA("USA"),
@@ -13,12 +9,11 @@ public enum NationType {
 
     private final String name;
 
-    NationType(String name) {
+    private NationType(String name) {
         this.name = name;
     }
 
-    @JsonValue
-    public String jsonValue() {
+    public String getName() {
         return this.name;
     }
 }

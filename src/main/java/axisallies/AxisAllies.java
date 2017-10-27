@@ -1,18 +1,21 @@
 package axisallies;
 
-import axisallies.board.Map;
+import axisallies.gameplay.Game;
 import java.io.IOException;
+
+import static axisallies.nations.NationType.GERMANY;
 
 public class AxisAllies {
     public static void main (String[] args) throws IOException {
         System.out.println("Hello!");
-        Map.run();
+        Game aGame = new Game();
+        System.out.println(aGame.getNations().get(GERMANY).getTerritories());
     }
 }
 
 /**
  * 1) Spelling errors in adjacency list
- * 2) Connect geographic zones with a graph that uses their region name as nodes
+ * 2) Connect geographic zones with a graph that uses their territory name as nodes
  * 3) 
  * 
  * getMap gives a graph of strings. strings are the names of the regions that are connected.
@@ -22,9 +25,9 @@ public class AxisAllies {
  * 
  * Should there be separate objects for every unit? Every unit added with separate object or now.
  * 
- * Territory    - nation type, region name.
- * Nation       - nation type, list of region names, list of units.
- * Units        - nation type, unit type, region name, list of units.
+ * Territory    - nation type, territory name.
+ * Nation       - nation type, list of territory names, list of units.
+ * Units        - nation type, unit type, territory name, list of units.
  * 
  * Units belong to nation.
  * Units can contain other units.
