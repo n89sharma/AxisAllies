@@ -3,13 +3,11 @@ package axisallies;
 import axisallies.gameplay.Game;
 import java.io.IOException;
 
-import static axisallies.nations.NationType.GERMANY;
 
 public class AxisAllies {
     public static void main (String[] args) throws IOException {
         System.out.println("Hello!");
         Game aGame = new Game();
-        System.out.println(aGame.getNations().get(GERMANY).getTerritories());
     }
 }
 

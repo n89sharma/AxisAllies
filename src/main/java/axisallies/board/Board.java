@@ -1,22 +1,18 @@
 package axisallies.board;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.nio.file.Paths;
 
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.UnitType;
 
-import java.util.Arrays;
 import java.util.List; 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -28,9 +24,16 @@ public class Board {
     private static final String NATION = "NATION";
 
     public static MutableGraph<String> boardSetup() throws IOException {
+
         MutableGraph<String> graph = GraphBuilder.undirected().build();
-        for(String line : Files.readAllLines(Paths.get(BOARD_GAME_SETUP_FILE))) {
-            List<String> territoryAndNeighbours = new ArrayList<>(Arrays.asList(line.split(",")));
+        Iterable<CSVRecord> records = getFileRecords(BOARD_GAME_SETUP_FILE);
+
+        for(CSVRecord record : records) {
+            List<String> territoryAndNeighbours = new ArrayList<>();
+            Iterable<String> it = () -> record.iterator();
+            for(String recordValue : it) {
+                territoryAndNeighbours.add(recordValue.trim());
+            }
             String territory = territoryAndNeighbours.get(0);
             territoryAndNeighbours.remove(0);
             for(String neighbour: territoryAndNeighbours) {
@@ -43,8 +46,7 @@ public class Board {
     public static Map<String, Map<String, String>> unitSetup() throws IOException {
 
         Map<String, Map<String, String>> unitSetup = new HashMap<>();
-        Reader in = new FileReader(INITIAL_UNIT_SETUP_FILE);
-        Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
+        Iterable<CSVRecord> records = getFileRecords(INITIAL_UNIT_SETUP_FILE);
         
         for (CSVRecord record : records) {
             Map<String, String> unitsAndNationByTerritory = new HashMap<>();
@@ -55,6 +57,10 @@ public class Board {
             }
         }
         return unitSetup;
+    }
+
+    private static Iterable<CSVRecord> getFileRecords(String fileName) throws FileNotFoundException, IOException {
+        return CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(new FileReader(fileName)); 
     }
 
     private static String trimGet(CSVRecord record, String key) {
