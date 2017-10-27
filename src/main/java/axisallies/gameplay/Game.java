@@ -36,6 +36,10 @@ public class Game {
         defaultNations();
     }
 
+    public MutableGraph<String> getBoardSetup() {
+        return boardSetup;
+    }
+
     public Map<NationType, Nation> getNations() {
         return nations;
     }

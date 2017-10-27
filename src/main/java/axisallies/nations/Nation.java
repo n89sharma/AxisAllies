@@ -1,7 +1,6 @@
 package axisallies.nations;
 
 import java.util.List;
-import lombok.Getter;
 import axisallies.units.Unit;
 
 public class Nation {
