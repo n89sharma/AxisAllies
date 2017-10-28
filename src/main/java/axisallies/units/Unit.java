@@ -21,4 +21,8 @@ public class Unit {
     public UnitType getUnitType() {
         return unitType;
     }
+
+    public String getTerritory() {
+        return territory;
+    }
 }
