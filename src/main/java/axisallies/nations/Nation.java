@@ -1,26 +1,26 @@
 package axisallies.nations;
 
-import java.util.List;
+import java.util.Set;
 import axisallies.board.Territory;
 import axisallies.units.Unit;
 
 public class Nation {
 
     private NationType nationType;
-    private List<Territory> territory;
-    private List<Unit> units;
+    private Set<Territory> territory;
+    private Set<Unit> units;
 
-    public Nation(NationType nationType, List<Territory> territory, List<Unit> units) {
+    public Nation(NationType nationType, Set<Territory> territory, Set<Unit> units) {
         this.nationType = nationType;
         this.territory = territory;
         this.units = units;
     }
 
-    public List<Territory> getTerritories() {
+    public Set<Territory> getTerritories() {
         return territory;
     }
 
-    public List<Unit> getUnits() {
+    public Set<Unit> getUnits() {
         return units;
     }
 }

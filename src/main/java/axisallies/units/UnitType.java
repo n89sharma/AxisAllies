@@ -26,4 +26,8 @@ public enum UnitType {
         this.defenseStrength = defenseStrength;
         this.movementRange = movementRange;
     }
+
+    public int getMovementRange() {
+        return movementRange;
+    }
 }
