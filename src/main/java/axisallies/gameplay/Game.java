@@ -1,6 +1,7 @@
 package axisallies.gameplay;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -9,7 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.commons.lang3.tuple.Pair;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.Unit;
@@ -18,6 +18,7 @@ import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.board.Board;
 import axisallies.board.Territory;
+import axisallies.tuple.Tuple;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
@@ -34,18 +35,53 @@ public class Game {
     private Map<String, NationType> players = new HashMap<>();
     private Map<NationType, Nation> nations = new HashMap<>();
     private Map<String, Territory> territories = new HashMap<>();
-    private Map<Pair<String, String>, Integer> territoryDistance;
+    private Map<Tuple<String, String>, Integer> territoryDistanceMap = new HashMap<>();;
 
     public Game() throws IOException {
         
-        this.territoryGraph = Board.getTerritoryGraph();
-        setDefaultPlayers();
+        setTerritoryGraph();
         setAllNationsAndTerritories();
-        setTerritoryDistances();
+        compareDataSets();
+        if(compareDataSets().isEmpty()) {
+            setDefaultPlayers();
+            setTerritoryDistances();
+        }
     }
 
     public void run() {
-        territories.forEach((key, value) -> System.out.println(key + " : " + value.getIpc()));
+        
+        testTerritoryDistances();
+        testTuples();
+    }
+
+    //TODO: take ot at a future date.
+    private void testTerritoryDistances() {
+        String selectedCountry = "India";
+        for(Tuple<String, String> pair : territoryDistanceMap.keySet()) {
+            String left = pair.getLeft();
+            String right = pair.getRight();
+            if(left.equals(selectedCountry) || right.equals(selectedCountry)) {
+                System.out.println(pair + "" + territoryDistanceMap.get(pair));
+            }
+        }
+    }
+
+    //TODO: take out at a future date.
+    private void testTuples() {
+
+        Tuple<String, String> pair = Tuple.of("India", "Canada");
+        Tuple<String, String> inversePair = getInversePair(pair);
+        Map<Tuple<String, String>, String> map = new HashMap<>();
+        map.put(pair, "1");
+        map.put(inversePair, "2");
+        System.out.println(map);
+        System.out.println(pair.equals(inversePair));
+        System.out.println(pair.hashCode() + " : " + pair);
+        System.out.println(inversePair.hashCode() + " : " + inversePair);
+    }
+
+    private void setTerritoryGraph() throws IOException {
+        territoryGraph = Board.getTerritoryGraph();
     }
 
     private void setDefaultPlayers() {
@@ -92,6 +128,77 @@ public class Game {
         nations.put(GERMANY, new Nation(GERMANY, territoriesByNation.get(GERMANY), unitsByNation.get(GERMANY)));
     }
 
+    private Set<String> compareDataSets() {
+        
+        Set<String> errors = new HashSet<>();
+        Set<String> territoryNamesFromGraph = territoryGraph.nodes();
+        Set<String> territoryNamesFromDetails = territories.keySet(); 
+        for(String territoryNameFromDetails : territoryNamesFromDetails) {
+            if(!territoryNamesFromGraph.contains(territoryNameFromDetails)){
+                errors.add(territoryNameFromDetails + " not present in the graph csv.");
+            }
+        }
+        errors.stream()
+            .forEach(error -> System.out.println(error));
+        return errors;
+    }
+
+    private void setTerritoryDistances() {
+        
+        int maximumUnitMovementRange = maximumUnitMovementRange();
+        for(String startingTerritoryName : territoryGraph.nodes()) {
+            setAdjacentTerritoriesRecursively(0, maximumUnitMovementRange, startingTerritoryName, startingTerritoryName, territoryDistanceMap);
+        }   
+    }
+
+    private Integer maximumUnitMovementRange() {
+        
+        return Arrays.stream(UnitType.values())
+            .map(UnitType::getMovementRange)
+            .reduce(Integer::max)
+            .orElse(0);
+    }
+
+    private void setAdjacentTerritoriesRecursively(
+        int previousDistance, 
+        int maxDistance, 
+        String startingTerritoryName, 
+        String previousTerritory,
+        Map<Tuple<String, String>, Integer> territoryDistanceMap) {
+
+        int currentDistance = previousDistance + 1;
+        if(currentDistance <= maxDistance) {
+            Set<String> adjacentTerritories = territoryGraph.adjacentNodes(previousTerritory);
+            for(String adjacentTerritoryName : adjacentTerritories){
+                setDistanceInMap(territoryDistanceMap, currentDistance, startingTerritoryName, adjacentTerritoryName);
+                setAdjacentTerritoriesRecursively(currentDistance, maxDistance, startingTerritoryName, adjacentTerritoryName, territoryDistanceMap);
+            }
+        }
+    }
+
+    private void setDistanceInMap(
+        Map<Tuple<String, String>, Integer> territoryDistanceMap, 
+        int distance, 
+        String startingTerritoryName, 
+        String adjacentTerritoryName) {
+
+        Tuple<String, String> territoryPair = Tuple.of(startingTerritoryName, adjacentTerritoryName);
+        int storedValue;
+        if(territoryDistanceMap.containsKey(territoryPair)) {
+            storedValue = territoryDistanceMap.get(territoryPair);   
+            if(storedValue > distance) {
+                territoryDistanceMap.put(territoryPair, distance);
+            }         
+        }
+        else {
+            territoryDistanceMap.put(territoryPair, distance);   
+        }
+    }
+
+    private Tuple<String, String> getInversePair(Tuple<String, String> territoryPair) {
+        return Tuple.of(territoryPair.getRight(), territoryPair.getLeft());
+    }
+
     public Map<String, NationType> getPlayers() {
         return players;
     }
@@ -127,11 +234,6 @@ public class Game {
 
     public Set<String> getAdjacentTerritories(String territoryName) {
         return territoryGraph.adjacentNodes(territoryName);
-    }
-
-    private void setTerritoryDistances() {
-        //TODO: set territory distances
-        this.territoryDistance = new HashMap<>();
     }
 
     public Map<Integer, Set<String>> getValidMoveTerritoriesForUnit(Unit unit) {
