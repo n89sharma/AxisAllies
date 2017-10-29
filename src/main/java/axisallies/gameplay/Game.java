@@ -19,6 +19,7 @@ import axisallies.units.Unit;
 import axisallies.units.UnitType;
 import axisallies.nations.Nation;
 import axisallies.nations.NationType;
+import axisallies.GameResponse;
 import axisallies.board.Board;
 import axisallies.board.Territory;
 import axisallies.tuple.Tuple;
@@ -53,10 +54,22 @@ public class Game {
     }
 
     public void run() {
-        testUnitsInTerritory();
+        testOrderUnitsForNation();
+        //testUnitsInTerritory();
         // testValidTerritoryMoves();
         // testTerritoryDistances();
         // testTuples();
+    }
+
+    private void testOrderUnitsForNation() {
+        Map<UnitType, Integer> unitOrder = new HashMap<>();
+        unitOrder.put(FIGHTER, 4);
+        orderUnitsForNation(unitOrder, GERMANY);
+        System.out.println(nations.get(GERMANY).getTreasuryAmount());
+        nations.get(GERMANY)
+            .getMobilizationUnit()
+            .stream()
+            .forEach(unit -> System.out.println(unit.getUnitType() + " : " + unit.getTerritory()));
     }
 
     //TODO: take out at a future date.
@@ -247,6 +260,7 @@ public class Game {
     }
 
     public Map<UnitType, Integer> getUnitsInATerritoryByType(String territoryName) {
+
         return getUnitsInATerritory(territoryName).stream()
             .collect(groupingBy(Unit::getUnitType, reducing(0, e -> 1, Integer::sum)));
     }
@@ -277,23 +291,48 @@ public class Game {
                 entry->vMap(entry)));
     }
 
-    private String kMap(Map.Entry<Tuple<String, String>, Integer> entry, String startingTerritory) {
+    private String kMap(Entry<Tuple<String, String>, Integer> entry, String startingTerritory) {
+
         return entry.getKey().getLeft().equals(startingTerritory) 
             ? entry.getKey().getRight()
             : entry.getKey().getLeft();
     }
 
-    private Integer vMap(Map.Entry<Tuple<String, String>, Integer> entry) {
+    private Integer vMap(Entry<Tuple<String, String>, Integer> entry) {
         return entry.getValue();
     }
 
     private boolean territoryIsWithinDistance(
-        Map.Entry<Tuple<String, String>, Integer> entry,
+        Entry<Tuple<String, String>, Integer> entry,
         String startingTerritory,
         int maximumDistance) {
 
         return (entry.getKey().getLeft().equals(startingTerritory) || 
             entry.getKey().getRight().equals(startingTerritory)) &&
             (entry.getValue() <= maximumDistance);
+    }
+
+    private GameResponse orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
+        
+        Nation nation = nations.get(nationType);
+        GameResponse gameResponse = new GameResponse();
+        int orderCost = unitOrder.entrySet()
+            .stream()
+            .mapToInt(entry -> entry.getKey().getProductionCost()*entry.getValue())
+            .sum();
+
+        if(orderCost <= nation.getTreasuryAmount()) {
+            StringBuilder builder = new StringBuilder("Not enough points in the nation's treasury for the unit order.\n");
+            builder.append("Nation : " + nationType.getName() + "\n");
+            builder.append("Treasury : " + nation.getTreasuryAmount() + "\n");
+            builder.append("Points required : " + orderCost + "\n");
+            gameResponse.addError(builder.toString());
+        }
+
+        if(!gameResponse.hasErrors()) {
+            nation.purchaseUnits(unitOrder);
+        }
+
+        return gameResponse;
     }
 }
