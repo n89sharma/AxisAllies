@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Collection;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.reducing;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.function.Function;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.Unit;
@@ -50,9 +53,17 @@ public class Game {
     }
 
     public void run() {
-        testValidTerritoryMoves();
+        testUnitsInTerritory();
+        // testValidTerritoryMoves();
         // testTerritoryDistances();
         // testTuples();
+    }
+
+    //TODO: take out at a future date.
+    private void testUnitsInTerritory() {
+        getUnitsInATerritoryByType("Manchuria").entrySet()
+            .stream()
+            .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
     }
 
     //TODO: take out at a future date.
@@ -235,6 +246,11 @@ public class Game {
         return nations.get(nationType).getTerritories(); 
     }
 
+    public Map<UnitType, Integer> getUnitsInATerritoryByType(String territoryName) {
+        return getUnitsInATerritory(territoryName).stream()
+            .collect(groupingBy(Unit::getUnitType, reducing(0, e -> 1, Integer::sum)));
+    }
+
     public Set<Unit> getUnitsInATerritory(String territoryName) {
         
         return nations.entrySet()                                       //nation types, nation
@@ -243,7 +259,7 @@ public class Game {
             .map(Nation::getUnits)                                      //list of unit
             .flatMap(Collection::stream)                                //unit
             .filter(unit -> unit.getTerritory().equals(territoryName))  //unit territory
-            .collect(Collectors.toSet());
+            .collect(toSet());
     }
 
     public Set<String> getAdjacentTerritories(String territoryName) {
@@ -256,7 +272,7 @@ public class Game {
         int maximumDistance = unit.getUnitType().getMovementRange();
         return territoryDistanceMap.entrySet().stream()
             .filter(entry -> territoryIsWithinDistance(entry, startingTerritory, maximumDistance))
-            .collect(Collectors.toMap(
+            .collect(toMap(
                 entry->kMap(entry, startingTerritory), 
                 entry->vMap(entry)));
     }
