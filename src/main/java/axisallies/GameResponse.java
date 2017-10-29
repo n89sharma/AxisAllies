@@ -4,12 +4,17 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GameResponse {
+public class GameResponse <T>{
     
     Set<String> errors = new HashSet<>();
+    T result;
     
     public GameResponse() {
-        
+
+    }
+
+    public GameResponse(T result) {
+        this.result = result;
     }
     
     public void addError(String error) {
@@ -22,5 +27,9 @@ public class GameResponse {
 
     public boolean hasErrors() {
         return this.errors.isEmpty();
+    }
+
+    public T getResult() {
+        return result;
     }
 }

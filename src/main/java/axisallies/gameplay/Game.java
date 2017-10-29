@@ -1,8 +1,10 @@
 package axisallies.gameplay;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Collection;
 
 import static java.util.stream.Collectors.toMap;
@@ -13,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import com.google.common.collect.MultimapBuilder.SortedSetMultimapBuilder;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.Unit;
@@ -22,6 +26,7 @@ import axisallies.nations.NationType;
 import axisallies.GameResponse;
 import axisallies.board.Board;
 import axisallies.board.Territory;
+import axisallies.board.Territory.TerritoryType;
 import axisallies.tuple.Tuple;
 
 import static axisallies.nations.NationType.GERMANY;
@@ -35,12 +40,13 @@ public class Game {
 
     private static final String NATION = "NATION";
     private static final String IPC_KEY = "IPC";
+    private static final String TERRITORY_TYPE_KEY = "TERRITORY_TYPE";
 
     private MutableGraph<String> territoryGraph;
     private Map<String, NationType> players = new HashMap<>();
     private Map<NationType, Nation> nations = new HashMap<>();
     private Map<String, Territory> territories = new HashMap<>();
-    private Map<Tuple<String, String>, Integer> territoryDistanceMap = new HashMap<>();;
+    private Map<Tuple<String, String>, Integer> shortestDistanceForTerritoryPair = new HashMap<>();;
 
     public Game() throws IOException {
         
@@ -55,7 +61,7 @@ public class Game {
 
     public void run() {
         testOrderUnitsForNation();
-        //testUnitsInTerritory();
+        // testUnitsInTerritory();
         // testValidTerritoryMoves();
         // testTerritoryDistances();
         // testTuples();
@@ -92,11 +98,11 @@ public class Game {
     //TODO: take ot at a future date.
     private void testTerritoryDistances() {
         String selectedCountry = "Germany";
-        for(Tuple<String, String> pair : territoryDistanceMap.keySet()) {
+        for(Tuple<String, String> pair : shortestDistanceForTerritoryPair.keySet()) {
             String left = pair.getLeft();
             String right = pair.getRight();
             if(left.equals(selectedCountry) || right.equals(selectedCountry)) {
-                System.out.println(pair + " : " + territoryDistanceMap.get(pair));
+                System.out.println(pair + " : " + shortestDistanceForTerritoryPair.get(pair));
             }
         }
     }
@@ -141,14 +147,16 @@ public class Game {
 
         Map<String, String> territoryData;
         NationType nationType;
+        TerritoryType territoryType;
         int ipcValue, numberOfUnits;
         Territory territory;
         for (String territoryName : territoryDetails.keySet()) {
             territoryData = territoryDetails.get(territoryName);
             nationType = NationType.valueOf(territoryData.get(NATION));
             ipcValue = Integer.parseInt(territoryData.get(IPC_KEY));
+            territoryType = TerritoryType.valueOf(territoryData.get(TERRITORY_TYPE_KEY));
 
-            territory = new Territory(territoryName, nationType, ipcValue);
+            territory = new Territory(territoryName, territoryType, nationType, ipcValue);
             territories.put(territory.getTerritoryName(), territory);
             territoriesByNation.get(nationType).add(territory);
             for (UnitType unitType : UnitType.values()) {
@@ -185,7 +193,7 @@ public class Game {
         
         int maximumUnitMovementRange = maximumUnitMovementRange();
         for(String startingTerritoryName : territoryGraph.nodes()) {
-            setAdjacentTerritoriesRecursively(0, maximumUnitMovementRange, startingTerritoryName, startingTerritoryName, territoryDistanceMap);
+            setAdjacentTerritoriesRecursively(0, maximumUnitMovementRange, startingTerritoryName, startingTerritoryName, shortestDistanceForTerritoryPair);
         }   
     }
 
@@ -284,7 +292,7 @@ public class Game {
 
         String startingTerritory = unit.getTerritory();
         int maximumDistance = unit.getUnitType().getMovementRange();
-        return territoryDistanceMap.entrySet().stream()
+        return shortestDistanceForTerritoryPair.entrySet().stream()
             .filter(entry -> territoryIsWithinDistance(entry, startingTerritory, maximumDistance))
             .collect(toMap(
                 entry->kMap(entry, startingTerritory), 
@@ -312,10 +320,10 @@ public class Game {
             (entry.getValue() <= maximumDistance);
     }
 
-    private GameResponse orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
+    public GameResponse orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
         
         Nation nation = nations.get(nationType);
-        GameResponse gameResponse = new GameResponse();
+        GameResponse gameResponse = new GameResponse<Boolean>();
         int orderCost = unitOrder.entrySet()
             .stream()
             .mapToInt(entry -> entry.getKey().getProductionCost()*entry.getValue())

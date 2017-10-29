@@ -1,81 +1,81 @@
-TERRITORY,IPC,NATION,INFANTRY,ARTILLERY,TANK,FIGHTER,BOMBER,AA_GUN,DESTROYER,TRANSPORT,CRUISER,AIRCRAFT_CARRIER,SUBMARINE,BATTLESHIP
-Russia                  ,  8, USSR,     4, 1, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
-Karelia                 ,  2, USSR,     4, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0
-Archangel               ,  2, USSR,     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Novosibirsk             ,  2, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Caucasus                ,  4, USSR,     3, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
-Kazakh                  ,  2, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Evenki National Okrug   ,  1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Yakut                   ,  1, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Buryatia                ,  1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Soviet Far East         ,  1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-4                       ,  0, USSR,     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0
-Germany                 , 10, GERMANY,  3, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
-France                  ,  6, GERMANY,  1, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0
-Norway                  ,  3, GERMANY,  2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Balkans                 ,  3, GERMANY,  1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Eastern Europe          ,  3, GERMANY,  2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Italy                   ,  6, GERMANY,  1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
-Ukraine                 ,  3, GERMANY,  3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Belorussia              ,  2, GERMANY,  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-West Russia             ,  2, GERMANY,  3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Morocco Algeria         ,  1, GERMANY,  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Libya                   ,  1, GERMANY,  1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-5                       ,  0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0
-9                       ,  0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0
-15                      ,  0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
-United Kingdom          ,  8, UK,       2, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0
-Eastern Canada          ,  3, UK,       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Anglo-Egypt Sudan       ,  2, UK,       1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Union of South Africa   ,  2, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Trans-Jordan            ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Persia                  ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-India                   ,  3, UK,       3, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
-Australia               ,  2, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-New Zealand             ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Western Canada          ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-French West Africa      ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-French Equatorial Africa,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Belgian Congo           ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Rhodesia                ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Italian East Africa     ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-French Madagascar       ,  1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-7                       ,  0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
-10                      ,  0, UK,       0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
-14                      ,  0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
-17                      ,  0, UK,       0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
-35                      ,  0, UK,       0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0
-39                      ,  0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0
-Japan                   ,  8, JAPAN,    4, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
-Manchuria               ,  3, JAPAN,    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Kwangtung               ,  3, JAPAN,    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Okinawa                 ,  1, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Wake Island             ,  0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-French Indo-China       ,  3, JAPAN,    2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-East Indies             ,  4, JAPAN,    2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Borneo                  ,  4, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-New Guinea              ,  1, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Solomon Islands         ,  0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Caroline Islands        ,  0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Philippine Islands      ,  3, JAPAN,    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-37                      ,  0, JAPAN,    0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 1
-44                      ,  0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0
-50                      ,  0, JAPAN,    0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0
-60                      ,  0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1
-61                      ,  0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
-Eastern United States   , 12, USA,      2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
-Central United States   ,  6, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Alaska                  ,  2, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Western United States   , 10, USA,      2, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
-Midway                  ,  0, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Hawaiian Islands        ,  1, USA,      1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Mexico                  ,  2, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Panama                  ,  1, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Brazil                  ,  3, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-West Indies             ,  1, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Sinkiang                ,  2, USA,      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-China                   ,  2, USA,      2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-11                      ,  0, USA,      0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0
-19                      ,  0, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
-53                      ,  0, USA,      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0
-56                      ,  0, USA,      0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1
+TERRITORY,TERRITORY_TYPE,IPC,NATION,INFANTRY,ARTILLERY,TANK,FIGHTER,BOMBER,AA_GUN,DESTROYER,TRANSPORT,CRUISER,AIRCRAFT_CARRIER,SUBMARINE,BATTLESHIP
+Russia                  ,  LAND, 8, USSR,     4, 1, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
+Karelia                 ,  LAND, 2, USSR,     4, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0
+Archangel               ,  LAND, 2, USSR,     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Novosibirsk             ,  LAND, 2, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Caucasus                ,  LAND, 4, USSR,     3, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
+Kazakh                  ,  LAND, 2, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Evenki National Okrug   ,  LAND, 1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Yakut                   ,  LAND, 1, USSR,     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Buryatia                ,  LAND, 1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Soviet Far East         ,  LAND, 1, USSR,     2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+4                       ,   SEA, 0, USSR,     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0
+Germany                 ,  LAND, 10, GERMANY,  3, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+France                  ,  LAND, 6, GERMANY,  1, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0
+Norway                  ,  LAND, 3, GERMANY,  2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Balkans                 ,  LAND, 3, GERMANY,  1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Eastern Europe          ,  LAND, 3, GERMANY,  2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Italy                   ,  LAND, 6, GERMANY,  1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
+Ukraine                 ,  LAND, 3, GERMANY,  3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Belorussia              ,  LAND, 2, GERMANY,  3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+West Russia             ,  LAND, 2, GERMANY,  3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Morocco Algeria         ,  LAND, 1, GERMANY,  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Libya                   ,  LAND, 1, GERMANY,  1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+5                       ,   SEA, 0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0
+9                       ,   SEA, 0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0
+15                      ,   SEA, 0, GERMANY,  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+United Kingdom          ,  LAND, 8, UK,       2, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0
+Eastern Canada          ,  LAND, 3, UK,       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Anglo-Egypt Sudan       ,  LAND, 2, UK,       1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Union of South Africa   ,  LAND, 2, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Trans-Jordan            ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Persia                  ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+India                   ,  LAND, 3, UK,       3, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0
+Australia               ,  LAND, 2, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+New Zealand             ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Western Canada          ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+French West Africa      ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+French Equatorial Africa,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Belgian Congo           ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Rhodesia                ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Italian East Africa     ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+French Madagascar       ,  LAND, 1, UK,       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+7                       ,  SEA,0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+10                      ,  SEA,0, UK,       0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
+14                      ,  SEA,0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
+17                      ,  SEA,0, UK,       0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0
+35                      ,  SEA,0, UK,       0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0
+39                      ,  SEA,0, UK,       0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0
+Japan                   ,  LAND, 8, JAPAN,    4, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+Manchuria               ,  LAND, 3, JAPAN,    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Kwangtung               ,  LAND, 3, JAPAN,    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Okinawa                 ,  LAND, 1, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Wake Island             ,  LAND, 0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+French Indo-China       ,  LAND, 3, JAPAN,    2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+East Indies             ,  LAND, 4, JAPAN,    2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Borneo                  ,  LAND, 4, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+New Guinea              ,  LAND, 1, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Solomon Islands         ,  LAND, 0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Caroline Islands        ,  LAND, 0, JAPAN,    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Philippine Islands      ,  LAND, 3, JAPAN,    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+37                      ,  SEA,0, JAPAN,    0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 1
+44                      ,  SEA,0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0
+50                      ,  SEA,0, JAPAN,    0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0
+60                      ,  SEA,0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1
+61                      ,  SEA,0, JAPAN,    0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
+Eastern United States   ,  LAND, 12, USA,      2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
+Central United States   ,  LAND,  6, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Alaska                  ,  LAND, 2, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Western United States   ,  LAND, 10, USA,      2, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
+Midway                  ,  LAND, 0, USA,      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Hawaiian Islands        ,  LAND, 1, USA,      1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Mexico                  ,  LAND, 2, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Panama                  ,  LAND, 1, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Brazil                  ,  LAND, 3, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+West Indies             ,  LAND, 1, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Sinkiang                ,  LAND, 2, USA,      2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+China                   ,  LAND, 2, USA,      2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+11                      ,  SEA,0, USA,      0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0
+19                      ,  SEA,0, USA,      0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
+53                      ,  SEA,0, USA,      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0
+56                      ,  SEA,0, USA,      0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1
