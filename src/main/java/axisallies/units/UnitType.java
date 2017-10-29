@@ -6,7 +6,7 @@ public enum UnitType {
     ARTILLERY           ( 4, 2, 2, 1),
     TANK                ( 6, 3, 3, 2),
     FIGHTER             (10, 3, 4, 4),
-    BOMBER              (12, 4, 4, 2),
+    BOMBER              (12, 4, 1, 6),
     AA_GUN              ( 5, 0, 0, 1),
     DESTROYER           ( 8, 2, 2, 2),
     TRANSPORT           ( 7, 0, 0, 2),
@@ -29,5 +29,9 @@ public enum UnitType {
 
     public int getMovementRange() {
         return movementRange;
+    }
+
+    public int getProductionCost() {
+        return productionCost;
     }
 }
