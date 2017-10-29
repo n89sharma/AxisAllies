@@ -1,7 +1,7 @@
 package axisallies.units;
 
 public enum UnitType {
-    //TYPE,             PRODUCTION_COST, MOVEMENT_RANGE, ATTACK_STRENGTH, DEFENCE_STRENGTH
+    //TYPE,             PRODUCTION_COST, ATTACK_STRENGTH, DEFENCE_STRENGTH, MOVEMENT_RANGE
     INFANTRY            ( 3, 1, 2, 1),
     ARTILLERY           ( 4, 2, 2, 1),
     TANK                ( 6, 3, 3, 2),

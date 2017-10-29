@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
+import java.util.function.Function;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.Unit;
@@ -25,6 +25,7 @@ import static axisallies.nations.NationType.USSR;
 import static axisallies.nations.NationType.USA;
 import static axisallies.nations.NationType.UK;
 import static axisallies.nations.NationType.JAPAN;
+import static axisallies.units.UnitType.FIGHTER;
 
 public class Game {
 
@@ -49,19 +50,29 @@ public class Game {
     }
 
     public void run() {
-        
-        testTerritoryDistances();
-        testTuples();
+        testValidTerritoryMoves();
+        // testTerritoryDistances();
+        // testTuples();
+    }
+
+    //TODO: take out at a future date.
+    private void testValidTerritoryMoves() {
+
+        getUnitsInATerritory("Manchuria").stream()
+            .filter(unit -> unit.getUnitType().equals(FIGHTER))
+            .map(unit -> getValidMoveTerritoriesForUnit(unit))
+            .flatMap(map -> map.entrySet().stream())
+            .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
     }
 
     //TODO: take ot at a future date.
     private void testTerritoryDistances() {
-        String selectedCountry = "India";
+        String selectedCountry = "Germany";
         for(Tuple<String, String> pair : territoryDistanceMap.keySet()) {
             String left = pair.getLeft();
             String right = pair.getRight();
             if(left.equals(selectedCountry) || right.equals(selectedCountry)) {
-                System.out.println(pair + "" + territoryDistanceMap.get(pair));
+                System.out.println(pair + " : " + territoryDistanceMap.get(pair));
             }
         }
     }
@@ -106,7 +117,7 @@ public class Game {
 
         Map<String, String> territoryData;
         NationType nationType;
-        int ipcValue;
+        int ipcValue, numberOfUnits;
         Territory territory;
         for (String territoryName : territoryDetails.keySet()) {
             territoryData = territoryDetails.get(territoryName);
@@ -117,7 +128,10 @@ public class Game {
             territories.put(territory.getTerritoryName(), territory);
             territoriesByNation.get(nationType).add(territory);
             for (UnitType unitType : UnitType.values()) {
-                unitsByNation.get(nationType).add(new Unit(territoryName, nationType, unitType));
+                numberOfUnits = Integer.parseInt(territoryData.get(unitType.toString()));
+                for(int i=0; i<numberOfUnits; i++) {
+                    unitsByNation.get(nationType).add(new Unit(territoryName, nationType, unitType));
+                }
             }
         }
 
@@ -236,9 +250,34 @@ public class Game {
         return territoryGraph.adjacentNodes(territoryName);
     }
 
-    public Map<Integer, Set<String>> getValidMoveTerritoriesForUnit(Unit unit) {
-        //TODO: implement valid territories
-        return new HashMap<>();
+    public Map<String, Integer> getValidMoveTerritoriesForUnit(Unit unit) {
+
+        String startingTerritory = unit.getTerritory();
+        int maximumDistance = unit.getUnitType().getMovementRange();
+        return territoryDistanceMap.entrySet().stream()
+            .filter(entry -> territoryIsWithinDistance(entry, startingTerritory, maximumDistance))
+            .collect(Collectors.toMap(
+                entry->kMap(entry, startingTerritory), 
+                entry->vMap(entry)));
     }
 
+    private String kMap(Map.Entry<Tuple<String, String>, Integer> entry, String startingTerritory) {
+        return entry.getKey().getLeft().equals(startingTerritory) 
+            ? entry.getKey().getRight()
+            : entry.getKey().getLeft();
+    }
+
+    private Integer vMap(Map.Entry<Tuple<String, String>, Integer> entry) {
+        return entry.getValue();
+    }
+
+    private boolean territoryIsWithinDistance(
+        Map.Entry<Tuple<String, String>, Integer> entry,
+        String startingTerritory,
+        int maximumDistance) {
+
+        return (entry.getKey().getLeft().equals(startingTerritory) || 
+            entry.getKey().getRight().equals(startingTerritory)) &&
+            (entry.getValue() <= maximumDistance);
+    }
 }
