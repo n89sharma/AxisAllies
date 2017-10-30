@@ -7,6 +7,7 @@ public class Unit {
     private String territory;
     private NationType nationType;
     private UnitType unitType;
+    private int currentRange;
 
     public Unit() {
 
@@ -16,6 +17,7 @@ public class Unit {
         this.territory = territory;
         this.nationType = nationType;
         this.unitType = unitType;
+        this.currentRange = unitType.getMovementRange();
     }
 
     public UnitType getUnitType() {
@@ -24,5 +26,9 @@ public class Unit {
 
     public String getTerritory() {
         return territory;
+    }
+
+    public int getCurrentRange() {
+        return currentRange;
     }
 }

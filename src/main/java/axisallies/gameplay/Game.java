@@ -1,7 +1,6 @@
 package axisallies.gameplay;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.google.common.collect.MultimapBuilder.SortedSetMultimapBuilder;
 import com.google.common.graph.MutableGraph;
 
 import axisallies.units.Unit;
@@ -29,12 +27,17 @@ import axisallies.board.Territory;
 import axisallies.board.Territory.TerritoryType;
 import axisallies.tuple.Tuple;
 
+import static axisallies.gameplay.GamePhaseType.COMBAT_MOVE;
+import static axisallies.gameplay.GamePhaseType.NON_COMBAT_MOVE;
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
 import static axisallies.nations.NationType.USA;
 import static axisallies.nations.NationType.UK;
 import static axisallies.nations.NationType.JAPAN;
 import static axisallies.units.UnitType.FIGHTER;
+import static axisallies.units.UnitType.UnitTerrainType.AIR;
+import static axisallies.units.UnitType.UnitTerrainType.LAND;
+import static axisallies.units.UnitType.UnitTerrainType.SEA;
 
 public class Game {
 
@@ -320,10 +323,10 @@ public class Game {
             (entry.getValue() <= maximumDistance);
     }
 
-    public GameResponse orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
+    public GameResponse<Boolean> orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
         
         Nation nation = nations.get(nationType);
-        GameResponse gameResponse = new GameResponse<Boolean>();
+        GameResponse<Boolean> gameResponse = new GameResponse<Boolean>();
         int orderCost = unitOrder.entrySet()
             .stream()
             .mapToInt(entry -> entry.getKey().getProductionCost()*entry.getValue())
@@ -342,5 +345,83 @@ public class Game {
         }
 
         return gameResponse;
+    }
+
+    private GameResponse<Boolean> isMovePossibleForUnitAndPhase(String fromTerritory, String toTerritory, Unit unit, GamePhaseType phaseType) {
+        
+        GameResponse<Boolean> response = new GameResponse<>(true);
+        StringBuilder sBuilder;
+        if(phaseType.equals(COMBAT_MOVE)) {
+
+            Territory fTerritory = territories.get(fromTerritory);
+            Territory tTerritory = territories.get(toTerritory);
+
+            if(fTerritory.getTeamType().equals(tTerritory.getTeamType())) {
+                
+                sBuilder = new StringBuilder("Combat phase moves must result in combat.");
+                sBuilder.append(" Destination for the units cannot be friendly territory.")
+                    .append(" Starting territory ")
+                    .append(fromTerritory)
+                    .append(" is occupied by ")
+                    .append(fTerritory.getNationType().getName())
+                    .append(" and destination territory is occupied by ")
+                    .append(tTerritory.getNationType().getName());
+                response.addError(sBuilder.toString());
+                response.setResult(false);
+            }
+            
+            if(unit.getUnitType().getUnitTerrainType().equals(AIR)) {
+
+                Tuple<String, String> territoryPair = Tuple.of(fromTerritory, toTerritory);
+                int shortestDistance = shortestDistanceForTerritoryPair.get(territoryPair);
+                int unitMaximumRange = unit.getCurrentRange();
+                if( !(shortestDistance < unitMaximumRange) ) {
+                    sBuilder = new StringBuilder("Air combat units must retain some of their range in the combat phase.");
+                    sBuilder.append("Shortest distance is ")
+                        .append(shortestDistance)
+                        .append(" and current range for unit is ")
+                        .append(unitMaximumRange);
+                    response.addError(sBuilder.toString());
+                    response.setResult(false);
+                }
+            }
+            //TODO: add the 4 exceptions to the combat phase rules.
+        } //TODO: implement NON COMBAT move.
+        return response;
+    }
+    
+    private GameResponse<Boolean> isMovePossibleWithBoardAndUnit(String fromTerritory, String toTerritory, Unit unit) {
+        
+        GameResponse<Boolean> response = new GameResponse<>(false);
+        Tuple<String, String> territoryPair = Tuple.of(fromTerritory, toTerritory);
+        StringBuilder sBuilder;
+        
+        if(!shortestDistanceForTerritoryPair.keySet().contains(territoryPair)) {
+            sBuilder = new StringBuilder("Shortest distance between");
+            sBuilder.append(fromTerritory)
+                .append(" and ")
+                .append(toTerritory)
+                .append(" is larger than the range of any unit.");
+            response.addError(sBuilder.toString());
+        }   
+        else if(shortestDistanceForTerritoryPair.get(territoryPair) > unit.getUnitType().getMovementRange()) {
+            sBuilder = new StringBuilder("The unit cannot reach ");
+            sBuilder.append(toTerritory)
+                .append(" from ")
+                .append(fromTerritory)
+                .append(". Shortest distance is ")
+                .append(shortestDistanceForTerritoryPair.get(territoryPair))
+                .append(" and ")
+                .append(unit.getUnitType().name())
+                .append(" has a range of ")
+                .append(unit.getUnitType().getMovementRange())
+                .append(".");
+            response.addError(sBuilder.toString());
+        }
+        else{
+            response.setResult(true);
+        }
+
+        return response;        
     }
 }

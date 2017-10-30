@@ -29,6 +29,10 @@ public class GameResponse <T>{
         return this.errors.isEmpty();
     }
 
+    public void setResult(T result) {
+        this.result = result;
+    }
+
     public T getResult() {
         return result;
     }
