@@ -36,4 +36,6 @@ public class GameResponse <T>{
     public T getResult() {
         return result;
     }
+
+    
 }

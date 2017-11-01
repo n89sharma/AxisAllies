@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Collection;
 
 import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.reducing;
@@ -21,6 +22,7 @@ import axisallies.units.Unit;
 import axisallies.units.UnitType;
 import axisallies.nations.Nation;
 import axisallies.nations.NationType;
+import axisallies.nations.NationType.TeamType;
 import axisallies.GameResponse;
 import axisallies.board.Board;
 import axisallies.board.Territory;
@@ -35,9 +37,8 @@ import static axisallies.nations.NationType.USA;
 import static axisallies.nations.NationType.UK;
 import static axisallies.nations.NationType.JAPAN;
 import static axisallies.units.UnitType.FIGHTER;
-import static axisallies.units.UnitType.UnitTerrainType.AIR;
-import static axisallies.units.UnitType.UnitTerrainType.LAND;
-import static axisallies.units.UnitType.UnitTerrainType.SEA;
+import static axisallies.units.UnitType.TANK;
+
 
 public class Game {
 
@@ -165,7 +166,9 @@ public class Game {
             for (UnitType unitType : UnitType.values()) {
                 numberOfUnits = Integer.parseInt(territoryData.get(unitType.toString()));
                 for(int i=0; i<numberOfUnits; i++) {
-                    unitsByNation.get(nationType).add(new Unit(territoryName, nationType, unitType));
+                    Unit unit = new Unit(territoryName, nationType, unitType);
+                    territory.addUnit(unit);
+                    unitsByNation.get(nationType).add(unit);
                 }
             }
         }
@@ -345,83 +348,5 @@ public class Game {
         }
 
         return gameResponse;
-    }
-
-    private GameResponse<Boolean> isMovePossibleForUnitAndPhase(String fromTerritory, String toTerritory, Unit unit, GamePhaseType phaseType) {
-        
-        GameResponse<Boolean> response = new GameResponse<>(true);
-        StringBuilder sBuilder;
-        if(phaseType.equals(COMBAT_MOVE)) {
-
-            Territory fTerritory = territories.get(fromTerritory);
-            Territory tTerritory = territories.get(toTerritory);
-
-            if(fTerritory.getTeamType().equals(tTerritory.getTeamType())) {
-                
-                sBuilder = new StringBuilder("Combat phase moves must result in combat.");
-                sBuilder.append(" Destination for the units cannot be friendly territory.")
-                    .append(" Starting territory ")
-                    .append(fromTerritory)
-                    .append(" is occupied by ")
-                    .append(fTerritory.getNationType().getName())
-                    .append(" and destination territory is occupied by ")
-                    .append(tTerritory.getNationType().getName());
-                response.addError(sBuilder.toString());
-                response.setResult(false);
-            }
-            
-            if(unit.getUnitType().getUnitTerrainType().equals(AIR)) {
-
-                Tuple<String, String> territoryPair = Tuple.of(fromTerritory, toTerritory);
-                int shortestDistance = shortestDistanceForTerritoryPair.get(territoryPair);
-                int unitMaximumRange = unit.getCurrentRange();
-                if( !(shortestDistance < unitMaximumRange) ) {
-                    sBuilder = new StringBuilder("Air combat units must retain some of their range in the combat phase.");
-                    sBuilder.append("Shortest distance is ")
-                        .append(shortestDistance)
-                        .append(" and current range for unit is ")
-                        .append(unitMaximumRange);
-                    response.addError(sBuilder.toString());
-                    response.setResult(false);
-                }
-            }
-            //TODO: add the 4 exceptions to the combat phase rules.
-        } //TODO: implement NON COMBAT move.
-        return response;
-    }
-    
-    private GameResponse<Boolean> isMovePossibleWithBoardAndUnit(String fromTerritory, String toTerritory, Unit unit) {
-        
-        GameResponse<Boolean> response = new GameResponse<>(false);
-        Tuple<String, String> territoryPair = Tuple.of(fromTerritory, toTerritory);
-        StringBuilder sBuilder;
-        
-        if(!shortestDistanceForTerritoryPair.keySet().contains(territoryPair)) {
-            sBuilder = new StringBuilder("Shortest distance between");
-            sBuilder.append(fromTerritory)
-                .append(" and ")
-                .append(toTerritory)
-                .append(" is larger than the range of any unit.");
-            response.addError(sBuilder.toString());
-        }   
-        else if(shortestDistanceForTerritoryPair.get(territoryPair) > unit.getUnitType().getMovementRange()) {
-            sBuilder = new StringBuilder("The unit cannot reach ");
-            sBuilder.append(toTerritory)
-                .append(" from ")
-                .append(fromTerritory)
-                .append(". Shortest distance is ")
-                .append(shortestDistanceForTerritoryPair.get(territoryPair))
-                .append(" and ")
-                .append(unit.getUnitType().name())
-                .append(" has a range of ")
-                .append(unit.getUnitType().getMovementRange())
-                .append(".");
-            response.addError(sBuilder.toString());
-        }
-        else{
-            response.setResult(true);
-        }
-
-        return response;        
     }
 }

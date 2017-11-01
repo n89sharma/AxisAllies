@@ -12,20 +12,20 @@ import axisallies.units.UnitType;
 public class Nation {
 
     private NationType nationType;
-    private Set<Territory> territory;
+    private Set<Territory> territories;
     private Set<Unit> units;
     private int treasury=0;
     private Set<Unit> mobilizationZoneUnits = new HashSet<>();
 
-    public Nation(NationType nationType, Set<Territory> territory, Set<Unit> units) {
+    public Nation(NationType nationType, Set<Territory> territories, Set<Unit> units) {
         this.nationType = nationType;
-        this.territory = territory;
+        this.territories = territories;
         this.units = units;
         addToTreasury();
     }
 
     public Set<Territory> getTerritories() {
-        return territory;
+        return territories;
     }
 
     public Set<Unit> getUnits() {
