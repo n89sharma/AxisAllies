@@ -1,14 +1,26 @@
 package axisallies;
 
+import axisallies.board.Territory;
 import axisallies.gameplay.Game;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 
 public class AxisAllies {
     public static void main (String[] args) throws IOException {
         System.out.println("Hello!");
-        Game aGame = new Game();
-        aGame.run();
+        // Game aGame = new Game();
+        // aGame.run();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonFilePath = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/resources/1942-second-edition.json";
+        Set<Territory> territories = objectMapper.readValue(
+            new File(jsonFilePath), 
+            new TypeReference<Set<Territory>>(){});
+
+        System.out.println(territories);
     }
 }
 

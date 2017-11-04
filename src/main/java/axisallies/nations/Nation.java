@@ -55,7 +55,7 @@ public class Nation {
         if(orderCost <= treasury) {
             for(Entry<UnitType, Integer> entry : unitOrder.entrySet()) {
                 for(int i=0; i<entry.getValue(); i++) {
-                    mobilizationZoneUnits.add(new Unit("", nationType, entry.getKey()));
+                    mobilizationZoneUnits.add(new Unit(null, nationType, entry.getKey(), ""));
                 }
             }
             treasury -= orderCost;

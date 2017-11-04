@@ -54,7 +54,7 @@ public class Game {
     }
 
     public void run() {
-        testOrderUnitsForNation();
+        // testOrderUnitsForNation();
         //testUnitsInTerritory();
         // testValidTerritoryMoves();
         // testTerritoryDistances();
@@ -154,7 +154,7 @@ public class Game {
             for (UnitType unitType : UnitType.values()) {
                 numberOfUnits = Integer.parseInt(territoryData.get(unitType.toString()));
                 for(int i=0; i<numberOfUnits; i++) {
-                    unitsByNation.get(nationType).add(new Unit(territoryName, nationType, unitType));
+                    unitsByNation.get(nationType).add(new Unit(null, nationType, unitType, ""));
                 }
             }
         }
@@ -282,7 +282,7 @@ public class Game {
 
     public Map<String, Integer> getValidMoveTerritoriesForUnit(Unit unit) {
 
-        String startingTerritory = unit.getTerritory();
+        String startingTerritory = unit.getTerritoryName();
         int maximumDistance = unit.getUnitType().getMovementRange();
         return territoryDistanceMap.entrySet().stream()
             .filter(entry -> territoryIsWithinDistance(entry, startingTerritory, maximumDistance))
@@ -323,7 +323,7 @@ public class Game {
 
         if(orderCost <= nation.getTreasuryAmount()) {
             StringBuilder builder = new StringBuilder("Not enough points in the nation's treasury for the unit order.\n");
-            builder.append("Nation : " + nationType.getName() + "\n");
+            builder.append("Nation : " + nationType.getNationTypeString() + "\n");
             builder.append("Treasury : " + nation.getTreasuryAmount() + "\n");
             builder.append("Points required : " + orderCost + "\n");
             gameResponse.addError(builder.toString());

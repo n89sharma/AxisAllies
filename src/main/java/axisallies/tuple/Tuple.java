@@ -6,6 +6,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class Tuple<L, R> extends Pair<L, R> {
 
+    private static final long serialVersionUID = -7794098087363848452L;
     private final L left;
     private final R right;
 

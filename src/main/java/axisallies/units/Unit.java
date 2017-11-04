@@ -1,28 +1,16 @@
 package axisallies.units;
 
+import axisallies.board.Territory;
 import axisallies.nations.NationType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 public class Unit {
 
-    private String territory;
+    private Territory territory;
     private NationType nationType;
     private UnitType unitType;
-
-    public Unit() {
-
-    }
-
-    public Unit(String territory, NationType nationType, UnitType unitType) {
-        this.territory = territory;
-        this.nationType = nationType;
-        this.unitType = unitType;
-    }
-
-    public UnitType getUnitType() {
-        return unitType;
-    }
-
-    public String getTerritory() {
-        return territory;
-    }
+    private String territoryName;
 }

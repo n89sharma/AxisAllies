@@ -1,11 +1,12 @@
 package axisallies.units;
 
-public class IndustrialComplex extends Unit {
+public class IndustrialComplex {
 
     private int health;
     private String territory;
 
     public IndustrialComplex() {
+        super();
         this.health = 10;
     }
 

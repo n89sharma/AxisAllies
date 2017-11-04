@@ -7,13 +7,17 @@ public enum NationType {
     JAPAN("JAPAN"),
     UK("UK");
 
-    private final String name;
+    private final String nationTypeString;
 
-    private NationType(String name) {
-        this.name = name;
+    private NationType(String nationTypeString) {
+        this.nationTypeString = nationTypeString;
     }
 
-    public String getName() {
-        return this.name;
+    public NationType getNationType(String nationTypeString) {
+        return NationType.valueOf(nationTypeString);
+    }
+
+    public String getNationTypeString() {
+        return this.nationTypeString;
     }
 }
