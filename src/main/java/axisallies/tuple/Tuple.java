@@ -30,6 +30,11 @@ public class Tuple<L, R> extends Pair<L, R> {
     }
 
     @Override
+    public R setValue(R value) {
+        return value;
+    }
+
+    @Override
     public boolean equals(final Object obj) {
         if (obj == this) {
             return true;

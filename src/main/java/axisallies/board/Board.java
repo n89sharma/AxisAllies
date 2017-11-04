@@ -1,7 +1,6 @@
 package axisallies.board;
 
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import com.google.common.graph.GraphBuilder;
@@ -18,13 +17,13 @@ import org.apache.commons.csv.CSVRecord;
 
 public class Board {
     
-    private static final String BOARD_GAME_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/1942-map.csv";
-    private static final String INITIAL_UNIT_SETUP_FILE = "/Users/nik/Documents/development/AxisAlliesMaven/src/main/java/axisallies/1942-territory-details.csv";
+    private static final String BOARD_GAME_SETUP_FILE = "1942-map.csv";
+    private static final String INITIAL_UNIT_SETUP_FILE = "1942-territory-details.csv";
     private static final String TERRITORY = "TERRITORY";
     private static final String NATION = "NATION";
     private static final String IPC = "IPC";
 
-    public static MutableGraph<String> getTerritoryGraph() throws IOException {
+    public MutableGraph<String> getTerritoryGraph() throws IOException {
 
         MutableGraph<String> territoryGraph = GraphBuilder.undirected().build();
         Iterable<CSVRecord> records = getFileRecords(BOARD_GAME_SETUP_FILE);
@@ -44,7 +43,7 @@ public class Board {
         return territoryGraph;
     }
 
-    public static Map<String, Map<String, String>> getTerritoryDetails() throws IOException {
+    public Map<String, Map<String, String>> getTerritoryDetails() throws IOException {
 
         Map<String, Map<String, String>> territoryDetails = new HashMap<>();
         Iterable<CSVRecord> records = getFileRecords(INITIAL_UNIT_SETUP_FILE);
@@ -61,8 +60,10 @@ public class Board {
         return territoryDetails;
     }
 
-    private static Iterable<CSVRecord> getFileRecords(String fileName) throws FileNotFoundException, IOException {
-        return CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(new FileReader(fileName)); 
+    private Iterable<CSVRecord> getFileRecords(String fileName) throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String filePath = classLoader.getResource(fileName).getPath();
+        return CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(new FileReader(filePath));
     }
 
     private static String trimGet(CSVRecord record, String key) {
