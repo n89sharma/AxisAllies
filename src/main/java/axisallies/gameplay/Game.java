@@ -116,7 +116,7 @@ public class Game {
     }
 
     private void setTerritoryGraph() throws IOException {
-        territoryGraph = Board.getTerritoryGraph();
+        territoryGraph = new Board().getTerritoryGraph();
     }
 
     private void setDefaultPlayers() {
@@ -130,7 +130,7 @@ public class Game {
 
     private void setAllNationsAndTerritories() throws IOException {
 
-        Map<String, Map<String, String>> territoryDetails = Board.getTerritoryDetails();
+        Map<String, Map<String, String>> territoryDetails = new Board().getTerritoryDetails();
         Map<NationType, Set<Territory>> territoriesByNation = new HashMap<>();
         Map<NationType, Set<Unit>> unitsByNation = new HashMap<>();
 
