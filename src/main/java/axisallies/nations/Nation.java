@@ -2,8 +2,8 @@ package axisallies.nations;
 
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import axisallies.board.Territory;
 import axisallies.units.Unit;

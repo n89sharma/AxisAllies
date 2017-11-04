@@ -2,6 +2,7 @@ package axisallies.tuple;
 
 import java.util.Map;
 import java.util.Objects;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 public class Tuple<L, R> extends Pair<L, R> {

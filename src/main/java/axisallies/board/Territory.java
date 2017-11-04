@@ -1,12 +1,11 @@
 package axisallies.board;
 
-import axisallies.nations.NationType;
-import axisallies.units.Unit;
 import java.util.Set;
 
+import axisallies.nations.NationType;
+import axisallies.units.Unit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

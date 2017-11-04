@@ -1,35 +1,35 @@
 package axisallies.gameplay;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Collection;
-
-import static java.util.stream.Collectors.toMap;
-import static java.util.stream.Collectors.toSet;
+import static axisallies.nations.NationType.GERMANY;
+import static axisallies.nations.NationType.JAPAN;
+import static axisallies.nations.NationType.UK;
+import static axisallies.nations.NationType.USA;
+import static axisallies.nations.NationType.USSR;
+import static axisallies.units.UnitType.FIGHTER;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
 import com.google.common.graph.MutableGraph;
 
-import axisallies.units.Unit;
-import axisallies.units.UnitType;
-import axisallies.nations.Nation;
-import axisallies.nations.NationType;
 import axisallies.GameResponse;
 import axisallies.board.Board;
 import axisallies.board.Territory;
+import axisallies.nations.Nation;
+import axisallies.nations.NationType;
 import axisallies.tuple.Tuple;
-
-import static axisallies.nations.NationType.GERMANY;
-import static axisallies.nations.NationType.USSR;
-import static axisallies.nations.NationType.USA;
-import static axisallies.nations.NationType.UK;
-import static axisallies.nations.NationType.JAPAN;
-import static axisallies.units.UnitType.FIGHTER;
+import axisallies.units.Unit;
+import axisallies.units.UnitType;
 
 public class Game {
 
