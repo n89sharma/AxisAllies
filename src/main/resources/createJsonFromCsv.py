@@ -1,36 +1,58 @@
 import csv
+import json
 
-details = []
-graph = []
+inputFilePath   = './consolidated-input-file.csv'
+outputFilePath  = '1942-second-edition.json'
 
-with open('/Users/nik/Documents/development/AxisAlliesMaven/src/main/resources/1942-territory-details.csv', 'rb') as csvfile:
-    reader = csv.reader(csvfile)
+unitTypeList = []
+unitTypeList.append('INFANTRY')
+unitTypeList.append('ARTILLERY')
+unitTypeList.append('TANK')
+unitTypeList.append('FIGHTER')
+unitTypeList.append('BOMBER')
+unitTypeList.append('AA_GUN')
+unitTypeList.append('DESTROYER')
+unitTypeList.append('TRANSPORT')
+unitTypeList.append('CRUISER')
+unitTypeList.append('AIRCRAFT_CARRIER')
+unitTypeList.append('SUBMARINE')
+unitTypeList.append('BATTLESHIP')
+
+territoryJsonList = []
+with open(inputFilePath, 'r') as inputCsvFile:
+
+    reader = csv.DictReader(inputCsvFile)
     for row in reader:
-        rowDict = {}
-        key = row[0].strip()
-        valueList = [ val.strip() for val in row[1:]]
-        valueDict = {}
 
-        valueDict['ipc'] = valueList[0]
-        valueDict['nation'] = valueList[1]
-        valueDict['newName'] = valueList[-1]
-        valueDict['INFANTRY'] = valueList[2]
-        valueDict['ARTILLERY'] = valueList[3]
-        valueDict['TANK'] = valueList[4]
-        valueDict['FIGHTER'] = valueList[5]
-        valueDict['BOMBER'] = valueList[6]
-        valueDict['AA_GUN'] = valueList[7]
-        valueDict['DESTROYER'] = valueList[8]
-        valueDict['TRANSPORT'] = valueList[9]
-        valueDict['CRUISER'] = valueList[10]
-        valueDict['AIRCRAFT_CARRIER'] = valueList[11]
-        valueDict['SUBMARINE'] = valueList[12]
-        valueDict['BATTLESHIP'] = valueList[13]
-        
-        if(len(key) < 3):
-            valueDict['newName'] = "Sea Zone " + valueList[-1]
-        else:
-            valueDict['newName'] = valueList[1]
-        rowDict[key] = valueDict
-        print rowDict
-        details.append(rowDict)
+        neighbourList = [
+            row['2'],
+            row['3'],
+            row['4'],
+            row['5'],
+            row['6'],
+            row['7'],
+            row['8'],
+            row['9'],
+            row['10'],
+            row['11'],
+        ]
+
+        territoryJson = {}
+        territoryJson['territoryName']  = row['TERRITORY']
+        territoryJson['nationType']     = row['NATION']
+        territoryJson['ipc']            = int(row['IPC'])
+        territoryJson['neighbourNames'] = [val for val in neighbourList if val.strip() != '']
+        territoryJson['units']          = []
+
+        for unitType in unitTypeList:
+            for i in range(0, int(row[unitType])):
+                unitJson = {}
+                unitJson['territoryName']   = row['TERRITORY']
+                unitJson['nationType']      = row['NATION']
+                unitJson['unitType']        = unitType
+                territoryJson['units'].append(unitJson)
+
+        territoryJsonList.append(territoryJson)
+
+with open(outputFilePath, 'w') as outputJsonFile:
+    json.dump(territoryJsonList, outputJsonFile)

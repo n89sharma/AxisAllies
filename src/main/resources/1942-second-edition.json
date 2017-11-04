@@ -1,32 +1,2043 @@
 [
-    {
-        "territoryName": "Germay",
-        "nationType": "GERMANY",
-        "ipc": 10,
-        "neighbourNames": [
-            "France",
-            "Switzerland",
-            "Italy",
-            "Eastern Europe",
-            "Balkans",
-            "Sea Territory 5"
-        ],
-        "units": [
-            {
-                "territoryName": "Germany",
-                "nationType": "GERMANY",
-                "unitType": "INFANTRY"
-            },
-            {
-                "territoryName": "Germany",
-                "nationType": "GERMANY",
-                "unitType": "INFANTRY"
-            },
-            {
-                "territoryName": "Germany",
-                "nationType": "GERMANY",
-                "unitType": "INFANTRY"
-            }
-        ]
-    }
+  {
+    "neighbourNames": [
+      "West Russia",
+      "Archangel",
+      "Evenki National Okrug",
+      "Novosibirsk",
+      "Kazakh",
+      "Caucasus"
+    ],
+    "ipc": 8,
+    "territoryName": "Russia",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Russia",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Norway",
+      "Eastern Europe",
+      "Belorussia",
+      "West Russia",
+      "Archangel"
+    ],
+    "ipc": 2,
+    "territoryName": "Karelia",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Karelia",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "West Russia",
+      "Karelia",
+      "Russia"
+    ],
+    "ipc": 2,
+    "territoryName": "Archangel",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Archangel",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Archangel",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Russia",
+      "Evenski National Okrug",
+      "Mongolia",
+      "Sinkiang",
+      "Kazakh"
+    ],
+    "ipc": 2,
+    "territoryName": "Novosibirsk",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Novosibirsk",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Ukraine",
+      "West Russia",
+      "Russia",
+      "Novosibirsk",
+      "Kazakh",
+      "Persia",
+      "Turkey",
+      "16"
+    ],
+    "ipc": 4,
+    "territoryName": "Caucasus",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Caucasus",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Caucasus",
+      "Russia",
+      "Novosibirsk",
+      "Sinkiang",
+      "Himalaya",
+      "Afghanistan",
+      "Persia"
+    ],
+    "ipc": 2,
+    "territoryName": "Kazakh",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Kazakh",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Russia",
+      "Novosibirsk",
+      "Yakut"
+    ],
+    "ipc": 1,
+    "territoryName": "Evenki National Okrug",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Evenki National Okrug",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Evenki National Okrug",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Evenki National Okrug",
+      "Novosibirsk",
+      "Mongolia",
+      "Buryatia",
+      "Soviet Far East"
+    ],
+    "ipc": 1,
+    "territoryName": "Yakut",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Yakut",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "60",
+      "Manchuria",
+      "Mongolia",
+      "Yakut",
+      "Soviet Far East"
+    ],
+    "ipc": 1,
+    "territoryName": "Buryatia",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Buryatia",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Buryatia",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Buryatia",
+      "Yakut",
+      "62"
+    ],
+    "ipc": 1,
+    "territoryName": "Soviet Far East",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Soviet Far East",
+        "nationType": "USSR"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Soviet Far East",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "30",
+      "38",
+      "40",
+      "Australia"
+    ],
+    "ipc": 0,
+    "territoryName": "4",
+    "nationType": "USSR",
+    "units": [
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "4",
+        "nationType": "USSR"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "France",
+      "Switzerland",
+      "Italy",
+      "Eastern Europe",
+      "Balkans",
+      "5"
+    ],
+    "ipc": 10,
+    "territoryName": "Germany",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "BOMBER",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Germany",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Spain",
+      "Switzerland",
+      "Italy",
+      "Germany",
+      "7",
+      "13",
+      "6",
+      "5"
+    ],
+    "ipc": 6,
+    "territoryName": "France",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "France",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "France",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "France",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "France",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "41"
+    ],
+    "ipc": 3,
+    "territoryName": "Norway",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Norway",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Norway",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Norway",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Italy",
+      "Germany",
+      "Eastern Europe",
+      "Ukraine",
+      "16"
+    ],
+    "ipc": 3,
+    "territoryName": "Balkans",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Balkans",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Balkans",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Belorussia",
+      "Ukraine",
+      "Balkans",
+      "Germany",
+      "5",
+      "Karelia"
+    ],
+    "ipc": 3,
+    "territoryName": "Eastern Europe",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Eastern Europe",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Eastern Europe",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Eastern Europe",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Eastern Europe",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "14",
+      "France",
+      "Switzerland",
+      "Germnay",
+      "Balkans"
+    ],
+    "ipc": 6,
+    "territoryName": "Italy",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Italy",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Italy",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Italy",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Europe",
+      "Belorussia",
+      "West Russia",
+      "Caucasus",
+      "16"
+    ],
+    "ipc": 3,
+    "territoryName": "Ukraine",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Ukraine",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Europe",
+      "Karelia",
+      "West Russia",
+      "Ukraine"
+    ],
+    "ipc": 2,
+    "territoryName": "Belorussia",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Belorussia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Belorussia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Belorussia",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Caucasus",
+      "Ukraine",
+      "Belorussia",
+      "Karelia",
+      "Archangel",
+      "Russia"
+    ],
+    "ipc": 2,
+    "territoryName": "West Russia",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "West Russia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "West Russia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "West Russia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "West Russia",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "West Russia",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "13",
+      "Libya",
+      "Sahara",
+      "12"
+    ],
+    "ipc": 1,
+    "territoryName": "Morocco Algeria",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Morocco Algeria",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "14",
+      "Anglo-Egypt Sudan",
+      "Sahara",
+      "Morocco Algeria"
+    ],
+    "ipc": 1,
+    "territoryName": "Libya",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Libya",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Libya",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "48",
+      "36",
+      "59",
+      "60",
+      "58",
+      "50",
+      "Philippine Islands"
+    ],
+    "ipc": 0,
+    "territoryName": "5",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "5",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "CRUISER",
+        "territoryName": "5",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "5",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "5",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Alaska",
+      "Western Canada",
+      "55",
+      "56",
+      "63"
+    ],
+    "ipc": 0,
+    "territoryName": "9",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "9",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "9",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Canada",
+      "2",
+      "9"
+    ],
+    "ipc": 0,
+    "territoryName": "15",
+    "nationType": "GERMANY",
+    "units": [
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "15",
+        "nationType": "GERMANY"
+      },
+      {
+        "unitType": "BATTLESHIP",
+        "territoryName": "15",
+        "nationType": "GERMANY"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eire",
+      "2",
+      "3",
+      "6",
+      "7",
+      "8"
+    ],
+    "ipc": 8,
+    "territoryName": "United Kingdom",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "BOMBER",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "United Kingdom",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "1",
+      "9",
+      "Central Unites States",
+      "Eastern United States"
+    ],
+    "ipc": 3,
+    "territoryName": "Eastern Canada",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "TANK",
+        "territoryName": "Eastern Canada",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Trans-Jordan",
+      "15",
+      "34",
+      "Libya",
+      "Sahara",
+      "French Equatorial Africa",
+      "Belgian Congo",
+      "Rhodesia",
+      "Italian East Africa"
+    ],
+    "ipc": 2,
+    "territoryName": "Anglo-Egypt Sudan",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Anglo-Egypt Sudan",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Anglo-Egypt Sudan",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Anglo-Egypt Sudan",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Anglo-Egypt Sudan",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Angola",
+      "Rhodesia",
+      "Mozambique",
+      "27",
+      "28"
+    ],
+    "ipc": 2,
+    "territoryName": "Union of South Africa",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Union of South Africa",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Persia",
+      "Turkey",
+      "Saudi Arabia",
+      "15",
+      "34"
+    ],
+    "ipc": 1,
+    "territoryName": "Trans-Jordan",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Trans-Jordan",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Trans-Jordan",
+      "Turkey",
+      "Caucasus",
+      "Kazakh",
+      "Afghanistan",
+      "India"
+    ],
+    "ipc": 1,
+    "territoryName": "Persia",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Persia",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Persia",
+      "Afghanistan",
+      "Himalaya",
+      "French Indo-China",
+      "35"
+    ],
+    "ipc": 3,
+    "territoryName": "India",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "India",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "India",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "India",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "India",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "46",
+      "40",
+      "39",
+      "38"
+    ],
+    "ipc": 2,
+    "territoryName": "Australia",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Australia",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "41"
+    ],
+    "ipc": 1,
+    "territoryName": "New Zealand",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "New Zealand",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Alaska",
+      "Western United States"
+    ],
+    "ipc": 1,
+    "territoryName": "Western Canada",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Western Canada",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "17",
+      "Sahara",
+      "French Equatorial Africa"
+    ],
+    "ipc": 1,
+    "territoryName": "French West Africa",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "French West Africa",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Sahara",
+      "French West Africa",
+      "Anglo-Egypt Sudan",
+      "Belgian Congo",
+      "23"
+    ],
+    "ipc": 1,
+    "territoryName": "French Equatorial Africa",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "French Equatorial Africa",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "French Equatorial Africa",
+      "Anglo-Egypt Sudan",
+      "Italian East Africa",
+      "Rhodesia",
+      "Angola",
+      "23"
+    ],
+    "ipc": 1,
+    "territoryName": "Belgian Congo",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Belgian Congo",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "33",
+      "Italian East Africa",
+      "Belgian Congo",
+      "Angola",
+      "Union of South Africa",
+      "Mozambique"
+    ],
+    "ipc": 1,
+    "territoryName": "Rhodesia",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Rhodesia",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "34",
+      "Anglo-Egypt Sudan",
+      "Belgian Congo",
+      "Rhodesia"
+    ],
+    "ipc": 1,
+    "territoryName": "Italian East Africa",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Italian East Africa",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "India",
+      "Himalaya",
+      "China",
+      "Kwangtung",
+      "36"
+    ],
+    "ipc": 1,
+    "territoryName": "French Madagascar",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "French Madagascar",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Alaska",
+      "Western Canada",
+      "55",
+      "56",
+      "63"
+    ],
+    "ipc": 0,
+    "territoryName": "7",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "7",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "BATTLESHIP",
+        "territoryName": "7",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Canada",
+      "2",
+      "9"
+    ],
+    "ipc": 0,
+    "territoryName": "10",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "10",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "10",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Canada",
+      "2",
+      "9"
+    ],
+    "ipc": 0,
+    "territoryName": "14",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "CRUISER",
+        "territoryName": "14",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Canada",
+      "2",
+      "9"
+    ],
+    "ipc": 0,
+    "territoryName": "17",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "17",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "India",
+      "36",
+      "37",
+      "31",
+      "32",
+      "34"
+    ],
+    "ipc": 0,
+    "territoryName": "35",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "35",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "35",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "CRUISER",
+        "territoryName": "35",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "AIRCRAFT_CARRIER",
+        "territoryName": "35",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "30",
+      "38",
+      "40",
+      "Australia"
+    ],
+    "ipc": 0,
+    "territoryName": "39",
+    "nationType": "UK",
+    "units": [
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "39",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "CRUISER",
+        "territoryName": "39",
+        "nationType": "UK"
+      },
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "39",
+        "nationType": "UK"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "60",
+      "61"
+    ],
+    "ipc": 8,
+    "territoryName": "Japan",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "BOMBER",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Japan",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Kwangtung",
+      "China",
+      "Mongolia",
+      "Buryatia",
+      "61"
+    ],
+    "ipc": 3,
+    "territoryName": "Manchuria",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Manchuria",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Manchuria",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Manchuria",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Manchuria",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "59",
+      "Manchuria",
+      "China",
+      "French Indo-China"
+    ],
+    "ipc": 3,
+    "territoryName": "Kwangtung",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Kwangtung",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Kwangtung",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "58"
+    ],
+    "ipc": 1,
+    "territoryName": "Okinawa",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Okinawa",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "51"
+    ],
+    "ipc": 0,
+    "territoryName": "Wake Island",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Wake Island",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "India",
+      "Himalaya",
+      "China",
+      "Kwangtung",
+      "36"
+    ],
+    "ipc": 3,
+    "territoryName": "French Indo-China",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "French Indo-China",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "French Indo-China",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "French Indo-China",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "French Indo-China",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "37"
+    ],
+    "ipc": 4,
+    "territoryName": "East Indies",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "East Indies",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "East Indies",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "48"
+    ],
+    "ipc": 4,
+    "territoryName": "Borneo",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Borneo",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "47"
+    ],
+    "ipc": 1,
+    "territoryName": "New Guinea",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "New Guinea",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "45"
+    ],
+    "ipc": 0,
+    "territoryName": "Solomon Islands",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Solomon Islands",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "50"
+    ],
+    "ipc": 0,
+    "territoryName": "Caroline Islands",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Caroline Islands",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "49"
+    ],
+    "ipc": 3,
+    "territoryName": "Philippine Islands",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Philippine Islands",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Philippine Islands",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "East Indies",
+      "38",
+      "31",
+      "35",
+      "36",
+      "48",
+      "47"
+    ],
+    "ipc": 0,
+    "territoryName": "37",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "37",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "37",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "AIRCRAFT_CARRIER",
+        "territoryName": "37",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "BATTLESHIP",
+        "territoryName": "37",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "45",
+      "52",
+      "53",
+      "43",
+      "42",
+      "41"
+    ],
+    "ipc": 0,
+    "territoryName": "44",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "44",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "47",
+      "48",
+      "49",
+      "58",
+      "51",
+      "52",
+      "45",
+      "Caroline Islands"
+    ],
+    "ipc": 0,
+    "territoryName": "50",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "50",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "CRUISER",
+        "territoryName": "50",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "AIRCRAFT_CARRIER",
+        "territoryName": "50",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Japan",
+      "61",
+      "57",
+      "62",
+      "51",
+      "58",
+      "49",
+      "59"
+    ],
+    "ipc": 0,
+    "territoryName": "60",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "60",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "60",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "BATTLESHIP",
+        "territoryName": "60",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Japan",
+      "60",
+      "Mancuria",
+      "59"
+    ],
+    "ipc": 0,
+    "territoryName": "61",
+    "nationType": "JAPAN",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "61",
+        "nationType": "JAPAN"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "61",
+        "nationType": "JAPAN"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "10",
+      "Central United States",
+      "Eastern Canada"
+    ],
+    "ipc": 12,
+    "territoryName": "Eastern United States",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "ARTILLERY",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "TANK",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "BOMBER",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Eastern United States",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern United States",
+      "Panama",
+      "Eastern Canada"
+    ],
+    "ipc": 6,
+    "territoryName": "Central United States",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Central United States",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "63",
+      "64",
+      "Western Canada"
+    ],
+    "ipc": 2,
+    "territoryName": "Alaska",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Alaska",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "55",
+      "Mexico"
+    ],
+    "ipc": 10,
+    "territoryName": "Western United States",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Western United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Western United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Western United States",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "AA_GUN",
+        "territoryName": "Western United States",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "56"
+    ],
+    "ipc": 0,
+    "territoryName": "Midway",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Midway",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "52"
+    ],
+    "ipc": 1,
+    "territoryName": "Hawaiian Islands",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Hawaiian Islands",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "Hawaiian Islands",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "54"
+    ],
+    "ipc": 2,
+    "territoryName": "Mexico",
+    "nationType": "USA",
+    "units": []
+  },
+  {
+    "neighbourNames": [
+      "Central United States",
+      "Venezuela",
+      "20",
+      "19",
+      "10"
+    ],
+    "ipc": 1,
+    "territoryName": "Panama",
+    "nationType": "USA",
+    "units": []
+  },
+  {
+    "neighbourNames": [
+      "Venezuela",
+      "Peru",
+      "Argentina",
+      "18",
+      "22"
+    ],
+    "ipc": 3,
+    "territoryName": "Brazil",
+    "nationType": "USA",
+    "units": []
+  },
+  {
+    "neighbourNames": [
+      "19"
+    ],
+    "ipc": 1,
+    "territoryName": "West Indies",
+    "nationType": "USA",
+    "units": []
+  },
+  {
+    "neighbourNames": [
+      "China",
+      "Mongolia",
+      "Novosibirsk",
+      "Kazakh",
+      "Himalaya"
+    ],
+    "ipc": 2,
+    "territoryName": "Sinkiang",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Sinkiang",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "Sinkiang",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Kwangtung",
+      "Manchuria",
+      "Mongolia",
+      "Sinkiang",
+      "Himalaya",
+      "French Indo-China"
+    ],
+    "ipc": 2,
+    "territoryName": "China",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "China",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "INFANTRY",
+        "territoryName": "China",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "China",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Eastern Canada",
+      "2",
+      "9"
+    ],
+    "ipc": 0,
+    "territoryName": "11",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "11",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "11",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "11",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Panama",
+      "Venezuela",
+      "West Indies",
+      "10",
+      "11"
+    ],
+    "ipc": 0,
+    "territoryName": "19",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "CRUISER",
+        "territoryName": "19",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "43",
+      "44",
+      "52",
+      "55",
+      "54"
+    ],
+    "ipc": 0,
+    "territoryName": "53",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "FIGHTER",
+        "territoryName": "53",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "53",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "AIRCRAFT_CARRIER",
+        "territoryName": "53",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "SUBMARINE",
+        "territoryName": "53",
+        "nationType": "USA"
+      }
+    ]
+  },
+  {
+    "neighbourNames": [
+      "Midway",
+      "55",
+      "52",
+      "57",
+      "63",
+      "64"
+    ],
+    "ipc": 0,
+    "territoryName": "56",
+    "nationType": "USA",
+    "units": [
+      {
+        "unitType": "DESTROYER",
+        "territoryName": "56",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "TRANSPORT",
+        "territoryName": "56",
+        "nationType": "USA"
+      },
+      {
+        "unitType": "BATTLESHIP",
+        "territoryName": "56",
+        "nationType": "USA"
+      }
+    ]
+  }
 ]
