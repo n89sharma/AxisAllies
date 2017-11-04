@@ -3,7 +3,7 @@
         "territoryName": "Germay",
         "nationType": "GERMANY",
         "ipc": 10,
-        "neighbourNames" : [
+        "neighbourNames": [
             "France",
             "Switzerland",
             "Italy",
@@ -11,19 +11,19 @@
             "Balkans",
             "Sea Territory 5"
         ],
-        "units":[
+        "units": [
             {
                 "territoryName": "Germany",
                 "nationType": "GERMANY",
                 "unitType": "INFANTRY"
             },
             {
-                "territoryName": "Germany",                
+                "territoryName": "Germany",
                 "nationType": "GERMANY",
                 "unitType": "INFANTRY"
             },
             {
-                "territoryName": "Germany",                
+                "territoryName": "Germany",
                 "nationType": "GERMANY",
                 "unitType": "INFANTRY"
             }
