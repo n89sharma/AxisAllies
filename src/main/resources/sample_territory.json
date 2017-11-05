@@ -1,0 +1,32 @@
+[
+  {
+    "neighbourNames":[
+      "B",
+      "C"
+    ],
+    "ipc": 0,
+    "territoryName": "A",
+    "nationType": "USSR",
+    "units":[]
+  },
+  {
+    "neighbourNames":[
+      "A",
+      "C"
+    ],
+    "ipc": 0,
+    "territoryName": "B",
+    "nationType": "USSR",
+    "units":[]
+  },
+  {
+    "neighbourNames":[
+      "A",
+      "B"
+    ],
+    "ipc": 0,
+    "territoryName": "C",
+    "nationType": "USSR",
+    "units":[]
+  }
+]
