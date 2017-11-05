@@ -41,6 +41,7 @@ with open(inputFilePath, 'r') as inputCsvFile:
         territoryJson['territoryName']  = row['TERRITORY']
         territoryJson['nationType']     = row['NATION']
         territoryJson['ipc']            = int(row['IPC'])
+        territoryJson['territoryType']  = row['TERRITORY TYPE']
         territoryJson['neighbourNames'] = [val for val in neighbourList if val.strip() != '']
         territoryJson['units']          = []
 
