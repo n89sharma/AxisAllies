@@ -1,19 +1,20 @@
 package axisallies.units;
 
+import static axisallies.board.TerritoryType.AIR;
+import static axisallies.board.TerritoryType.LAND;
+import static axisallies.board.TerritoryType.SEA;
+
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static axisallies.board.TerritoryType.SEA;
-import static axisallies.board.TerritoryType.LAND;
-import static axisallies.board.TerritoryType.AIR;
-
 @Data
 @NoArgsConstructor
 public class Unit {
-
+    
     private UnitType unitType;
+    private int travelledDistance = 0;
     private NationType nationType;
     private Territory territory;
 

@@ -2,16 +2,18 @@ package axisallies.board;
 
 import axisallies.nations.NationType;
 import axisallies.units.Unit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
 
-@Data
+@Setter
+@Getter
+@ToString
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"units", "neighbours"})
 public class Territory {
 
     private String territoryName;
@@ -20,6 +22,11 @@ public class Territory {
     private Set<String> neighbourNames;
     private Set<Unit> units;
     private TerritoryType territoryType;
+    private Set<Territory> neighbours;
+
+    public void addUnit(Unit unit) {
+        units.add(unit);
+    }
 
     public boolean isSea() {
         return territoryType.equals(SEA);
