@@ -37,6 +37,6 @@ public class Unit {
     }
 
     public boolean isType(UnitType unitType) {
-        return unitType.equals(unitType);
+        return this.unitType.equals(unitType);
     }
 }
