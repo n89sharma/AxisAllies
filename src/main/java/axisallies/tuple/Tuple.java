@@ -1,9 +1,9 @@
 package axisallies.tuple;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.Map;
 import java.util.Objects;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 public class Tuple<L, R> extends Pair<L, R> {
 
@@ -11,7 +11,7 @@ public class Tuple<L, R> extends Pair<L, R> {
     private final L left;
     private final R right;
 
-    public Tuple(final L left, final R right) {
+    private Tuple(final L left, final R right) {
         super();
         this.left = left;
         this.right = right;
