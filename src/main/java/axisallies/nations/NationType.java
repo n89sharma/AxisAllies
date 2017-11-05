@@ -1,23 +1,26 @@
 package axisallies.nations;
 
+import lombok.Getter;
+
+import static axisallies.nations.TeamType.ALLIES;
+import static axisallies.nations.TeamType.AXIS;
+
+@Getter
 public enum NationType {
-    USSR("USSR"),
-    USA("USA"),
-    GERMANY("GERMANY"),
-    JAPAN("JAPAN"),
-    UK("UK");
+
+    // @formatter:off
+    USSR("USSR", ALLIES),
+    USA("USA", ALLIES),
+    GERMANY("GERMANY", AXIS),
+    JAPAN("JAPAN", AXIS),
+    UK("UK", ALLIES);
+    // @formatter:on
 
     private final String nationTypeString;
+    private final TeamType teamType;
 
-    private NationType(String nationTypeString) {
+    NationType(String nationTypeString, TeamType teamType) {
         this.nationTypeString = nationTypeString;
-    }
-
-    public NationType getNationType(String nationTypeString) {
-        return NationType.valueOf(nationTypeString);
-    }
-
-    public String getNationTypeString() {
-        return this.nationTypeString;
+        this.teamType = teamType;
     }
 }

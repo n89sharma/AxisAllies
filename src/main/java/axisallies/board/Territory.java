@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.Set;
 
+import static axisallies.board.TerritoryType.LAND;
+import static axisallies.board.TerritoryType.SEA;
+
 @Data
 @AllArgsConstructor
 public class Territory {
@@ -16,4 +19,21 @@ public class Territory {
     private int ipc;
     private Set<String> neighbourNames;
     private Set<Unit> units;
+    private TerritoryType territoryType;
+
+    public boolean isSea() {
+        return territoryType.equals(SEA);
+    }
+
+    public boolean isLand() {
+        return territoryType.equals(LAND);
+    }
+
+    public boolean isHostileTo(Unit unit) {
+        return nationType.getTeamType().isHostileTo(unit.getNationType().getTeamType());
+    }
+
+    public boolean isFriendlyTo(Unit unit) {
+        return !isHostileTo(unit);
+    }
 }
