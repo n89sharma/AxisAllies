@@ -41,3 +41,12 @@ Stack overflow why?:
         B.setNeighbours(AC);
         C.setNeighbours(AB);
 ```
+
+Double brace initialization?:
+```
+ArrayList<String> list = new ArrayList<String>() {{
+    add("A");
+    add("B");
+    add("C");
+}};
+```
