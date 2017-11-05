@@ -17,7 +17,7 @@ public class Game {
     private Board board;
 
     public Game() throws IOException {
-        this.board = BoardBuilder.build();
+        this.board = BoardBuilder.sourceBuild();
     }
 
     public void run() {
