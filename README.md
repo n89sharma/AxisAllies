@@ -1,5 +1,6 @@
 # AxisAllies
 Java back end implementation of axis and allies.
+[![Build Status](https://travis-ci.org/n89sharma/AxisAllies.svg?branch=master)](https://travis-ci.org/n89sharma/AxisAllies)
 
 - Project uses Maven!
 - `mvn package`
