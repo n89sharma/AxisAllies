@@ -48,7 +48,6 @@ with open(inputFilePath, 'r') as inputCsvFile:
         for unitType in unitTypeList:
             for i in range(0, int(row[unitType])):
                 unitJson = {}
-                unitJson['territoryName']   = row['TERRITORY']
                 unitJson['nationType']      = row['NATION']
                 unitJson['unitType']        = unitType
                 territoryJson['units'].append(unitJson)

@@ -57,7 +57,7 @@ public class Nation {
         if(orderCost <= ipc) {
             for(Entry<UnitType, Integer> entry : unitOrder.entrySet()) {
                 for(int i=0; i<entry.getValue(); i++) {
-                    mobilizationZoneUnits.add(new Unit(null, nationType, entry.getKey(), ""));
+                    mobilizationZoneUnits.add(new Unit(entry.getKey(), nationType));
                 }
             }
             ipc -= orderCost;

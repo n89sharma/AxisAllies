@@ -1,7 +1,10 @@
 package axisallies.validators;
 
 import axisallies.board.Territory;
+import axisallies.units.CarrierUnit;
 import axisallies.units.Unit;
+import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
+import static axisallies.nations.NationType.GERMANY;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,5 +39,10 @@ public class CombatMoveValidator {
                 .flatMap(Collection::stream)
                 .findFirst()
                 .isPresent();
+    }
+
+    public void testMethod() {
+        CarrierUnit unit = new CarrierUnit(AIRCRAFT_CARRIER);
+
     }
 }

@@ -33,7 +33,7 @@ public class UnitTest {
             add(territories.get("B"));
             add(territories.get("C"));
         }};
-        Unit infantryUnit = new Unit(territories.get("A"), GERMANY, INFANTRY, "A");
+        Unit infantryUnit = new Unit(INFANTRY, GERMANY, territories.get("A"));
 
 
         assertEquals(CombatMoveValidator.isCombatMove(path, infantryUnit), true);
