@@ -26,19 +26,19 @@ public class Board {
         return territories.keySet();
     }
 
-    public static boolean areHostile(Unit unitA, Unit unitB) {
+    public static <U extends Unit> boolean areHostile(U unitA, U unitB) {
         return unitA.getNationType().getTeamType().isHostileTo(unitB.getNationType().getTeamType());
     }
 
-    public static boolean areHostile(Territory territory, Unit unit) {
+    public static <U extends Unit> boolean areHostile(Territory territory, U unit) {
         return territory.getNationType().getTeamType().isHostileTo(unit.getNationType().getTeamType());
     };
 
-    public static boolean areFriendly(Territory territory, Unit unit) {
+    public static <U extends Unit> boolean areFriendly(Territory territory, U unit) {
         return !areHostile(territory, unit);
     }
 
-    public static boolean areFriendly(Unit unitA, Unit unitB) {
+    public static <U extends Unit> boolean areFriendly(Unit unitA, U unitB) {
         return !areHostile(unitA, unitB);
     }
 }
