@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.units.Path.createPath;
+import static axisallies.units.Unit.buildUnitOfNationAtTerritory;
 import static axisallies.units.UnitType.INFANTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,7 +26,7 @@ public class UnitTest {
     @Test
     void myFirstTest() {
         Path path = createPath(board, "A", "B", "C");
-        Unit infantryUnit = new Unit(INFANTRY, GERMANY, board.get("A"));
+        Unit infantryUnit = buildUnitOfNationAtTerritory(INFANTRY, GERMANY, board.get("A"));
 
 
         assertTrue(CombatMoveValidator.isDestinationHostile(path, infantryUnit));

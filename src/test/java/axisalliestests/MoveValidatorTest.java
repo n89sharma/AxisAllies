@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.units.Path.createPath;
+import static axisallies.units.Unit.buildUnitOfNation;
+import static axisallies.units.Unit.buildUnitOfNationAtTerritory;
 import static axisallies.units.UnitType.*;
 import static axisallies.validators.MoveValidator.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -26,7 +28,7 @@ public class MoveValidatorTest {
 
         Board board = BoardBuilder.testBuild(USSR_SEA_3_TERRITORIES_JSON, TEST_PLAYERS);
         Path path = createPath(board, "A", "B", "C");
-        Unit submarineUnit = new Unit(SUBMARINE, GERMANY, board.get("A"));
+        Unit submarineUnit = buildUnitOfNationAtTerritory(SUBMARINE, GERMANY, board.get("A"));
 
         assertFalse(isUnitAtPathBeginning(path, submarineUnit));
         board.get("A").addUnitToCompany(submarineUnit);
@@ -38,9 +40,9 @@ public class MoveValidatorTest {
 
         Board board = BoardBuilder.testBuild(USSR_SEA_3_TERRITORIES_JSON, TEST_PLAYERS);
         Path path = createPath(board, "A", "B", "C");
-        Unit submarineUnit = new Unit(SUBMARINE, GERMANY);
-        Unit bomberUnit = new Unit(BOMBER, GERMANY);
-        Unit exhaustedFighterUnit = new Unit(FIGHTER, GERMANY);
+        Unit submarineUnit = buildUnitOfNation(SUBMARINE, GERMANY);
+        Unit bomberUnit = buildUnitOfNation(BOMBER, GERMANY);
+        Unit exhaustedFighterUnit = buildUnitOfNation(FIGHTER, GERMANY);
         exhaustedFighterUnit.setTravelledDistance(2);
 
         assertFalse(isPathWithinUnitRange(path, submarineUnit));
@@ -55,7 +57,7 @@ public class MoveValidatorTest {
         Board board = BoardBuilder.testBuild(USSR_GERMANY_LAND_2_LINEAR_TERRITORIES_JSON, TEST_PLAYERS);
         Path toGermanyPath = createPath(board, "A", "B");
         Path toRussiaPath = createPath(board, "B", "A");
-        Unit germanTank = new Unit(TANK, GERMANY);
+        Unit germanTank = buildUnitOfNation(TANK, GERMANY);
 
         assertTrue(isHostileTerritoryPresentBeforeDestination(toGermanyPath, germanTank));
         assertFalse(isHostileTerritoryPresentBeforeDestination(toRussiaPath, germanTank));
@@ -66,8 +68,8 @@ public class MoveValidatorTest {
 
         Board board = BoardBuilder.testBuild(USSR_SEA_3_TERRITORIES_JSON, TEST_PLAYERS);
         Path path = createPath(board, "A", "B");
-        Unit infantryUnit = new Unit(INFANTRY, GERMANY);
-        Unit submarineUnit = new Unit(SUBMARINE, GERMANY);
+        Unit infantryUnit = buildUnitOfNation(INFANTRY, GERMANY);
+        Unit submarineUnit = buildUnitOfNation(SUBMARINE, GERMANY);
 
         assertFalse(isPathValidTerritoryTypeForUnit(path, infantryUnit));
         assertTrue(isPathValidTerritoryTypeForUnit(path, submarineUnit));
