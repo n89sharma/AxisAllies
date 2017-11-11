@@ -41,6 +41,10 @@ public class Company {
         units.add(unit);
     }
 
+    public void removeUnit(Unit unit) {
+        units.remove(unit);
+    }
+
     public Set<Unit> getUnits() {
         return this.units;
     }

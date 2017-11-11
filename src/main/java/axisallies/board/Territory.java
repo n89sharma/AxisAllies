@@ -39,6 +39,10 @@ public class Territory {
         company.addUnit(unit);
     }
 
+    public void removeUnitFromCompany(Unit unit) {
+        company.removeUnit(unit);
+    }
+
     public boolean isSea() {
         return territoryType.equals(SEA);
     }
