@@ -1,8 +1,12 @@
 package axisallies.board;
 
 import axisallies.nations.NationType;
+import axisallies.units.Company;
 import axisallies.units.Unit;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Set;
 
@@ -11,21 +15,28 @@ import static axisallies.board.TerritoryType.SEA;
 
 @Setter
 @Getter
-@ToString(exclude = {"units", "neighbours"})
-@AllArgsConstructor
-@EqualsAndHashCode(exclude = {"units", "neighbours"})
+@ToString(exclude = {"neighbours"})
+@EqualsAndHashCode(exclude = {"neighbours"})
 public class Territory {
 
     private String territoryName;
     private NationType nationType;
-    private int ipc;
-    private Set<String> neighbourNames;
-    private Set<Unit> units;
     private TerritoryType territoryType;
+    private Set<String> neighbourNames;
     private Set<Territory> neighbours;
+    private Company company = new Company();
+    private int ipc;
 
-    public void addUnit(Unit unit) {
-        units.add(unit);
+    public void placeCompany(Company otherCompany) {
+        company.mergeCompanies(otherCompany);
+    }
+
+    public Set<Unit> getCompanyUnits() {
+        return company.getUnits();
+    }
+
+    public void addUnitToCompany(Unit unit) {
+        company.addUnit(unit);
     }
 
     public boolean isSea() {
@@ -34,6 +45,10 @@ public class Territory {
 
     public boolean isLand() {
         return territoryType.equals(LAND);
+    }
+
+    public boolean containsUnit(Unit unit) {
+        return company.containsUnit(unit);
     }
 
 }

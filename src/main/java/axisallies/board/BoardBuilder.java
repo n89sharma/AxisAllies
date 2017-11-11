@@ -69,7 +69,7 @@ public class BoardBuilder {
             Territory territory = board.get(territoryName);
             nations.get(territory.getNationType()).addTerritory(territory);
 
-            for (Unit unit : territory.getUnits()) {
+            for (Unit unit : territory.getCompanyUnits()) {
                 nations.get(unit.getNationType()).addUnit(unit);
             }
         }

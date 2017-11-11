@@ -44,7 +44,7 @@ public class CombatMoveValidator extends MoveValidator {
     public static boolean isValidSubmarineTransportAssault(Path path, Unit unit) {
 
         return path.getDestination()
-                .getUnits()
+                .getCompanyUnits()
                 .stream()
                 .filter(otherUnit -> areHostile(otherUnit, unit))
                 .anyMatch(otherUnit -> otherUnit.isType(SUBMARINE) || otherUnit.isType(TRANSPORT));
@@ -67,7 +67,7 @@ public class CombatMoveValidator extends MoveValidator {
     public static boolean isValidAmphibiousAssaultOffloading(Path path, Unit unit) {
 
         return path.getStart()
-                .getUnits()
+                .getCompanyUnits()
                 .stream()
                 .filter(otherUnit -> areHostile(otherUnit, unit))
                 .noneMatch(otherUnit -> !otherUnit.isType(SUBMARINE) && !otherUnit.isType(TRANSPORT));
@@ -76,7 +76,7 @@ public class CombatMoveValidator extends MoveValidator {
     public static boolean isValidSubmarineMove(Path path, Unit unit) {
 
         return path.getTerritories().stream()
-                .map(Territory::getUnits)
+                .map(Territory::getCompanyUnits)
                 .flatMap(Collection::stream)
                 .filter(otherUnit -> areHostile(otherUnit, unit))
                 .noneMatch(otherUnit -> otherUnit.isType(DESTROYER));

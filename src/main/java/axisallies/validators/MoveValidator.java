@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toSet;
 public class MoveValidator {
 
     public static boolean isUnitAtPathBeginning(Path path, Unit unit) {
-        return path.getStart().getUnits().contains(unit);
+        return path.getStart().containsUnit(unit);
     }
 
     public static boolean isPathWithinUnitRange(Path path, Unit unit) {
@@ -52,7 +52,7 @@ public class MoveValidator {
 
     protected static boolean hasHostileUnits(Set<Territory> hostileTerritories) {
         return hostileTerritories.stream()
-                .map(Territory::getUnits)
+                .map(Territory::getCompanyUnits)
                 .flatMap(Collection::stream)
                 .findFirst()
                 .isPresent();
