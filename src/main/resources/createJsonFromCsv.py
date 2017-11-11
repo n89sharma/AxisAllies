@@ -38,19 +38,20 @@ with open(inputFilePath, 'r') as inputCsvFile:
         ]
 
         territoryJson = {}
-        territoryJson['territoryName']  = row['TERRITORY']
-        territoryJson['nationType']     = row['NATION']
-        territoryJson['ipc']            = int(row['IPC'])
-        territoryJson['territoryType']  = row['TERRITORY TYPE']
+        territoryJson['territoryName'] = row['TERRITORY']
+        territoryJson['nationType'] = row['NATION']
+        territoryJson['ipc'] = int(row['IPC'])
+        territoryJson['territoryType'] = row['TERRITORY TYPE']
         territoryJson['neighbourNames'] = [val for val in neighbourList if val.strip() != '']
-        territoryJson['units']          = []
+        territoryJson['company'] = {}
+        territoryJson['company']['units'] = []
 
         for unitType in unitTypeList:
             for i in range(0, int(row[unitType])):
                 unitJson = {}
                 unitJson['nationType']      = row['NATION']
                 unitJson['unitType']        = unitType
-                territoryJson['units'].append(unitJson)
+                territoryJson['company']['units'].append(unitJson)
 
         territoryJsonList.append(territoryJson)
 
