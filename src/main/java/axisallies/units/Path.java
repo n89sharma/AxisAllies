@@ -1,12 +1,12 @@
 package axisallies.units;
 
+import axisallies.board.Board;
 import axisallies.board.Territory;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @ToString
 @NoArgsConstructor
@@ -14,10 +14,10 @@ public class Path {
 
     private List<Territory> territories = new ArrayList<>();
 
-    public static Path createPath(Map<String, Territory> territories, String ... territoryNames) {
+    public static Path createPath(Board board, String... territoryNames) {
         Path path = new Path();
         for(String territoryName : territoryNames) {
-            path.add(territories.get(territoryName));
+            path.add(board.get(territoryName));
         }
         return path;
     }

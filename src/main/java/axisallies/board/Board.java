@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Map;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,6 +17,14 @@ public class Board {
     private Map<String, Territory> territories;
     private Map<NationType, Nation> nations;
     private Map<NationType, Player> players;
+
+    public Territory get(String territoryName) {
+        return territories.get(territoryName);
+    }
+
+    public Set<String> getTerritoryNames() {
+        return territories.keySet();
+    }
 
     public static boolean areHostile(Unit unitA, Unit unitB) {
         return unitA.getNationType().getTeamType().isHostileTo(unitB.getNationType().getTeamType());

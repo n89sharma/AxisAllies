@@ -1,14 +1,13 @@
 package axisalliestests;
 
+import axisallies.board.Board;
 import axisallies.board.BoardBuilder;
-import axisallies.board.Territory;
 import axisallies.units.Company;
 import axisallies.units.Path;
 import axisallies.units.Unit;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Map;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
@@ -29,9 +28,8 @@ public class CombatMoveValidatorTest {
     @Test
     public void testIsCombatMove() throws IOException {
 
-        Path path = createPath(
-            BoardBuilder.testBuild(USSR_SEA_3_TERRITORIES_JSON, TEST_PLAYERS).getTerritories(), 
-            "A", "B", "C");
+        Board board = BoardBuilder.testBuild(USSR_SEA_3_TERRITORIES_JSON, TEST_PLAYERS);
+        Path path = createPath(board, "A", "B", "C");
         Unit germanSub = new Unit(SUBMARINE, GERMANY);
         Unit russianSub = new Unit(SUBMARINE, USSR);
 
@@ -42,17 +40,15 @@ public class CombatMoveValidatorTest {
     @Test
     public void testIsValidBlitz() throws IOException {
 
-        Map<String, Territory> territories = BoardBuilder.testBuild(
-            GERMANY_USSR_LAND_3_TERRITORIES_JSON,
-            TEST_PLAYERS).getTerritories();
-        Path path = createPath(territories, "A", "B", "C");
-        Path reversePath = createPath(territories, "C", "B", "A");
+        Board board = BoardBuilder.testBuild(GERMANY_USSR_LAND_3_TERRITORIES_JSON, TEST_PLAYERS);
+        Path path = createPath(board, "A", "B", "C");
+        Path reversePath = createPath(board, "C", "B", "A");
         Unit germanTank = new Unit(TANK, GERMANY);
         Unit russianTank = new Unit(TANK, USSR);
 
         assertTrue(isValidTankBlitz(path, germanTank));
         assertTrue(isValidTankBlitz(reversePath, germanTank));
-        territories.get("B").addUnit(russianTank);
+        board.get("B").addUnit(russianTank);
         assertFalse(isValidTankBlitz(path, germanTank));
         assertFalse(isValidTankBlitz(reversePath, germanTank));
     }
@@ -60,11 +56,8 @@ public class CombatMoveValidatorTest {
     @Test
     public void testIsValidAmphibiousAssault() throws IOException {
 
-        Map<String, Territory> territories = BoardBuilder.testBuild(
-            USSR_AMPHIBIOUS_ASSAULT,
-            TEST_PLAYERS).getTerritories();
-
-        Path path = createPath(territories, "A", "B");
+        Board board = BoardBuilder.testBuild(USSR_AMPHIBIOUS_ASSAULT, TEST_PLAYERS);
+        Path path = createPath(board, "A", "B");
 
         Company landCompany = buildCompany(USSR, TANK, TANK);
         Company warshipCompany = buildCompany(USSR, CRUISER, CRUISER);

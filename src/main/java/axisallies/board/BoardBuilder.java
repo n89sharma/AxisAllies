@@ -25,7 +25,7 @@ public class BoardBuilder {
     private static final String USSR_LAND_3_TERRITORIES_JSON = "ussr_land_3_territories.json";
     private static final String TEST_PLAYER_SETUP = "sample_players.json";
 
-    private static Map<String, Territory> createTerritoryMap(String boardGameSetupFile, Class clazz) throws IOException {
+    private static void createTerritoryMap(Board board, String boardGameSetupFile, Class clazz) throws IOException {
 
         String jsonFilePath = getResourcePath(boardGameSetupFile, clazz);
         Set<Territory> territories = new ObjectMapper().readValue(
@@ -46,10 +46,10 @@ public class BoardBuilder {
             territory.setNeighbours(neighbours);
         }
 
-        return territoryMap;
+        board.setTerritories(territoryMap);
     }
 
-    private static Map<NationType, Player> createPlayers(String playerSetupFile, Class clazz) throws IOException {
+    private static void createPlayers(Board board, String playerSetupFile, Class clazz) throws IOException {
 
         String jsonFilePath = getResourcePath(playerSetupFile, clazz);
         Set<Player> players = new ObjectMapper().readValue(
@@ -57,23 +57,24 @@ public class BoardBuilder {
                 new TypeReference<Set<Player>>() {
                 });
 
-        return players.stream().collect(toMap(Player::getNationType, identity()));
+        board.setPlayers(players.stream().collect(toMap(Player::getNationType, identity())));
     }
 
-    private static Map<NationType, Nation> createNations(Map<String, Territory> territories) {
+    private static void createNations(Board board) {
 
         Map<NationType, Nation> nations = Arrays.stream(NationType.values())
                 .collect(toMap(identity(), Nation::new));
 
-        for (String territoryName : territories.keySet()) {
-            Territory territory = territories.get(territoryName);
+        for (String territoryName : board.getTerritoryNames()) {
+            Territory territory = board.get(territoryName);
             nations.get(territory.getNationType()).addTerritory(territory);
 
             for (Unit unit : territory.getUnits()) {
                 nations.get(unit.getNationType()).addUnit(unit);
             }
         }
-        return nations;
+
+        board.setNations(nations);
     }
 
     private static String getResourcePath(String fileName, Class clazz) {
@@ -95,9 +96,9 @@ public class BoardBuilder {
 
     private static Board build(Class clazz, String mapFile, String playerFile) throws IOException {
         Board board = new Board();
-        board.setTerritories(createTerritoryMap(mapFile, clazz));
-        board.setPlayers(createPlayers(playerFile, clazz));
-        board.setNations(createNations(board.getTerritories()));
+        createTerritoryMap(board, mapFile, clazz);
+        createPlayers(board, playerFile, clazz);
+        createNations(board);
         return board;
     }
 }
