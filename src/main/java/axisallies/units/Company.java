@@ -22,9 +22,8 @@ public class Company {
     public static Company buildCompany(NationType nationType, UnitType ... unitTypes) {
         Company company  = new Company();
         Set<Unit> units = Arrays.stream(unitTypes)
-            .map(Unit::buildUnit)
+                .map(unitType -> Unit.buildUnitOfNation(unitType, nationType))
             .collect(toSet());
-        units.forEach(u -> u.setNationType(nationType));
         company.setUnits(units);
         return company;
     }
