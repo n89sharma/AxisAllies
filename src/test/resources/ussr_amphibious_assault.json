@@ -5,7 +5,7 @@
       "territoryName": "A",
       "territoryType": "SEA",
       "nationType": "USSR",
-      "units":[]
+      "company": {}
     },
     {
       "neighbourNames":["A", "C", "D"],    
@@ -13,7 +13,7 @@
       "territoryName": "B",
       "territoryType": "SEA",
       "nationType": "GERMANY",
-      "units":[]
+      "company": {}
     },
     {
       "neighbourNames":["B"],    
@@ -21,7 +21,7 @@
       "territoryName": "C",
       "territoryType": "LAND",
       "nationType": "USSR",
-      "units":[]
+      "company": {}
     },
     {
       "neighbourNames":["B"],
@@ -29,6 +29,6 @@
       "territoryName": "D",
       "territoryType": "LAND",
       "nationType": "GERMANY",
-      "units":[]
+      "company": {}
     }
   ]

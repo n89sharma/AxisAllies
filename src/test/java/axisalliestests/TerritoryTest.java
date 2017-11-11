@@ -1,15 +1,11 @@
 package axisalliestests;
 
 import axisallies.board.Territory;
-import axisallies.units.Unit;
+import axisallies.board.TerritoryType;
 import org.junit.jupiter.api.Test;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
-import static axisallies.nations.NationType.GERMANY;
-import static axisallies.nations.NationType.JAPAN;
-import static axisallies.nations.NationType.USA;
-import static axisallies.units.UnitType.TANK;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,17 +13,23 @@ public class TerritoryTest {
 
     @Test
     public void testIsSea() {
-        Territory sea = new Territory(null, null, 0, null, null, SEA, null);
+        Territory sea = createTerritory(SEA);
         assertTrue(sea.isSea());
-        Territory land = new Territory(null, null, 0, null, null, LAND, null);
+        Territory land = createTerritory(LAND);
         assertFalse(land.isSea());
     }
 
     @Test
     public void testIsLand() {
-        Territory sea = new Territory(null, null, 0, null, null, SEA, null);
+        Territory sea = createTerritory(SEA);
         assertFalse(sea.isLand());
-        Territory land = new Territory(null, null, 0, null, null, LAND, null);
+        Territory land = createTerritory(LAND);
         assertTrue(land.isLand());
+    }
+
+    private static Territory createTerritory(TerritoryType territoryType) {
+        Territory territory = new Territory();
+        territory.setTerritoryType(territoryType);
+        return territory;
     }
 }

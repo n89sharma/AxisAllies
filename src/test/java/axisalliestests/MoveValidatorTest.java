@@ -29,7 +29,7 @@ public class MoveValidatorTest {
         Unit submarineUnit = new Unit(SUBMARINE, GERMANY, board.get("A"));
 
         assertFalse(isUnitAtPathBeginning(path, submarineUnit));
-        board.get("A").addUnit(submarineUnit);
+        board.get("A").addUnitToCompany(submarineUnit);
         assertTrue(isUnitAtPathBeginning(path, submarineUnit));
     }
 

@@ -7,7 +7,7 @@
     "territoryName": "A",
     "territoryType": "LAND",
     "nationType": "USSR",
-    "units": []
+    "company": {}
   },
   {
     "neighbourNames": [
@@ -17,6 +17,6 @@
     "territoryName": "B",
     "territoryType": "LAND",
     "nationType": "GERMANY",
-    "units": []
+    "company": {}
   }
 ]
