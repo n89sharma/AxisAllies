@@ -30,4 +30,8 @@ public class CarrierUnit extends Unit {
     public void addUnit(Unit unit) {
         this.units.add(unit);
     }
+
+    public Set<Unit> getUnits(Unit unit) {
+        return units;
+    }
 }

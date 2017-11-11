@@ -1,99 +1,87 @@
 package axisallies.validators;
 
-import axisallies.board.Territory;
-import axisallies.units.CarrierUnit;
-import axisallies.units.Unit;
-import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
-import static axisallies.nations.NationType.GERMANY;
-
+import static axisallies.units.UnitType.DESTROYER;
+import static axisallies.units.UnitType.SUBMARINE;
+import static axisallies.units.UnitType.TANK;
+import static axisallies.units.UnitType.TRANSPORT;
+import static axisallies.board.Board.areHostile;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
-import static axisallies.units.UnitType.*;
+import axisallies.board.Territory;
+import axisallies.units.Company;
+import axisallies.units.Path;
+import axisallies.units.Unit;
 
 public class CombatMoveValidator extends MoveValidator {
 
-    public static boolean isDestinationHostile(List<Territory> path, Unit unit) {
-        return path.get(path.size() - 1).isHostileTo(unit);
+    public static boolean isDestinationHostile(Path path, Unit unit) {
+        return areHostile(path.getDestination(), unit);
     }
 
-    public static boolean isValidTankBlitz(List<Territory> path, Unit unit) {
+    public static boolean isValidTankBlitz(Path path, Unit unit) {
         //if no enemy units are present before destination and the unit is tank
-        return unit.isType(TANK) &&
-                !hasHostileUnits(getHostileTerritories(path.subList(0, path.size() - 1), unit));
+        return unit.isType(TANK) && !hasHostileUnits(getHostileTerritories(path.getAllBeforeDestination(), unit));
     }
 
-    public static boolean isValidAmphibiousAssault(List<Territory> path, Set<Unit> units) {
+    public static boolean isValidAmphibiousAssault(Path path, Company company) {
 
-        Unit unit = (Unit) units.toArray()[0];
-        boolean allUnitsAreSeaUnits = units.stream().allMatch(Unit::isSeaUnit);
-        boolean destinationHasHostileLandNeighbour = path.get(path.size() - 1)
+        boolean allUnitsAreSeaUnits = company.areAllSeaUnits();
+        boolean destinationHasHostileLandNeighbour = path.getDestination()
                 .getNeighbours()
                 .stream()
-                .anyMatch(territory -> territory.isHostileTo(unit));
-        boolean transportPresentWithUnits = units.stream()
-                .filter(u -> u.getUnitType().equals(TRANSPORT))
-                .map(Unit::getUnits)
-                .flatMap(Collection::stream)
-                .findFirst()
-                .isPresent();
+                .anyMatch(territory -> company.isTerritoryHostile(territory));
+        boolean transportPresentWithUnits = company.hasType(TRANSPORT);
         return allUnitsAreSeaUnits &&
                 destinationHasHostileLandNeighbour &&
                 transportPresentWithUnits;
     }
 
-    public static boolean isValidCombatRetreat(List<Territory> path, Set<Unit> units) {
+    public static boolean isValidCombatRetreat(Path path, Company company) {
 
-        boolean currentLocationIsHostile = units.stream().allMatch(unit -> path.get(0).isHostileTo(unit));
-        boolean destinationIsFriendly = units.stream().allMatch(unit -> path.get(0).isFriendlyTo(unit));
+        boolean currentLocationIsHostile = company.isTerritoryHostile(path.getStart());
+        boolean destinationIsFriendly = company.areAllFriendlyToTerritory(path.getDestination());
         return currentLocationIsHostile && destinationIsFriendly;
     }
 
-    public static boolean isValidSubmarineTransportAssault(List<Territory> path, Unit unit) {
+    public static boolean isValidSubmarineTransportAssault(Path path, Unit unit) {
 
-        return path.get(path.size() - 1)
+        return path.getDestination()
                 .getUnits()
                 .stream()
-                .filter(otherUnit -> otherUnit.isHostileTo(unit))
+                .filter(otherUnit -> areHostile(otherUnit, unit))
                 .anyMatch(otherUnit -> otherUnit.isType(SUBMARINE) || otherUnit.isType(TRANSPORT));
     }
 
-    public static boolean isValidBomberMove(List<Territory> path, Unit unit) {
+    public static boolean isValidBomberMove(Path path, Unit unit) {
         return (path.size() - 1) < (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
     }
 
-    public static boolean isValidFighterMove(List<Territory> path, Unit unit) {
+    public static boolean isValidFighterMove(Path path, Unit unit) {
 
         boolean unitRangeLeft = (path.size() - 1) <
                 (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
         boolean unitRangeReachesDestination = (path.size() - 1) <=
                 (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
-        boolean destinationIsSea = path.get(path.size() - 1).isSea();
+        boolean destinationIsSea = path.getDestination().isSea();
         return (unitRangeLeft || (unitRangeReachesDestination && destinationIsSea));
     }
 
-    public static boolean isValidAmphibiousAssaultOffloading(List<Territory> path, Unit unit) {
+    public static boolean isValidAmphibiousAssaultOffloading(Path path, Unit unit) {
 
-        return path.get(0)
+        return path.getStart()
                 .getUnits()
                 .stream()
-                .filter(otherUnit -> otherUnit.isHostileTo(unit))
+                .filter(otherUnit -> areHostile(otherUnit, unit))
                 .noneMatch(otherUnit -> !otherUnit.isType(SUBMARINE) && !otherUnit.isType(TRANSPORT));
     }
 
-    public static boolean isValidSubmarineMove(List<Territory> path, Unit unit) {
+    public static boolean isValidSubmarineMove(Path path, Unit unit) {
 
-        return path.stream()
+        return path.getTerritories().stream()
                 .map(Territory::getUnits)
                 .flatMap(Collection::stream)
-                .filter(otherUnit -> otherUnit.isHostileTo(unit))
+                .filter(otherUnit -> areHostile(otherUnit, unit))
                 .noneMatch(otherUnit -> otherUnit.isType(DESTROYER));
-    }
-
-    public void testMethod() {
-        CarrierUnit unit = new CarrierUnit(AIRCRAFT_CARRIER);
-
     }
 }
 

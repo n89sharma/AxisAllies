@@ -2,6 +2,7 @@ package axisallies.validators;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
+import axisallies.units.Path;
 import axisallies.units.Unit;
 
 import java.util.Collection;
@@ -9,28 +10,29 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
+import static axisallies.board.Board.areHostile;
 
 public class MoveValidator {
 
-    public static boolean isUnitAtPathBeginning(List<Territory> path, Unit unit) {
-        return path.get(0).getUnits().contains(unit);
+    public static boolean isUnitAtPathBeginning(Path path, Unit unit) {
+        return path.getStart().getUnits().contains(unit);
     }
 
-    public static boolean isPathWithinUnitRange(List<Territory> path, Unit unit) {
+    public static boolean isPathWithinUnitRange(Path path, Unit unit) {
         return path.size() <= (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
     }
 
-    public static boolean isHostileTerritoryPresentBeforeDestination(List<Territory> path, Unit unit) {
-        return !getHostileTerritories(path.subList(0, path.size() - 1), unit).isEmpty();
+    public static boolean isHostileTerritoryPresentBeforeDestination(Path path, Unit unit) {
+        return !getHostileTerritories(path.getAllBeforeDestination(), unit).isEmpty();
     }
 
-    public static boolean isPathValidTerritoryTypeForUnit(List<Territory> path, Unit unit) {
+    public static boolean isPathValidTerritoryTypeForUnit(Path path, Unit unit) {
 
         boolean validPathType = false;
         if (unit.isLandUnit()) {
-            validPathType = path.stream().noneMatch(Territory::isSea);
+            validPathType = path.getTerritories().stream().noneMatch(Territory::isSea);
         } else if (unit.isSeaUnit()) {
-            validPathType = path.stream().noneMatch(Territory::isLand);
+            validPathType = path.getTerritories().stream().noneMatch(Territory::isLand);
         }
         return validPathType;
     }
@@ -43,9 +45,9 @@ public class MoveValidator {
                 .count();
     }
 
-    protected static Set<Territory> getHostileTerritories(List<Territory> path, Unit unit) {
-        return path.stream()
-                .filter(territory -> territory.isHostileTo(unit))
+    protected static Set<Territory> getHostileTerritories(Path path, Unit unit) {
+        return path.getTerritories().stream()
+                .filter(territory -> areHostile(territory, unit))
                 .collect(toSet());
     }
 

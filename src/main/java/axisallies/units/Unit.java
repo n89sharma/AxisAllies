@@ -3,6 +3,8 @@ package axisallies.units;
 import static axisallies.board.TerritoryType.AIR;
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
+import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
+import static axisallies.units.UnitType.TRANSPORT;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
@@ -18,6 +20,13 @@ public class Unit {
     private NationType nationType;
     private Territory territory;
 
+    public static Unit buildUnit(UnitType unitType) {
+        
+        return (unitType.equals(AIRCRAFT_CARRIER) || unitType.equals(TRANSPORT)) ?
+            new CarrierUnit(unitType) :
+            new Unit(unitType);
+    }
+
     public Unit(UnitType unitType) {
         this.unitType = unitType;
     }
@@ -31,14 +40,6 @@ public class Unit {
         this.unitType = unitType;
         this.nationType = nationType;
         this.territory = territory;
-    }
-
-    public boolean isHostileTo(Unit unit) {
-        return nationType.getTeamType().isHostileTo(unit.getNationType().getTeamType());
-    }
-
-    public boolean isFriendlyTo(Unit unit) {
-        return !isHostileTo(unit);
     }
 
     public boolean isSeaUnit() {

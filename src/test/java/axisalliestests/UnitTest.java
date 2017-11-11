@@ -3,6 +3,7 @@ package axisalliestests;
 import axisallies.board.Board;
 import axisallies.board.BoardBuilder;
 import axisallies.board.Territory;
+import axisallies.units.Path;
 import axisallies.units.Unit;
 import axisallies.validators.CombatMoveValidator;
 import com.google.common.graph.MutableGraph;
@@ -15,7 +16,9 @@ import java.util.Map;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.units.UnitType.INFANTRY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static axisallies.units.Path.createPath;
 
 public class UnitTest {
 
@@ -28,16 +31,12 @@ public class UnitTest {
 
     @Test
     void myFirstTest() {
-        final List<Territory> path = new ArrayList<Territory>() {{
-            add(territories.get("A"));
-            add(territories.get("B"));
-            add(territories.get("C"));
-        }};
+        Path path = createPath(territories, "A", "B", "C");
         Unit infantryUnit = new Unit(INFANTRY, GERMANY, territories.get("A"));
 
 
-        assertEquals(CombatMoveValidator.isCombatMove(path, infantryUnit), true);
-        assertEquals(CombatMoveValidator.isValidBlitz(path, infantryUnit), false);
+        assertTrue(CombatMoveValidator.isDestinationHostile(path, infantryUnit));
+        assertFalse(CombatMoveValidator.isValidTankBlitz(path, infantryUnit));
     }
 
 
