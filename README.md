@@ -20,35 +20,3 @@ Following VS Code settings were used for this project:
 }
 ```
 Note the setting to allow annotation processing through lombok.
-
-Stack overflow why?:
-```
-        Territory A = territoryMap.get("A");
-        Territory B = territoryMap.get("B");
-        Territory C = territoryMap.get("C");
-
-        List<Territory> BC = new ArrayList<>();
-        BC.add(B);
-        BC.add(C);
-
-        List<Territory> AC = new ArrayList<>();
-        AC.add(A);
-        AC.add(C);
-
-        List<Territory> AB = new ArrayList<>();
-        AB.add(A);
-        AB.add(B);
-
-        A.setNeighbours(BC);
-        B.setNeighbours(AC);
-        C.setNeighbours(AB);
-```
-
-Double brace initialization?:
-```
-ArrayList<String> list = new ArrayList<String>() {{
-    add("A");
-    add("B");
-    add("C");
-}};
-```
