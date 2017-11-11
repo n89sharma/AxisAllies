@@ -1,6 +1,7 @@
 package axisallies.validators;
 
 import axisallies.board.Territory;
+import axisallies.units.CarrierUnit;
 import axisallies.units.Company;
 import axisallies.units.Path;
 import axisallies.units.Unit;
@@ -51,35 +52,44 @@ public class CombatMoveValidator extends MoveValidator {
     }
 
     public static boolean isValidBomberMove(Path path, Unit unit) {
-        return (path.size() - 1) < (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
+        return unit.isType(BOMBER) &&
+                (path.size()) < (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
     }
 
     public static boolean isValidFighterMove(Path path, Unit unit) {
 
-        boolean unitRangeLeft = (path.size() - 1) <
+        boolean unitIsFighter = unit.isType(FIGHTER);
+        boolean unitRangeLeft = path.size() <
                 (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
-        boolean unitRangeReachesDestination = (path.size() - 1) <=
+        boolean unitRangeReachesDestination = path.size() <=
                 (unit.getUnitType().getMovementRange() - unit.getTravelledDistance());
         boolean destinationIsSea = path.getDestination().isSea();
-        return (unitRangeLeft || (unitRangeReachesDestination && destinationIsSea));
+        return unitIsFighter && (unitRangeLeft || (unitRangeReachesDestination && destinationIsSea));
     }
 
-    public static boolean isValidAmphibiousAssaultOffloading(Path path, Unit unit) {
+    public static boolean isValidAmphibiousAssaultOffloading(Path path, CarrierUnit unit) {
 
-        return path.getStart()
+        boolean unitIsTransport = unit.isType(TRANSPORT);
+        boolean unitContainsUnits = unit.containsUnits();
+        boolean hostileUnitsAreNotSurfaceWarships = path.getStart()
                 .getCompanyUnits()
                 .stream()
                 .filter(otherUnit -> areHostile(otherUnit, unit))
-                .noneMatch(otherUnit -> !otherUnit.isType(SUBMARINE) && !otherUnit.isType(TRANSPORT));
+                .allMatch(otherUnit -> otherUnit.isType(SUBMARINE) || otherUnit.isType(TRANSPORT));
+
+        return unitIsTransport && unitContainsUnits && hostileUnitsAreNotSurfaceWarships;
     }
 
     public static boolean isValidSubmarineMove(Path path, Unit unit) {
 
-        return path.getTerritories().stream()
+        boolean unitIsSubmarine = unit.isType(SUBMARINE);
+        boolean noHostileDestroyerInPath = path.getTerritories().stream()
                 .map(Territory::getCompanyUnits)
                 .flatMap(Collection::stream)
                 .filter(otherUnit -> areHostile(otherUnit, unit))
                 .noneMatch(otherUnit -> otherUnit.isType(DESTROYER));
+
+        return unitIsSubmarine && noHostileDestroyerInPath;
     }
 }
 

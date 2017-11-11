@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import static axisallies.units.Unit.buildUnitOfNation;
+
 @Data
 public class Nation {
 
@@ -21,13 +23,6 @@ public class Nation {
 
     public Nation(NationType nationType) {
         this.nationType = nationType;
-    }
-
-    public Nation(NationType nationType, Set<Territory> territories, Set<Unit> units) {
-        this.nationType = nationType;
-        this.territories = territories;
-        this.units = units;
-        addToTreasury();
     }
 
     public void addTerritory(Territory territory){
@@ -57,7 +52,7 @@ public class Nation {
         if(orderCost <= ipc) {
             for(Entry<UnitType, Integer> entry : unitOrder.entrySet()) {
                 for(int i=0; i<entry.getValue(); i++) {
-                    mobilizationZoneUnits.add(new Unit(entry.getKey(), nationType));
+                    mobilizationZoneUnits.add(buildUnitOfNation(entry.getKey(), nationType));
                 }
             }
             ipc -= orderCost;
