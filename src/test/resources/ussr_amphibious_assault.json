@@ -1,0 +1,34 @@
+[
+    {
+      "neighbourNames":["B"],
+      "ipc": 0,
+      "territoryName": "A",
+      "territoryType": "SEA",
+      "nationType": "USSR",
+      "units":[]
+    },
+    {
+      "neighbourNames":["A", "C", "D"],    
+      "ipc": 0,
+      "territoryName": "B",
+      "territoryType": "SEA",
+      "nationType": "GERMANY",
+      "units":[]
+    },
+    {
+      "neighbourNames":["B"],    
+      "ipc": 0,
+      "territoryName": "C",
+      "territoryType": "LAND",
+      "nationType": "USSR",
+      "units":[]
+    },
+    {
+      "neighbourNames":["B"],
+      "ipc": 0,
+      "territoryName": "D",
+      "territoryType": "LAND",
+      "nationType": "GERMANY",
+      "units":[]
+    }
+  ]

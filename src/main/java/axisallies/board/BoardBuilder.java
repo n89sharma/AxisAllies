@@ -24,7 +24,7 @@ public class BoardBuilder {
 
     private static final String GAME_TERRITORY_MAP_SETUP = "1942-second-edition.json";
     private static final String PLAYER_SETUP_FILE = "sample_players.json";
-    private static final String TEST_MAP_SETUP = "sample_territory.json";
+    private static final String USSR_LAND_3_TERRITORIES_JSON = "ussr_land_3_territories.json";
     private static final String TEST_PLAYER_SETUP = "sample_players.json";
 
     private static Map<String, Territory> createTerritoryMap(String boardGameSetupFile, Class clazz) throws IOException {
@@ -40,14 +40,16 @@ public class BoardBuilder {
 
     private static MutableGraph<Territory> createTerritoryGraph(Map<String, Territory> territoryMap) {
 
-        Set<String> missingTerritories = new HashSet<>();
         MutableGraph<Territory> territoryGraph = GraphBuilder.undirected().build();
         for (Territory territory : territoryMap.values()) {
+            Set<Territory> neighbours = new HashSet<>();
             for (String neighbourName : territory.getNeighbourNames()) {
                 if (null != territoryMap.get(neighbourName)) {
+                    neighbours.add(territoryMap.get(neighbourName));
                     territoryGraph.putEdge(territory, territoryMap.get(neighbourName));
                 }
             }
+            territory.setNeighbours(neighbours);
         }
 
         return territoryGraph;
@@ -86,7 +88,11 @@ public class BoardBuilder {
     }
 
     public static Board testBuild() throws IOException {
-        return build(UnitType.class, TEST_MAP_SETUP, TEST_PLAYER_SETUP);
+        return build(UnitType.class, USSR_LAND_3_TERRITORIES_JSON, TEST_PLAYER_SETUP);
+    }
+
+    public static Board testBuild(String testTerritoryMap, String testPlayerSetupFile) throws IOException {
+        return build(UnitType.class, testTerritoryMap, testPlayerSetupFile);
     }
 
     public static Board sourceBuild() throws IOException {
