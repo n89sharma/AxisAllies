@@ -4,7 +4,6 @@ import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.players.Player;
 import axisallies.units.Unit;
-import com.google.common.graph.MutableGraph;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +16,6 @@ public class Board {
     private Map<String, Territory> territories;
     private Map<NationType, Nation> nations;
     private Map<NationType, Player> players;
-    private MutableGraph<Territory> graph;
 
     public static boolean areHostile(Unit unitA, Unit unitB) {
         return unitA.getNationType().getTeamType().isHostileTo(unitB.getNationType().getTeamType());

@@ -3,8 +3,7 @@ package axisallies.board;
 import axisallies.nations.NationType;
 import axisallies.units.Unit;
 import lombok.*;
-import java.util.HashSet;
-import java.util.Map;
+
 import java.util.Set;
 
 import static axisallies.board.TerritoryType.LAND;
@@ -37,9 +36,4 @@ public class Territory {
         return territoryType.equals(LAND);
     }
 
-    public void populateNeighbours(Map<String, Territory> territories) {
-        neighbours = new HashSet<>();
-        neighbourNames.stream()
-            .forEach(name -> neighbours.add(territories.get(name)));
-    }
 }

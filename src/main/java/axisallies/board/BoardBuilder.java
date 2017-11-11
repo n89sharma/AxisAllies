@@ -7,8 +7,6 @@ import axisallies.units.Unit;
 import axisallies.units.UnitType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.graph.GraphBuilder;
-import com.google.common.graph.MutableGraph;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,24 +33,20 @@ public class BoardBuilder {
                 new TypeReference<Set<Territory>>() {
                 });
 
-        return territories.stream().collect(toMap(Territory::getTerritoryName, identity()));
-    }
+        Map<String, Territory> territoryMap = territories.stream()
+                .collect(toMap(Territory::getTerritoryName, identity()));
 
-    private static MutableGraph<Territory> createTerritoryGraph(Map<String, Territory> territoryMap) {
-
-        MutableGraph<Territory> territoryGraph = GraphBuilder.undirected().build();
-        for (Territory territory : territoryMap.values()) {
+        for (Territory territory : territories) {
             Set<Territory> neighbours = new HashSet<>();
             for (String neighbourName : territory.getNeighbourNames()) {
                 if (null != territoryMap.get(neighbourName)) {
                     neighbours.add(territoryMap.get(neighbourName));
-                    territoryGraph.putEdge(territory, territoryMap.get(neighbourName));
                 }
             }
             territory.setNeighbours(neighbours);
         }
 
-        return territoryGraph;
+        return territoryMap;
     }
 
     private static Map<NationType, Player> createPlayers(String playerSetupFile, Class clazz) throws IOException {
@@ -102,7 +96,6 @@ public class BoardBuilder {
     private static Board build(Class clazz, String mapFile, String playerFile) throws IOException {
         Board board = new Board();
         board.setTerritories(createTerritoryMap(mapFile, clazz));
-        board.setGraph(createTerritoryGraph(board.getTerritories()));
         board.setPlayers(createPlayers(playerFile, clazz));
         board.setNations(createNations(board.getTerritories()));
         return board;

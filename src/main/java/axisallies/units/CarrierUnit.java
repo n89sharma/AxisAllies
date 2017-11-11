@@ -1,12 +1,13 @@
 package axisallies.units;
 
-import java.util.HashSet;
-import java.util.Set;
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter

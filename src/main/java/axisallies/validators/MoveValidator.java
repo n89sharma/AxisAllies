@@ -6,11 +6,10 @@ import axisallies.units.Path;
 import axisallies.units.Unit;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toSet;
 import static axisallies.board.Board.areHostile;
+import static java.util.stream.Collectors.toSet;
 
 public class MoveValidator {
 

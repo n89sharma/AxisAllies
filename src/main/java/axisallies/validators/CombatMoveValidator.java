@@ -1,16 +1,14 @@
 package axisallies.validators;
 
-import static axisallies.units.UnitType.DESTROYER;
-import static axisallies.units.UnitType.SUBMARINE;
-import static axisallies.units.UnitType.TANK;
-import static axisallies.units.UnitType.TRANSPORT;
-import static axisallies.board.Board.areHostile;
-import java.util.Collection;
-
 import axisallies.board.Territory;
 import axisallies.units.Company;
 import axisallies.units.Path;
 import axisallies.units.Unit;
+
+import java.util.Collection;
+
+import static axisallies.board.Board.areHostile;
+import static axisallies.units.UnitType.*;
 
 public class CombatMoveValidator extends MoveValidator {
 

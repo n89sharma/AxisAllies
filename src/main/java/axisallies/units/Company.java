@@ -1,16 +1,18 @@
 package axisallies.units;
 
+import axisallies.board.Territory;
 import axisallies.board.TerritoryType;
 import axisallies.nations.NationType;
 import lombok.NoArgsConstructor;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import static java.util.stream.Collectors.toSet;
-import static axisallies.board.TerritoryType.SEA;
-import static axisallies.board.Board.areHostile;
+
 import static axisallies.board.Board.areFriendly;
-import axisallies.board.Territory;
+import static axisallies.board.Board.areHostile;
+import static axisallies.board.TerritoryType.SEA;
+import static java.util.stream.Collectors.toSet;
 
 @NoArgsConstructor
 public class Company {

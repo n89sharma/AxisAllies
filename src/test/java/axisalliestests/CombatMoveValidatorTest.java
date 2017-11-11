@@ -1,29 +1,23 @@
 package axisalliestests;
 
-import static axisallies.units.Company.buildCompany;
-import static axisallies.nations.NationType.GERMANY;
-import static axisallies.nations.NationType.USSR;
-import static axisallies.units.UnitType.SUBMARINE;
-import static axisallies.units.UnitType.CRUISER;
-import static axisallies.units.UnitType.TANK;
-import static axisallies.units.UnitType.TRANSPORT;
-import static axisallies.units.Path.createPath;
-import static axisallies.validators.CombatMoveValidator.isDestinationHostile;
-import static axisallies.validators.CombatMoveValidator.isValidTankBlitz;
-import static axisallies.validators.CombatMoveValidator.isValidAmphibiousAssault;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-
 import axisallies.board.BoardBuilder;
 import axisallies.board.Territory;
 import axisallies.units.Company;
 import axisallies.units.Path;
 import axisallies.units.Unit;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static axisallies.nations.NationType.GERMANY;
+import static axisallies.nations.NationType.USSR;
+import static axisallies.units.Company.buildCompany;
+import static axisallies.units.Path.createPath;
+import static axisallies.units.UnitType.*;
+import static axisallies.validators.CombatMoveValidator.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CombatMoveValidatorTest {
 
@@ -70,8 +64,6 @@ public class CombatMoveValidatorTest {
             USSR_AMPHIBIOUS_ASSAULT,
             TEST_PLAYERS).getTerritories();
 
-        territories.values().stream()
-            .forEach(t -> t.populateNeighbours(territories));
         Path path = createPath(territories, "A", "B");
 
         Company landCompany = buildCompany(USSR, TANK, TANK);
