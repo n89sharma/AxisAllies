@@ -1,5 +1,36 @@
 package axisalliestests;
 
+import static axisallies.nations.NationType.GERMANY;
+import static axisallies.nations.NationType.USSR;
+import static axisallies.units.Company.buildCompany;
+import static axisallies.units.Path.createPath;
+import static axisallies.units.Unit.buildUnitOfNation;
+import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
+import static axisallies.units.UnitType.BATTLESHIP;
+import static axisallies.units.UnitType.BOMBER;
+import static axisallies.units.UnitType.CRUISER;
+import static axisallies.units.UnitType.DESTROYER;
+import static axisallies.units.UnitType.FIGHTER;
+import static axisallies.units.UnitType.INFANTRY;
+import static axisallies.units.UnitType.SUBMARINE;
+import static axisallies.units.UnitType.TANK;
+import static axisallies.units.UnitType.TRANSPORT;
+import static axisallies.validators.CombatMoveValidator.isDestinationHostile;
+import static axisallies.validators.CombatMoveValidator.isValidAmphibiousAssault;
+import static axisallies.validators.CombatMoveValidator.isValidAmphibiousAssaultOffloading;
+import static axisallies.validators.CombatMoveValidator.isValidBomberMove;
+import static axisallies.validators.CombatMoveValidator.isValidCombatRetreat;
+import static axisallies.validators.CombatMoveValidator.isValidFighterMove;
+import static axisallies.validators.CombatMoveValidator.isValidSubmarineMove;
+import static axisallies.validators.CombatMoveValidator.isValidSubmarineTransportAssault;
+import static axisallies.validators.CombatMoveValidator.isValidTankBlitz;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
 import axisallies.board.Board;
 import axisallies.board.BoardBuilder;
 import axisallies.board.Territory;
@@ -7,19 +38,6 @@ import axisallies.units.CarrierUnit;
 import axisallies.units.Company;
 import axisallies.units.Path;
 import axisallies.units.Unit;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
-import static axisallies.nations.NationType.GERMANY;
-import static axisallies.nations.NationType.USSR;
-import static axisallies.units.Company.buildCompany;
-import static axisallies.units.Path.createPath;
-import static axisallies.units.Unit.buildUnitOfNation;
-import static axisallies.units.UnitType.*;
-import static axisallies.validators.CombatMoveValidator.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CombatMoveValidatorTest {
 

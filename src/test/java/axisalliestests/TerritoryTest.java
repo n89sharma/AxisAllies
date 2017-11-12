@@ -1,13 +1,14 @@
 package axisalliestests;
 
-import axisallies.board.Territory;
-import axisallies.board.TerritoryType;
-import org.junit.jupiter.api.Test;
-
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import axisallies.board.Territory;
+import axisallies.board.TerritoryType;
 
 public class TerritoryTest {
 

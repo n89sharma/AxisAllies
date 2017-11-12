@@ -1,14 +1,14 @@
 package axisallies.board;
 
+import java.util.Map;
+import java.util.Set;
+
 import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.players.Player;
 import axisallies.units.Unit;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Map;
-import java.util.Set;
 
 @Getter
 @Setter
