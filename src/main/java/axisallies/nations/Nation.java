@@ -1,18 +1,20 @@
 package axisallies.nations;
 
-import axisallies.board.Territory;
-import axisallies.units.Unit;
-import axisallies.units.UnitType;
-import lombok.Data;
+import static axisallies.units.Unit.buildUnitOfNation;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import static axisallies.units.Unit.buildUnitOfNation;
+import axisallies.board.Territory;
+import axisallies.units.Unit;
+import axisallies.units.UnitType;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Nation {
 
     private NationType nationType;

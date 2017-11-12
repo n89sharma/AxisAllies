@@ -3,14 +3,19 @@ package axisallies.units;
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.Setter;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
 import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
 import static axisallies.units.UnitType.TRANSPORT;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 public class Unit {
 
@@ -58,5 +63,13 @@ public class Unit {
 
     public boolean isType(UnitType unitType) {
         return this.unitType.equals(unitType);
+    }
+
+    public Integer getAttack() {
+        return unitType.getAttackStrength();
+    }
+
+    public Integer getDefense() {
+        return unitType.getDefenseStrength();
     }
 }

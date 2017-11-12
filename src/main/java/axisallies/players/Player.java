@@ -1,9 +1,11 @@
 package axisallies.players;
 
 import axisallies.nations.NationType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Player {
 
     String playerName;
