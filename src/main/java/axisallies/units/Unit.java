@@ -2,11 +2,10 @@ package axisallies.units;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Setter;
+import lombok.ToString;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
