@@ -3,7 +3,7 @@ package axisallies.gameplay;
 import axisallies.units.Company;
 import axisallies.units.UnitType;
 import lombok.ToString;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +21,6 @@ public class GeneralCombat {
     private List<Combatant> defenceForce;
     private List<Combatant> attackSubmarineForce;
     private List<Combatant> defenceSubmarineForce;
-    private boolean attackSubmarineSubmerge;    //if not then surprise if no destroyer present
-    private boolean defenceSubmarineSubmerge;
 
     protected GeneralCombat(Company attackers, Company defenders) {
         attackForce = attackers
@@ -47,18 +45,48 @@ public class GeneralCombat {
             .collect(toList());
     }
 
-    public void submarineSurpriseRound() {
-        oneSidedStrike(attackSubmarineForce, defenceForce);
-        oneSidedStrike(defenceSubmarineForce, attackForce);
+    public void conductGeneralCombat() {
+        oneSidedSubmarineStrike(attackForce, attackSubmarineForce, defenceForce);
+        oneSidedSubmarineStrike(defenceForce, defenceSubmarineForce, attackForce);
         removeCasualtiesFromPlay(attackForce);
         removeCasualtiesFromPlay(defenceForce);
-    }
 
-    private static void combatRound(List<Combatant> attackForce, List<Combatant> defenceForce) {
         oneSidedStrike(attackForce, defenceForce);
         oneSidedStrike(defenceForce, attackForce);
         removeCasualtiesFromPlay(attackForce);
         removeCasualtiesFromPlay(defenceForce);
+    }
+
+    // the user can do a 
+    // (1) surprise attack with the submarines; 
+    // (2) submerge the submarines - except cannot submerge if enemey has destroyer; 
+    // (3) continue with general combat?
+    // exactly like combat round except instead of the entire attack force attacking only the submarines attack.
+    private static void oneSidedSubmarineStrike(List<Combatant> strikeForce, List<Combatant> strikeSubmarineForce, List<Combatant> fodderForce) {
+        boolean strikeSubmarinesExist = !strikeSubmarineForce.isEmpty();
+        boolean submergeSubmarines = false;
+        boolean attackWithSubmarines = true;
+        boolean continueGeneralCombat = false;
+        boolean isDestroyerPresent = fodderForce
+            .stream()
+            .anyMatch(combatant -> combatant.getUnit().isType(DESTROYER));
+
+        if(strikeSubmarinesExist) {
+            // check if enemy has a destroyer
+            // remove from attack force and submarine force
+            if(submergeSubmarines && !isDestroyerPresent) {
+                strikeForce.removeAll(strikeSubmarineForce);
+                strikeSubmarineForce = new ArrayList<>();
+            }
+            // remove from submarine force
+            else if(continueGeneralCombat) {
+                strikeSubmarineForce = new ArrayList<>();
+            }
+            else if(attackWithSubmarines) {
+                strikeForce.removeAll(strikeSubmarineForce);
+                oneSidedStrike(strikeSubmarineForce, fodderForce);
+            }
+        }
     }
 
     // 1. one sided strike
