@@ -10,7 +10,7 @@ public class IndustrialComplex {
         this.health = 10;
     }
 
-    public void setRegion(String territory){
+    public void setRegion(String territory) {
         this.territory = territory;
     }
 }

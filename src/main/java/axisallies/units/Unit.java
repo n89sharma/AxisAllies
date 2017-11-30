@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import static axisallies.board.TerritoryType.LAND;
-import static axisallies.board.TerritoryType.SEA;
+import static axisallies.board.TerritoryType.*;
 import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
 import static axisallies.units.UnitType.TRANSPORT;
 
@@ -26,18 +25,18 @@ public class Unit {
     public static Unit buildUnitOfNation(UnitType unitType, NationType nationType) {
 
         return (unitType.equals(AIRCRAFT_CARRIER) || unitType.equals(TRANSPORT)) ?
-                new CarrierUnit(unitType, nationType) :
-                new Unit(unitType, nationType);
+            new CarrierUnit(unitType, nationType) :
+            new Unit(unitType, nationType);
     }
 
     public static Unit buildUnitOfNationAtTerritory(
-            UnitType unitType,
-            NationType nationType,
-            Territory territory) {
+        UnitType unitType,
+        NationType nationType,
+        Territory territory) {
 
         return (unitType.equals(AIRCRAFT_CARRIER) || unitType.equals(TRANSPORT)) ?
-                new CarrierUnit(unitType, nationType, territory) :
-                new Unit(unitType, nationType, territory);
+            new CarrierUnit(unitType, nationType, territory) :
+            new Unit(unitType, nationType, territory);
 
     }
 
@@ -58,6 +57,10 @@ public class Unit {
 
     public boolean isLandUnit() {
         return unitType.getTerritoryType().equals(LAND);
+    }
+
+    public boolean isAirUnit() {
+        return unitType.getTerritoryType().equals(AIR);
     }
 
     public boolean isType(UnitType unitType) {

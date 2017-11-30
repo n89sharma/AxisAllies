@@ -32,11 +32,11 @@ public enum UnitType {
     private final TerritoryType territoryType;
 
     UnitType(
-            int productionCost,
-            int attackStrength,
-            int defenseStrength,
-            int movementRange,
-            TerritoryType territoryType) {
+        int productionCost,
+        int attackStrength,
+        int defenseStrength,
+        int movementRange,
+        TerritoryType territoryType) {
 
         this.productionCost = productionCost;
         this.attackStrength = attackStrength;

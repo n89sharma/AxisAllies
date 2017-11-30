@@ -5,13 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameResponse {
-    
+
     Set<String> errors = new HashSet<>();
-    
+
     public GameResponse() {
-        
+
     }
-    
+
     public void addError(String error) {
         this.errors.add(error);
     }

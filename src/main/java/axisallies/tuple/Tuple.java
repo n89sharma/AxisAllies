@@ -43,12 +43,12 @@ public class Tuple<L, R> extends Pair<L, R> {
         }
         if (obj instanceof Map.Entry<?, ?>) {
             final Map.Entry<?, ?> other = (Map.Entry<?, ?>) obj;
-            boolean keyAndValuesMatch =  Objects.equals(getKey(), other.getKey())
+            boolean keyAndValuesMatch = Objects.equals(getKey(), other.getKey())
                 && Objects.equals(getValue(), other.getValue());
             boolean keyAndValuesSwitched = Objects.equals(getKey(), other.getValue())
                 && Objects.equals(getValue(), other.getKey());
             return keyAndValuesMatch || keyAndValuesSwitched;
-            
+
         }
         return false;
     }

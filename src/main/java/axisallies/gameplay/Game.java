@@ -29,9 +29,9 @@ public class Game {
         GameResponse gameResponse = new GameResponse();
         Nation nation = board.getNations().get(nationType);
         int orderCost = unitOrder.entrySet()
-                .stream()
-                .mapToInt(entry -> entry.getKey().getProductionCost() * entry.getValue())
-                .sum();
+            .stream()
+            .mapToInt(entry -> entry.getKey().getProductionCost() * entry.getValue())
+            .sum();
 
         if (orderCost <= nation.getIpc()) {
             StringBuilder builder = new StringBuilder("Not enough points in the nation's treasury for the unit order.\n");
@@ -41,7 +41,7 @@ public class Game {
             gameResponse.addError(builder.toString());
         }
 
-        if(!gameResponse.hasErrors()) {
+        if (!gameResponse.hasErrors()) {
             nation.purchaseUnits(unitOrder);
         }
 

@@ -17,15 +17,15 @@ public class Combatant {
     private boolean tookPartInRoundTwo;
 
 
-    private static Combatant mobilizeUnit(Unit unit, StrikerType strikerType) {
+    public static Combatant of(Unit unit, StrikerType strikerType) {
         return new Combatant(unit, strikerType);
     }
 
     private Combatant(Unit unit, StrikerType combatantType) {
         this.unit = unit;
         this.requiredRoll = combatantType.equals(ATTACKER) ?
-                unit.getAttack() :
-                unit.getDefense();
+            unit.getAttack() :
+            unit.getDefense();
     }
 
     public void setActualRoll(Integer actualRoll) {

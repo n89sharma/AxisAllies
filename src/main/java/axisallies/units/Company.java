@@ -29,8 +29,8 @@ public class Company {
     public static Company buildCompany(NationType nationType, UnitType... unitTypes) {
         Company company = new Company();
         Set<Unit> units = Arrays.stream(unitTypes)
-                .map(unitType -> Unit.buildUnitOfNation(unitType, nationType))
-                .collect(toSet());
+            .map(unitType -> Unit.buildUnitOfNation(unitType, nationType))
+            .collect(toSet());
         company.setUnits(units);
         return company;
     }
@@ -49,12 +49,12 @@ public class Company {
 
     public boolean hasType(UnitType unitType) {
         return units.stream()
-                .anyMatch(unit -> unit.getUnitType().equals(unitType));
+            .anyMatch(unit -> unit.getUnitType().equals(unitType));
     }
 
     public boolean areAllOfType(TerritoryType territoryType) {
         return units.stream()
-                .allMatch(unit -> unit.getUnitType().getTerritoryType().equals(territoryType));
+            .allMatch(unit -> unit.getUnitType().getTerritoryType().equals(territoryType));
     }
 
     public boolean areAllSeaUnits() {
