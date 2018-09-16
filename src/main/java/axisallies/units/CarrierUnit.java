@@ -13,9 +13,9 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper=true, exclude="units")
+@EqualsAndHashCode(callSuper = true, exclude = "units")
 public class CarrierUnit extends Unit {
-    
+
     private Set<Unit> units = new HashSet<>();
 
     public CarrierUnit(UnitType unitType, NationType nationType) {

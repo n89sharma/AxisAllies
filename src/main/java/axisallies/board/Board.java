@@ -1,14 +1,14 @@
 package axisallies.board;
 
-import java.util.Map;
-import java.util.Set;
-
 import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.players.Player;
 import axisallies.units.Unit;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Map;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,7 +32,9 @@ public class Board {
 
     public static <U extends Unit> boolean areHostile(Territory territory, U unit) {
         return territory.getNationType().getTeamType().isHostileTo(unit.getNationType().getTeamType());
-    };
+    }
+
+    ;
 
     public static <U extends Unit> boolean areFriendly(Territory territory, U unit) {
         return !areHostile(territory, unit);

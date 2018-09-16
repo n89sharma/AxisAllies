@@ -15,6 +15,7 @@ import java.util.Set;
 import static axisallies.board.Board.areFriendly;
 import static axisallies.board.Board.areHostile;
 import static axisallies.board.TerritoryType.SEA;
+import static axisallies.units.UnitType.SUBMARINE;
 import static java.util.stream.Collectors.toSet;
 
 @Getter
@@ -25,11 +26,11 @@ public class Company {
 
     private Set<Unit> units = new HashSet<>();
 
-    public static Company buildCompany(NationType nationType, UnitType ... unitTypes) {
-        Company company  = new Company();
+    public static Company buildCompany(NationType nationType, UnitType... unitTypes) {
+        Company company = new Company();
         Set<Unit> units = Arrays.stream(unitTypes)
-                .map(unitType -> Unit.buildUnitOfNation(unitType, nationType))
-                .collect(toSet());
+            .map(unitType -> Unit.buildUnitOfNation(unitType, nationType))
+            .collect(toSet());
         company.setUnits(units);
         return company;
     }
@@ -48,12 +49,12 @@ public class Company {
 
     public boolean hasType(UnitType unitType) {
         return units.stream()
-                .anyMatch(unit -> unit.getUnitType().equals(unitType));
+            .anyMatch(unit -> unit.getUnitType().equals(unitType));
     }
 
     public boolean areAllOfType(TerritoryType territoryType) {
         return units.stream()
-                .allMatch(unit -> unit.getUnitType().getTerritoryType().equals(territoryType));
+            .allMatch(unit -> unit.getUnitType().getTerritoryType().equals(territoryType));
     }
 
     public boolean areAllSeaUnits() {
@@ -70,5 +71,17 @@ public class Company {
 
     public boolean containsUnit(Unit unit) {
         return units.contains(unit);
+    }
+
+    public Company extractSubmarines() {
+
+        Company submarineCompany = new Company();
+        for (Unit unit : units) {
+            if (unit.isType(SUBMARINE)) {
+                units.remove(unit);
+                submarineCompany.addUnit(unit);
+            }
+        }
+        return submarineCompany;
     }
 }

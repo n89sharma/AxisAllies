@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class AxisAllies {
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         Game aGame = new Game();
         aGame.run();
     }

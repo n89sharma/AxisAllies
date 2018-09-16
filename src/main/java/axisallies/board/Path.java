@@ -1,4 +1,4 @@
-package axisallies.units;
+package axisallies.board;
 
 import axisallies.board.Board;
 import axisallies.board.Territory;
@@ -16,12 +16,12 @@ public class Path {
 
     public static Path createPath(Board board, String... territoryNames) {
         Path path = new Path();
-        for(String territoryName : territoryNames) {
+        for (String territoryName : territoryNames) {
             path.add(board.get(territoryName));
         }
         return path;
     }
-    
+
     public Path(List<Territory> territories) {
         this.territories = territories;
     }
@@ -35,11 +35,11 @@ public class Path {
     }
 
     public Territory getDestination() {
-        return territories.get(territories.size()-1);
+        return territories.get(territories.size() - 1);
     }
 
     public Path getAllBeforeDestination() {
-        return new Path(territories.subList(0, territories.size()-1));
+        return new Path(territories.subList(0, territories.size() - 1));
     }
 
     public List<Territory> getTerritories() {

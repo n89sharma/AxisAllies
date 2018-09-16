@@ -2,7 +2,7 @@ package axisallies.validators;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
-import axisallies.units.Path;
+import axisallies.board.Path;
 import axisallies.units.Unit;
 
 import java.util.Collection;
@@ -38,23 +38,23 @@ public class MoveValidator {
 
     public static boolean areAllUnitsFromOneTeam(Set<Unit> units) {
         return 1 == units.stream()
-                .map(Unit::getNationType)
-                .map(NationType::getTeamType)
-                .distinct()
-                .count();
+            .map(Unit::getNationType)
+            .map(NationType::getTeamType)
+            .distinct()
+            .count();
     }
 
     protected static Set<Territory> getHostileTerritories(Path path, Unit unit) {
         return path.getTerritories().stream()
-                .filter(territory -> areHostile(territory, unit))
-                .collect(toSet());
+            .filter(territory -> areHostile(territory, unit))
+            .collect(toSet());
     }
 
     protected static boolean hasHostileUnits(Set<Territory> hostileTerritories) {
         return hostileTerritories.stream()
-                .map(Territory::getCompanyUnits)
-                .flatMap(Collection::stream)
-                .findFirst()
-                .isPresent();
+            .map(Territory::getCompanyUnits)
+            .flatMap(Collection::stream)
+            .findFirst()
+            .isPresent();
     }
 }

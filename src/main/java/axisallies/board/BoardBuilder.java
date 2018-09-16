@@ -25,16 +25,29 @@ public class BoardBuilder {
     private static final String USSR_LAND_3_TERRITORIES_JSON = "ussr_land_3_territories.json";
     private static final String TEST_PLAYER_SETUP = "sample_players.json";
 
+    public static Board testBuild() throws IOException {
+        return build(UnitType.class, USSR_LAND_3_TERRITORIES_JSON, TEST_PLAYER_SETUP);
+    }
+
+    public static Board testBuild(String testTerritoryMap, String testPlayerSetupFile) throws IOException {
+        return build(UnitType.class, testTerritoryMap, testPlayerSetupFile);
+    }
+
+    public static Board sourceBuild() throws IOException {
+        return build(BoardBuilder.class, GAME_TERRITORY_MAP_SETUP, PLAYER_SETUP_FILE);
+    }
+
     private static void createTerritoryMap(Board board, String boardGameSetupFile, Class clazz) throws IOException {
 
         String jsonFilePath = getResourcePath(boardGameSetupFile, clazz);
         Set<Territory> territories = new ObjectMapper().readValue(
-                new File(jsonFilePath),
-                new TypeReference<Set<Territory>>() {
-                });
+            new File(jsonFilePath),
+            new TypeReference<Set<Territory>>() {
+            });
 
-        Map<String, Territory> territoryMap = territories.stream()
-                .collect(toMap(Territory::getTerritoryName, identity()));
+        Map<String, Territory> territoryMap = territories
+            .stream()
+            .collect(toMap(Territory::getTerritoryName, identity()));
 
         for (Territory territory : territories) {
             Set<Territory> neighbours = new HashSet<>();
@@ -53,9 +66,9 @@ public class BoardBuilder {
 
         String jsonFilePath = getResourcePath(playerSetupFile, clazz);
         Set<Player> players = new ObjectMapper().readValue(
-                new File(jsonFilePath),
-                new TypeReference<Set<Player>>() {
-                });
+            new File(jsonFilePath),
+            new TypeReference<Set<Player>>() {
+            });
 
         board.setPlayers(players.stream().collect(toMap(Player::getNationType, identity())));
     }
@@ -63,7 +76,7 @@ public class BoardBuilder {
     private static void createNations(Board board) {
 
         Map<NationType, Nation> nations = Arrays.stream(NationType.values())
-                .collect(toMap(identity(), Nation::new));
+            .collect(toMap(identity(), Nation::new));
 
         for (String territoryName : board.getTerritoryNames()) {
             Territory territory = board.get(territoryName);
@@ -80,18 +93,6 @@ public class BoardBuilder {
     private static String getResourcePath(String fileName, Class clazz) {
         ClassLoader classLoader = clazz.getClassLoader();
         return classLoader.getResource(fileName).getPath();
-    }
-
-    public static Board testBuild() throws IOException {
-        return build(UnitType.class, USSR_LAND_3_TERRITORIES_JSON, TEST_PLAYER_SETUP);
-    }
-
-    public static Board testBuild(String testTerritoryMap, String testPlayerSetupFile) throws IOException {
-        return build(UnitType.class, testTerritoryMap, testPlayerSetupFile);
-    }
-
-    public static Board sourceBuild() throws IOException {
-        return build(BoardBuilder.class, GAME_TERRITORY_MAP_SETUP, PLAYER_SETUP_FILE);
     }
 
     private static Board build(Class clazz, String mapFile, String playerFile) throws IOException {
