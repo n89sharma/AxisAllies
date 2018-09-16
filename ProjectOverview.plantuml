@@ -1,0 +1,268 @@
+@startuml
+
+package axisallies.board{
+
+    class Board {
+        - Map<String, Territory> territories
+        - Map<NationType, Nation> nations
+        - Map<NationType, Player> players
+
+        + get(String territoryName) :: Territory
+        + getTerritoryNames() :: Set<String>
+        + areHostile()
+        + areHistile()
+        + areFriendly()
+        + areFriendly()
+    }
+
+    class BoardBuilder {
+        - GAME_TERRITORY_MAP_SETUP
+        - PLAYER_SETUP_FILE
+        - USSR_LAND_3_TERRITORIES_JSON
+        - TEST_PLAYER_SETUP
+
+        + testBuild()
+        + testBuild(String testTerritoryMap, String testPlayerSetupFile)
+        + sourceBuild()
+        - createTerritoryMap(Board board, String boardGameSetupFile, Class clazz)
+        - createPlayers(Board board, String playerSetupFile, Class clazz)
+        - createNations(Board board)
+        - getResourcePath(String filename, Class clazz)
+        - build(Class clazz, String mapFile, String playerFile)
+    }
+
+    class Territory {
+        - String territoryName
+        - NationType nationType
+        - TerritoryType territoryType
+        - Set<String> neighbourNames
+        - Set<Territory> neighbours
+        - Company company
+        - int ipc
+
+        + placeCompany(Company otherCompany)
+        + getCompanyUnits()
+        + addUnitToCompany(Unit unit)
+        + removeUnitFromCompany(Unit unit)
+        + isSea()
+        + isLand()
+        + containsUnit(Unit unit)
+    }
+
+    enum TerritoryType {
+        SEA
+        LAND
+        AIR
+    }
+}
+
+@enduml
+
+@startuml
+
+package axisallies.gameplay {
+    
+    class Combatant {
+        - Unit unit
+        - Integer requiredRoll
+        - Integer actualRoll
+        - boolean successHit
+        - boolean casualty
+        - StrikerType strikerType
+
+        + of(Unit unit, StrikerType strikerType)
+        + setActualRoll(Integer actualRoll)
+        + setCasualty()
+        + getInputString()
+    }
+
+    class Game {
+        - Board board
+
+        + run()
+        - orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType)
+    }
+
+    enum GamePhaseType {
+        PURCHASE_UNITS
+        COMBAT_MOVE
+        CONDUCT_COMBAT
+        NON_COMBAT_MOVE
+        MOBILIZE_NEW_UNITS
+        COLLECT_INCOME
+    }
+
+    class GamePlay {
+
+    }
+
+    class GeneralCombat {
+        - List<Combatant> attackForce
+        - List<Combatant> defenceForce
+        - List<Combatant> attackSubmarineForce
+        - List<Combatant> defenceSubmarineForce
+
+        # GeneralCombat()
+        + conductGeneralCombat()
+        - oneSidedSubmarineStrike(List<Combatant> strikeForce, List<Combatant> strikeSubmarineForce, List<Combatant> fodderForce)
+        - oneSidedStrike(List<Combatant> strikers, List<Combatant> fodders)
+        - getAliveCombatantFromUnitType(List<Combatant> combatants, UnitType unitType)
+        - isHitAssignmentValid(List<Combatanat> strikers, Combatant striker, Combatant fodder)
+        - removeCasualitiesFromPlay(List<Combatant> combatants)
+    }
+
+    class GeneralCombatData {
+
+    }
+
+    enum StrikerType {
+        ATTACKER
+        DEFENDER
+    }
+}
+
+@enduml
+
+@startuml
+
+package axisallies.nations {
+
+    class Nation {
+        - NationType nationType    
+        - Set<Territory> territories
+        - Set<Unit> units
+        - Set<Unit> mobilizationZoneUnits
+        - int ipc
+
+        + Nation(NationType nationType)
+        + addTerritory(Territory territory)
+        + addUnit(Unit unit)
+        - int ipcCalculationBasedOnTerritoriesOwned()
+        - addToTreasury()
+        + purchaseUnits(Map<UnitType, Integer> unitOrder)
+    }
+
+    enum TeamType {
+        AXIS
+        ALLIES
+        + isHostileTo (TeamType teamType)
+        + isFriendlyTo (TeamType teamType)
+    }
+
+    enum NationType {
+        USSR
+        USA
+        GERMANY
+        JAPAN
+        UK
+    }
+}
+
+@enduml
+
+@startuml
+
+package axisallies.players {
+
+    class Player {
+        - String playerName
+        - NationType nationType
+    }
+
+}
+
+@enduml
+
+@startuml
+
+package axisallies.units {
+
+    class CarrierUnit {
+        - Set<Unit> untis
+
+        + CarrierUnit(UnitType unitType, NationType nationType)
+        + CarrierUnit(UnitType unitType, NationType nationType, Territory territory)
+        + containsUnits()
+        + addContainedUnit(Unit unit)
+    }
+
+    class Company {
+        - Set<Unit> units
+
+        + buildCompany(NationType nationType, UnitType unitTypes)
+        + mergeCompanies(Company otherCompany)
+        + addUnit(Unit unit)
+        + removeUnit(Unit unit)
+        + hasType(UnitType unitType)
+        + areAllOfType(TerritoryType territoryType)
+        + areAllSeaUnits()
+        + isTerritoryHostile(Territory territory)
+        + areAllFriendlyToTerritory(Territory territory)
+        + containsUnit(Unit unit)
+        + extractSubmarines()
+
+
+    }
+
+    class IndustrialComplex {
+
+        - int health
+        - String territory
+        
+    }
+
+    class Path {
+        - List<Territory> territories
+
+        + Path createPath(Board board, String territoryNames)
+        + Path(List<Territory> territories)
+        + add(Territory territory)
+        + getStart()
+        + getDestination()
+        + getAllBeforeDestination()
+        + getTerritories()
+        + size()
+    }
+
+    class Unit {
+        - UnitType unitType
+        - int travelledDistance
+        - NationType nationType
+        - Territory territory
+
+        + Unit(UnitType unitType NationType nationType)
+        + Unit(UnitType unitType NationType nationType, Territory territory)
+        + buildUnitOfNationAtTerritory(UnitTYpe unitType, NationType nationType, Territory territory)
+        + isSeaUnit()
+        + isLandUnit()
+        + isAirUnit()
+        + isType(UnitType unitType)
+        + getAttack()
+        + getDefense()
+    }
+
+    enum UnitType {
+        INFANTRY
+        ARTILLERY
+        TANK
+        FIGHTER
+        BOMBER
+        AA_GUN
+        DESTROYER
+        TRANSPORT
+        CRUISER
+        AIRCRAFT_CARRIER
+        SUBMARINE
+        BATTLESHIP
+    }
+}
+
+@enduml
+@startuml
+package axisallies.validators{
+    class CombatMoveValidator {
+
+    }
+}
+
+@enduml

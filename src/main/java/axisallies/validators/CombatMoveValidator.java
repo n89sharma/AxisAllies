@@ -3,7 +3,7 @@ package axisallies.validators;
 import axisallies.board.Territory;
 import axisallies.units.CarrierUnit;
 import axisallies.units.Company;
-import axisallies.units.Path;
+import axisallies.board.Path;
 import axisallies.units.Unit;
 
 import java.util.Collection;

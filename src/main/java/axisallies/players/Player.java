@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Player {
-
-    String playerName;
-    NationType nationType;
+    private String playerName;
+    private NationType nationType;
 }

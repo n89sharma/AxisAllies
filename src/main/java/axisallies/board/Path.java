@@ -1,4 +1,4 @@
-package axisallies.units;
+package axisallies.board;
 
 import axisallies.board.Board;
 import axisallies.board.Territory;

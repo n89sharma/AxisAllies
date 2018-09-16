@@ -12,10 +12,8 @@ public class Combatant {
     private Integer requiredRoll;
     private Integer actualRoll;
     private boolean successHit;
-    private boolean casualty = false;
+    private boolean casualty;
     private StrikerType strikerType;
-    private boolean tookPartInRoundTwo;
-
 
     public static Combatant of(Unit unit, StrikerType strikerType) {
         return new Combatant(unit, strikerType);
