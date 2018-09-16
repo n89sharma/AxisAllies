@@ -258,11 +258,38 @@ package axisallies.units {
 }
 
 @enduml
-@startuml
-package axisallies.validators{
-    class CombatMoveValidator {
 
+@startuml
+
+package axisallies.validators{
+
+    class CombatMoveValidator {
+        + isDestinationHostile(Path path, Unit unit)
+        + isValidTankBlitz(Path path, Unit unit)
+        + isValidAmphibiousAssault(Path path, Company company)
+        + isValidCombatRetreat(Path path, Company company)
+        + isValidSubmarineTransportAssault(Path path, Unit unit)
+        + isValidBomberMove(Path path, Unit unit)
+        + isValidFighterMover(Path path, Unit unit)
+        + isValidFighterMove(Path path, Unit unit)
+        + isValidAmphibiousAssaultOffloading(Path path, CarrierUnit unit)
+        + isValidSubmarineMove(Path path, Unit unit)
     }
+
+    class ContainerValidator {
+        isValidType(Unit carrierUnit, Unit cargoUnit)
+    }
+
+    class MoveValidator {
+        + isUnitAtPathBeginning(Path path, Unit unit)
+        + isPathWithinUnitRange(Path path, Unit unit)
+        + isHostileTerritoryPresentBeforeDestination(Path path, Unit unit)
+        + isPathValidTerritoryTypeForUnit(Path path, Unit unit)
+        + areAllUnitsFromOneTeam(Set<Unit> units)
+        + getHostileTerritories(Path path, Unit unit)
+        + hasHostileUnits(Set<Territory> hostileTerritories)
+    }
+
 }
 
 @enduml
