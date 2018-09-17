@@ -1,7 +1,7 @@
 package axisalliestests;
 
 import static axisallies.nations.NationType.GERMANY;
-import static axisallies.units.Path.createPath;
+import static axisallies.board.Path.createPath;
 import static axisallies.units.Unit.buildUnitOfNationAtTerritory;
 import static axisallies.units.UnitType.INFANTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import axisallies.board.Board;
 import axisallies.board.BoardBuilder;
-import axisallies.units.Path;
+import axisallies.board.Path;
 import axisallies.units.Unit;
 import axisallies.validators.CombatMoveValidator;
 

@@ -3,7 +3,7 @@ package axisalliestests;
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
 import static axisallies.units.Company.buildCompany;
-import static axisallies.units.Path.createPath;
+import static axisallies.board.Path.createPath;
 import static axisallies.units.Unit.buildUnitOfNation;
 import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
 import static axisallies.units.UnitType.BATTLESHIP;
@@ -36,7 +36,7 @@ import axisallies.board.BoardBuilder;
 import axisallies.board.Territory;
 import axisallies.units.CarrierUnit;
 import axisallies.units.Company;
-import axisallies.units.Path;
+import axisallies.board.Path;
 import axisallies.units.Unit;
 
 public class CombatMoveValidatorTest {
