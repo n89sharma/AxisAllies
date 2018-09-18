@@ -103,12 +103,12 @@ public class GeneralCombat {
             combatant.setActualRoll(roll);
         }
         //if actual roll less than or equal to required roll then its a successful hit.
-        List<Combatant> successfullStrikers = strikers
+        List<Combatant> successfulStrikers = strikers
             .stream()
             .filter(Combatant::isSuccessHit)
             .collect(toList());
         //user decides which unit will take the hit
-        for (Combatant striker : successfullStrikers) {
+        for (Combatant striker : successfulStrikers) {
             Optional<Combatant> fodder;
             boolean isHitAssignmentValid = false;
             do {

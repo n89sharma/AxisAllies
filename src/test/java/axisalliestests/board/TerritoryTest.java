@@ -1,4 +1,4 @@
-package axisalliestests;
+package axisalliestests.board;
 
 import axisallies.board.Territory;
 import axisallies.board.TerritoryType;

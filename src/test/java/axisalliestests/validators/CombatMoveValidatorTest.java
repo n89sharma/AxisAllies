@@ -1,4 +1,4 @@
-package axisalliestests;
+package axisalliestests.validators;
 
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USSR;
