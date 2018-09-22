@@ -1,8 +1,9 @@
 package axisallies.players;
 
+import axisallies.GameEntity;
 import axisallies.nations.NationType;
 
-public class Player {
+public class Player extends GameEntity{
     private String playerName;
     private NationType nationType;
 

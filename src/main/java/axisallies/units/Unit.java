@@ -1,5 +1,6 @@
 package axisallies.units;
 
+import axisallies.GameEntity;
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
 
@@ -7,7 +8,7 @@ import static axisallies.board.TerritoryType.*;
 import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
 import static axisallies.units.UnitType.TRANSPORT;
 
-public class Unit {
+public class Unit extends GameEntity {
 
     private UnitType unitType;
     private int travelledDistance = 0;

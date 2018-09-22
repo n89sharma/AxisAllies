@@ -1,5 +1,6 @@
 package axisallies.units;
 
+import axisallies.GameEntity;
 import axisallies.board.Territory;
 import axisallies.board.TerritoryType;
 import axisallies.nations.NationType;
@@ -14,7 +15,7 @@ import static axisallies.board.TerritoryType.SEA;
 import static axisallies.units.UnitType.SUBMARINE;
 import static java.util.stream.Collectors.toSet;
 
-public class Company {
+public class Company extends GameEntity {
 
     private Set<Unit> units = new HashSet<>();
 

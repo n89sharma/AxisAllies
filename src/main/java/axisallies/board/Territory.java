@@ -1,5 +1,6 @@
 package axisallies.board;
 
+import axisallies.GameEntity;
 import axisallies.nations.NationType;
 import axisallies.units.Company;
 import axisallies.units.Unit;
@@ -9,7 +10,7 @@ import java.util.Set;
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
 
-public class Territory {
+public class Territory extends GameEntity{
 
     private String territoryName;
     private NationType nationType;

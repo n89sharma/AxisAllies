@@ -1,5 +1,6 @@
 package axisallies.nations;
 
+import axisallies.GameEntity;
 import axisallies.board.Territory;
 import axisallies.units.Unit;
 import axisallies.units.UnitType;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 import static axisallies.units.Unit.buildUnitOfNation;
 
-public class Nation {
+public class Nation extends GameEntity {
 
     private NationType nationType;
     private Set<Territory> territories = new HashSet<>();

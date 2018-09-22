@@ -1,9 +1,11 @@
 package axisallies.board;
 
+import axisallies.GameEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Path {
+public class Path extends GameEntity {
 
     private List<Territory> territories = new ArrayList<>();
 

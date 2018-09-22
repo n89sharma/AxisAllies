@@ -1,6 +1,8 @@
 package axisallies.units;
 
-public class IndustrialComplex {
+import axisallies.GameEntity;
+
+public class IndustrialComplex extends GameEntity{
 
     private int health;
     private String territory;
