@@ -1,5 +1,6 @@
 package axisalliestests.board;
 
+import axisallies.board.Path;
 import axisallies.board.Territory;
 import axisallies.board.TerritoryType;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TerritoryTest {
+
+    @Test
+    public void testEquals() {
+        Path pathA = new Path();
+        Path pathB = new Path();
+        boolean isEqual = pathA.equals(pathB);
+    }
 
     @Test
     public void testIsSea() {

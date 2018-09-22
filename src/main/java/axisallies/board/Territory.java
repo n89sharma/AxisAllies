@@ -3,20 +3,12 @@ package axisallies.board;
 import axisallies.nations.NationType;
 import axisallies.units.Company;
 import axisallies.units.Unit;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Set;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
 
-@Setter
-@Getter
-@ToString(exclude = {"neighbours"})
-@EqualsAndHashCode(exclude = {"neighbours"})
 public class Territory {
 
     private String territoryName;
@@ -55,4 +47,59 @@ public class Territory {
         return company.containsUnit(unit);
     }
 
+    public String getTerritoryName() {
+        return territoryName;
+    }
+
+    public void setTerritoryName(String territoryName) {
+        this.territoryName = territoryName;
+    }
+
+    public NationType getNationType() {
+        return nationType;
+    }
+
+    public void setNationType(NationType nationType) {
+        this.nationType = nationType;
+    }
+
+    public TerritoryType getTerritoryType() {
+        return territoryType;
+    }
+
+    public void setTerritoryType(TerritoryType territoryType) {
+        this.territoryType = territoryType;
+    }
+
+    public Set<String> getNeighbourNames() {
+        return neighbourNames;
+    }
+
+    public void setNeighbourNames(Set<String> neighbourNames) {
+        this.neighbourNames = neighbourNames;
+    }
+
+    public Set<Territory> getNeighbours() {
+        return neighbours;
+    }
+
+    public void setNeighbours(Set<Territory> neighbours) {
+        this.neighbours = neighbours;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public int getIpc() {
+        return ipc;
+    }
+
+    public void setIpc(int ipc) {
+        this.ipc = ipc;
+    }
 }

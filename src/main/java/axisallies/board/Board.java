@@ -4,14 +4,10 @@ import axisallies.nations.Nation;
 import axisallies.nations.NationType;
 import axisallies.players.Player;
 import axisallies.units.Unit;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Map;
 import java.util.Set;
 
-@Getter
-@Setter
 public class Board {
 
     private Map<String, Territory> territories;
@@ -42,5 +38,29 @@ public class Board {
 
     public static <U extends Unit> boolean areFriendly(Unit unitA, U unitB) {
         return !areHostile(unitA, unitB);
+    }
+
+    public Map<String, Territory> getTerritories() {
+        return territories;
+    }
+
+    public void setTerritories(Map<String, Territory> territories) {
+        this.territories = territories;
+    }
+
+    public Map<NationType, Nation> getNations() {
+        return nations;
+    }
+
+    public void setNations(Map<NationType, Nation> nations) {
+        this.nations = nations;
+    }
+
+    public Map<NationType, Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Map<NationType, Player> players) {
+        this.players = players;
     }
 }

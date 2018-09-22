@@ -1,11 +1,9 @@
 package axisallies.units;
 
 import axisallies.board.TerritoryType;
-import lombok.Getter;
 
 import static axisallies.board.TerritoryType.*;
 
-@Getter
 public enum UnitType {
 
 
@@ -43,5 +41,25 @@ public enum UnitType {
         this.defenseStrength = defenseStrength;
         this.movementRange = movementRange;
         this.territoryType = territoryType;
+    }
+
+    public int getProductionCost() {
+        return productionCost;
+    }
+
+    public int getAttackStrength() {
+        return attackStrength;
+    }
+
+    public int getDefenseStrength() {
+        return defenseStrength;
+    }
+
+    public int getMovementRange() {
+        return movementRange;
+    }
+
+    public TerritoryType getTerritoryType() {
+        return territoryType;
     }
 }

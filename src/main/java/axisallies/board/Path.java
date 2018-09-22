@@ -1,18 +1,18 @@
 package axisallies.board;
 
-import axisallies.board.Board;
-import axisallies.board.Territory;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString
-@NoArgsConstructor
 public class Path {
 
     private List<Territory> territories = new ArrayList<>();
+
+    public Path() {
+    }
+
+    public Path(List<Territory> territories) {
+        this.territories = territories;
+    }
 
     public static Path createPath(Board board, String... territoryNames) {
         Path path = new Path();
@@ -20,10 +20,6 @@ public class Path {
             path.add(board.get(territoryName));
         }
         return path;
-    }
-
-    public Path(List<Territory> territories) {
-        this.territories = territories;
     }
 
     public void add(Territory territory) {

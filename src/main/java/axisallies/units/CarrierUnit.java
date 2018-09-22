@@ -2,18 +2,10 @@ package axisallies.units;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode(callSuper = true, exclude = "units")
 public class CarrierUnit extends Unit {
 
     private Set<Unit> units = new HashSet<>();
@@ -32,5 +24,13 @@ public class CarrierUnit extends Unit {
 
     public void addContainedUnit(Unit unit) {
         units.add(unit);
+    }
+
+    public Set<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(Set<Unit> units) {
+        this.units = units;
     }
 }

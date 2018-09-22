@@ -25,10 +25,6 @@ public class BoardBuilder {
     private static final String USSR_LAND_3_TERRITORIES_JSON = "ussr_land_3_territories.json";
     private static final String TEST_PLAYER_SETUP = "sample_players.json";
 
-    public static Board testBuild() throws IOException {
-        return build(UnitType.class, USSR_LAND_3_TERRITORIES_JSON, TEST_PLAYER_SETUP);
-    }
-
     public static Board testBuild(String testTerritoryMap, String testPlayerSetupFile) throws IOException {
         return build(UnitType.class, testTerritoryMap, testPlayerSetupFile);
     }
@@ -40,10 +36,13 @@ public class BoardBuilder {
     private static void createTerritoryMap(Board board, String boardGameSetupFile, Class clazz) throws IOException {
 
         String jsonFilePath = getResourcePath(boardGameSetupFile, clazz);
-        Set<Territory> territories = new ObjectMapper().readValue(
-            new File(jsonFilePath),
-            new TypeReference<Set<Territory>>() {
-            });
+        File jsonFile = new File(jsonFilePath);
+        TypeReference<Set<Territory>> typeRef = new TypeReference<Set<Territory>>() {
+        };
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        Set<Territory> territories = mapper.readValue(jsonFile, typeRef);
 
         Map<String, Territory> territoryMap = territories
             .stream()

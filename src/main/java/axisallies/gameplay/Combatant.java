@@ -1,11 +1,9 @@
 package axisallies.gameplay;
 
 import axisallies.units.Unit;
-import lombok.Getter;
 
 import static axisallies.gameplay.StrikerType.ATTACKER;
 
-@Getter
 public class Combatant {
 
     private Unit unit;
@@ -45,5 +43,29 @@ public class Combatant {
         stringBuilder.append(strikerType);
         stringBuilder.append(":");
         return stringBuilder.toString();
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public Integer getRequiredRoll() {
+        return requiredRoll;
+    }
+
+    public Integer getActualRoll() {
+        return actualRoll;
+    }
+
+    public boolean isSuccessHit() {
+        return successHit;
+    }
+
+    public boolean isCasualty() {
+        return casualty;
+    }
+
+    public StrikerType getStrikerType() {
+        return strikerType;
     }
 }

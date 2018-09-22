@@ -2,19 +2,11 @@ package axisallies.units;
 
 import axisallies.board.Territory;
 import axisallies.nations.NationType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import static axisallies.board.TerritoryType.*;
 import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
 import static axisallies.units.UnitType.TRANSPORT;
 
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 public class Unit {
 
     private UnitType unitType;
@@ -73,5 +65,37 @@ public class Unit {
 
     public Integer getDefense() {
         return unitType.getDefenseStrength();
+    }
+
+    public UnitType getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(UnitType unitType) {
+        this.unitType = unitType;
+    }
+
+    public int getTravelledDistance() {
+        return travelledDistance;
+    }
+
+    public void setTravelledDistance(int travelledDistance) {
+        this.travelledDistance = travelledDistance;
+    }
+
+    public NationType getNationType() {
+        return nationType;
+    }
+
+    public void setNationType(NationType nationType) {
+        this.nationType = nationType;
+    }
+
+    public Territory getTerritory() {
+        return territory;
+    }
+
+    public void setTerritory(Territory territory) {
+        this.territory = territory;
     }
 }

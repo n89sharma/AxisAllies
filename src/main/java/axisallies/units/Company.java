@@ -3,10 +3,6 @@ package axisallies.units;
 import axisallies.board.Territory;
 import axisallies.board.TerritoryType;
 import axisallies.nations.NationType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,10 +14,6 @@ import static axisallies.board.TerritoryType.SEA;
 import static axisallies.units.UnitType.SUBMARINE;
 import static java.util.stream.Collectors.toSet;
 
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 public class Company {
 
     private Set<Unit> units = new HashSet<>();
@@ -83,5 +75,13 @@ public class Company {
             }
         }
         return submarineCompany;
+    }
+
+    public Set<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(Set<Unit> units) {
+        this.units = units;
     }
 }

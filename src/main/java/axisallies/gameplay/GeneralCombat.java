@@ -2,7 +2,7 @@ package axisallies.gameplay;
 
 import axisallies.units.Company;
 import axisallies.units.UnitType;
-import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,6 @@ import static axisallies.units.UnitType.SUBMARINE;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
-@ToString
 public class GeneralCombat {
 
     private List<Combatant> attackForce;
@@ -71,18 +70,17 @@ public class GeneralCombat {
             .stream()
             .anyMatch(combatant -> combatant.getUnit().isType(DESTROYER));
 
-        if(strikeSubmarinesExist) {
+        if (strikeSubmarinesExist) {
             // check if enemy has a destroyer
             // remove from attack force and submarine force
-            if(submergeSubmarines && !isDestroyerPresent) {
+            if (submergeSubmarines && !isDestroyerPresent) {
                 strikeForce.removeAll(strikeSubmarineForce);
                 strikeSubmarineForce = new ArrayList<>();
             }
             // remove from submarine force
-            else if(continueGeneralCombat) {
+            else if (continueGeneralCombat) {
                 strikeSubmarineForce = new ArrayList<>();
-            }
-            else if(attackWithSubmarines) {
+            } else if (attackWithSubmarines) {
                 strikeForce.removeAll(strikeSubmarineForce);
                 oneSidedStrike(strikeSubmarineForce, fodderForce);
             }
