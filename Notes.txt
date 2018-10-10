@@ -54,3 +54,41 @@ Game Board                                              (8)
     5.1 Restrictions on Placement
 6.0 Collect Income                                      (23)
 7.0 Unit Special Abilities                              (24)
+
+Infantry
+Tanks
+Artillery
+Anti Aircraft Gun
+
+Fighter
+Bomber 
+
+Destroyer
+Submarine
+Battleship
+Transport
+Aircraft Carrier /
+Cruiser /
+Industrial Complex /
+
+------------------------------------
+canMoveToLand
+canMoveToSea
+canMoveTo
+
+reserveMoves
+canCaptureHostileTerritory
+canBeCarriedByTransports
+
+artillerySupportAttackIncrease
+canMoveThroughUnoccupiedHostileTerritory
+canMoveThroughOccupiedHostileTerritory
+
+canMoveInCombatMove
+canAttackAirTargets
+canAttackLandTargets
+canAttackSeaTargets
+
+canContainUnits
+canContainMultiNationalUnits
+canContainFighers?

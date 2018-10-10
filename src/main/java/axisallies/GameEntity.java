@@ -12,15 +12,15 @@ public class GameEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
 
         GameEntity that = (GameEntity) o;
 
-        return uuid.equals(that.uuid);
+        return this.uuid.equals(that.getUuid());
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
+        return this.uuid.hashCode();
     }
 }

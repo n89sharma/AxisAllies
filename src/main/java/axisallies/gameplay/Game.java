@@ -1,50 +1,36 @@
 package axisallies.gameplay;
 
-import axisallies.GameResponse;
 import axisallies.board.Board;
-import axisallies.board.BoardBuilder;
-import axisallies.nations.Nation;
-import axisallies.nations.NationType;
-import axisallies.units.UnitType;
+import axisallies.units.Unit;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import static axisallies.nations.NationType.GERMANY;
+import static axisallies.nations.NationType.USA;
+import static axisallies.units.land.Infantry.getInfantryCompany;
+import static axisallies.units.land.Infantry.infantry;
+import static axisallies.units.land.Tank.getTankCompany;
+import static axisallies.units.land.Tank.tank;
 
 public class Game {
 
     private Board board;
+    private GeneralCombatConductor generalCombatConductor;
 
     public Game() throws IOException {
-        this.board = BoardBuilder.sourceBuild();
+//        this.board = BoardBuilder.sourceBuild();
     }
 
     public void run() {
-        System.out.println(board.getNations().get(GERMANY));
+        var attack = new HashSet<Unit>();
+        attack.addAll(getTankCompany(5, USA));
+        attack.addAll(getInfantryCompany(5, USA));
+        var defend = getTankCompany(10, GERMANY);
+        var gc = new GeneralCombatConductor(attack, defend);
+
+        gc.conductGeneralCombat();
     }
 
-    private GameResponse orderUnitsForNation(Map<UnitType, Integer> unitOrder, NationType nationType) {
-
-        GameResponse gameResponse = new GameResponse();
-        Nation nation = board.getNations().get(nationType);
-        int orderCost = unitOrder.entrySet()
-            .stream()
-            .mapToInt(entry -> entry.getKey().getProductionCost() * entry.getValue())
-            .sum();
-
-        if (orderCost <= nation.getIpc()) {
-            StringBuilder builder = new StringBuilder("Not enough points in the nation's treasury for the unit order.\n");
-            builder.append("Nation : " + nationType.getNationTypeString() + "\n");
-            builder.append("Treasury : " + nation.getIpc() + "\n");
-            builder.append("Points required : " + orderCost + "\n");
-            gameResponse.addError(builder.toString());
-        }
-
-        if (!gameResponse.hasErrors()) {
-            nation.purchaseUnits(unitOrder);
-        }
-
-        return gameResponse;
-    }
 }

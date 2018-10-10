@@ -1,26 +1,46 @@
 package axisallies;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class GameResponse {
 
-    Set<String> errors = new HashSet<>();
+    private boolean success = true;
+    private List<GameError> gameErrors = new ArrayList<>();
 
-    public GameResponse() {
-
+    public void setUnsuccessful() {
+        this.success = false;
     }
 
-    public void addError(String error) {
-        this.errors.add(error);
+    public boolean isSuccessful() {
+        return this.success;
     }
 
-    public void addErrors(Collection<String> errors) {
-        this.errors.addAll(errors);
+    public List<String> getAllMessages() {
+        return this.gameErrors
+            .stream()
+            .map(GameError::getMessages)
+            .flatMap(Collection::stream)
+            .collect(toList());
     }
 
-    public boolean hasErrors() {
-        return this.errors.isEmpty();
+    public void addError(GameError gameError) {
+        this.gameErrors.add(gameError);
+    }
+
+    public static class GameError {
+
+        private List<String> message;
+
+        public GameError(List<String> message) {
+            this.message = message;
+        }
+
+        public List<String> getMessages() {
+            return this.message;
+        }
     }
 }

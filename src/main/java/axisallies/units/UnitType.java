@@ -21,6 +21,20 @@ public enum UnitType {
     AIRCRAFT_CARRIER(14, 1, 2, 2, SEA),
     SUBMARINE       ( 6, 2, 1, 2, SEA),
     BATTLESHIP      (20, 4, 4, 2, SEA);
+
+// INFANTRY	        3	1	2		33%	67%
+// ARTILLERY	    4	2	2		50%	50%
+// TANK	            6	3	3		50%	50%
+// FIGHTER	        10	3	4		30%	40%
+// BOMBER	        12	4	1		33%	8%
+// AA_GUN	        5	0	0		0%	0%
+// DESTROYER	    8	2	2		25%	25%
+// TRANSPORT	    7	0	0		0%	0%
+// CRUISER	        12	3	3		25%	25%
+// AIRCRAFT CARRIER	14	1	2		7%	14%
+// SUBMARINE	    6	2	1		33%	17%
+// BATTLESHIP	    20	4	4		20%	20%
+
     // @formatter:on
 
     private final int productionCost;

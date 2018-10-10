@@ -1,16 +1,11 @@
 package axisallies.nations;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import axisallies.GameEntity;
 import axisallies.board.Territory;
 import axisallies.units.Unit;
-import axisallies.units.UnitType;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import static axisallies.units.Unit.buildUnitOfNation;
 
 public class Nation extends GameEntity {
 
@@ -30,32 +25,6 @@ public class Nation extends GameEntity {
 
     public void addUnit(Unit unit) {
         this.units.add(unit);
-    }
-
-    private int ipcCalculationBasedOnTerritoriesOwned() {
-        return getTerritories().stream()
-            .mapToInt(Territory::getIpc)
-            .sum();
-    }
-
-    private void addToTreasury() {
-        ipc += ipcCalculationBasedOnTerritoriesOwned();
-    }
-
-    public void purchaseUnits(Map<UnitType, Integer> unitOrder) {
-        int orderCost = unitOrder.entrySet()
-            .stream()
-            .mapToInt(entry -> entry.getKey().getProductionCost() * entry.getValue())
-            .sum();
-
-        if (orderCost <= ipc) {
-            for (Entry<UnitType, Integer> entry : unitOrder.entrySet()) {
-                for (int i = 0; i < entry.getValue(); i++) {
-                    mobilizationZoneUnits.add(buildUnitOfNation(entry.getKey(), nationType));
-                }
-            }
-            ipc -= orderCost;
-        }
     }
 
     public NationType getNationType() {

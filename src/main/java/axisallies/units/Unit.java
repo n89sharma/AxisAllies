@@ -1,87 +1,33 @@
 package axisallies.units;
 
 import axisallies.GameEntity;
-import axisallies.board.Territory;
 import axisallies.nations.NationType;
+import axisallies.units.components.Combat;
+import axisallies.units.components.Movement;
 
-import static axisallies.board.TerritoryType.*;
-import static axisallies.units.UnitType.AIRCRAFT_CARRIER;
-import static axisallies.units.UnitType.TRANSPORT;
+import java.util.Comparator;
 
-public class Unit extends GameEntity {
+public abstract class Unit extends GameEntity {
 
-    private UnitType unitType;
-    private int travelledDistance = 0;
     private NationType nationType;
-    private Territory territory;
+    private int productionCost;
+    private Combat combat = new Combat();
+    private Movement movement = new Movement();
+    private boolean active = true;
+    private String typeDisplay;
+    private int localID;
 
-    public static Unit buildUnitOfNation(UnitType unitType, NationType nationType) {
+    public abstract String getTypeDisplay();
 
-        return (unitType.equals(AIRCRAFT_CARRIER) || unitType.equals(TRANSPORT)) ?
-            new CarrierUnit(unitType, nationType) :
-            new Unit(unitType, nationType);
-    }
+    public abstract boolean can(Ability ability);
 
-    public static Unit buildUnitOfNationAtTerritory(
-        UnitType unitType,
-        NationType nationType,
-        Territory territory) {
-
-        return (unitType.equals(AIRCRAFT_CARRIER) || unitType.equals(TRANSPORT)) ?
-            new CarrierUnit(unitType, nationType, territory) :
-            new Unit(unitType, nationType, territory);
+    public Unit() {
 
     }
 
-    protected Unit(UnitType unitType, NationType nationType) {
-        this.unitType = unitType;
+    public Unit(NationType nationType, int productionCost) {
         this.nationType = nationType;
-    }
-
-    protected Unit(UnitType unitType, NationType nationType, Territory territory) {
-        this.unitType = unitType;
-        this.nationType = nationType;
-        this.territory = territory;
-    }
-
-    public boolean isSeaUnit() {
-        return unitType.getTerritoryType().equals(SEA);
-    }
-
-    public boolean isLandUnit() {
-        return unitType.getTerritoryType().equals(LAND);
-    }
-
-    public boolean isAirUnit() {
-        return unitType.getTerritoryType().equals(AIR);
-    }
-
-    public boolean isType(UnitType unitType) {
-        return this.unitType.equals(unitType);
-    }
-
-    public Integer getAttack() {
-        return unitType.getAttackStrength();
-    }
-
-    public Integer getDefense() {
-        return unitType.getDefenseStrength();
-    }
-
-    public UnitType getUnitType() {
-        return unitType;
-    }
-
-    public void setUnitType(UnitType unitType) {
-        this.unitType = unitType;
-    }
-
-    public int getTravelledDistance() {
-        return travelledDistance;
-    }
-
-    public void setTravelledDistance(int travelledDistance) {
-        this.travelledDistance = travelledDistance;
+        this.productionCost = productionCost;
     }
 
     public NationType getNationType() {
@@ -92,11 +38,48 @@ public class Unit extends GameEntity {
         this.nationType = nationType;
     }
 
-    public Territory getTerritory() {
-        return territory;
+    public void setLocalID(int id) {
+        this.localID = id;
     }
 
-    public void setTerritory(Territory territory) {
-        this.territory = territory;
+    public int getLocalID() {
+        return this.localID;
     }
+
+    public int getProductionCost() {
+        return productionCost;
+    }
+
+    public void setProductionCost(int productionCost) {
+        this.productionCost = productionCost;
+    }
+
+    public Combat getCombat() {
+        return this.combat;
+    }
+
+    public Movement getMovement() {
+        return this.movement;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public String getTruncatedUuid() {
+        return getUuid().toString().split("-")[0];
+    }
+
+    public static class ProductionCostComparator implements Comparator<Unit> {
+
+        @Override
+        public int compare(Unit first, Unit second) {
+            return first.getProductionCost() - second.getProductionCost();
+        }
+    }
+
 }

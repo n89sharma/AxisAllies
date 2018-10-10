@@ -1,9 +1,10 @@
 package axisalliestests.board;
 
-import axisallies.board.Path;
 import axisallies.board.Territory;
 import axisallies.board.TerritoryType;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 import static axisallies.board.TerritoryType.LAND;
 import static axisallies.board.TerritoryType.SEA;
@@ -13,10 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TerritoryTest {
 
     @Test
-    public void testEquals() {
-        Path pathA = new Path();
-        Path pathB = new Path();
-        boolean isEqual = pathA.equals(pathB);
+    public void generalTest() throws InterruptedException {
+//        System.out.println(String.format("%1$-20s%2$-12s%3$-14s", "Destroyer", "203dd4be", "[o]"));
+//        while (true) {
+//            var random = UUID.randomUUID();
+//            System.out.println(random.toString().split("-")[0]);
+//            System.out.println(random);
+//            Thread.sleep(500);
+//        }
     }
 
     @Test
