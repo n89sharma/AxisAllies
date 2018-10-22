@@ -1,15 +1,22 @@
 package axisallies.units.land;
 
-import axisallies.nations.NationType;
-import axisallies.units.Ability;
-import axisallies.units.Unit;
+import static axisallies.units.Ability.ATTACK_AIR_UNITS;
+import static axisallies.units.Ability.ATTACK_LAND_UNITS;
+import static axisallies.units.Ability.BE_ATTACKED_BY_AIR_UNITS;
+import static axisallies.units.Ability.CAPTURE_HOSTILE_TERRITORY;
+import static axisallies.units.Ability.CONTAINABLE;
+import static axisallies.units.Ability.MOVE_IN_COMBAT_MOVE;
+import static axisallies.units.Ability.MOVE_TO_LAND;
+import static axisallies.units.Ability.SUPPORTING_UNIT_ATTACK_BONUS;
+import static java.util.stream.Collectors.toSet;
 
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static axisallies.units.Ability.*;
-import static java.util.stream.Collectors.toSet;
+import axisallies.nations.NationType;
+import axisallies.units.Ability;
+import axisallies.units.Unit;
 
 public class Infantry extends Unit {
 
@@ -18,7 +25,6 @@ public class Infantry extends Unit {
     private static final int attack = 1;
     private static final int defense = 2;
     private static final int move = 1;
-    private static final int attackBonus = 1;
     private static final String TYPE = "Infantry";
 
     private static EnumSet<Ability> abilities = EnumSet.of(
@@ -46,7 +52,6 @@ public class Infantry extends Unit {
     private Infantry(NationType nationType) {
         super(nationType, productionCost);
         this.getCombat().setData(attack, defense, health);
-        this.getCombat().setAttackBonus(attackBonus);
         this.getMovement().setData(move);
     }
 

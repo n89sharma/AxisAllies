@@ -1,18 +1,15 @@
 package axisallies.gameplay;
 
-import axisallies.board.Board;
-import axisallies.units.Unit;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
 import static axisallies.nations.NationType.GERMANY;
 import static axisallies.nations.NationType.USA;
 import static axisallies.units.land.Infantry.getInfantryCompany;
-import static axisallies.units.land.Infantry.infantry;
 import static axisallies.units.land.Tank.getTankCompany;
-import static axisallies.units.land.Tank.tank;
+
+import java.io.IOException;
+import java.util.HashSet;
+
+import axisallies.board.Board;
+import axisallies.units.Unit;
 
 public class Game {
 
@@ -20,7 +17,7 @@ public class Game {
     private GeneralCombatConductor generalCombatConductor;
 
     public Game() throws IOException {
-//        this.board = BoardBuilder.sourceBuild();
+        // this.board = BoardBuilder.sourceBuild();
     }
 
     public void run() {

@@ -1,15 +1,14 @@
 package axisallies.units.components;
 
-import axisallies.units.Unit;
-
 import java.util.Comparator;
+
+import axisallies.units.Unit;
 
 public class Combat {
 
     private int attack;
     private int defense;
     private int health;
-    private int attackBonus;
     private boolean successful = false;
     private int lastRoll;
     private int lastRequiredRoll;
@@ -30,10 +29,6 @@ public class Combat {
 
     public int getHealth() {
         return this.health;
-    }
-
-    public void setAttackBonus(int attackBonus) {
-        this.attackBonus = attackBonus;
     }
 
     public void setSuccessful(boolean successful) {

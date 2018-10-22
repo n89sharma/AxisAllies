@@ -1,11 +1,9 @@
 package axisallies;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 //TODO: equals will break on null. fix later.
 public class Pair<L, R> {

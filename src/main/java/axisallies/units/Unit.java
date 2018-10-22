@@ -1,11 +1,11 @@
 package axisallies.units;
 
+import java.util.Comparator;
+
 import axisallies.GameEntity;
 import axisallies.nations.NationType;
 import axisallies.units.components.Combat;
 import axisallies.units.components.Movement;
-
-import java.util.Comparator;
 
 public abstract class Unit extends GameEntity {
 

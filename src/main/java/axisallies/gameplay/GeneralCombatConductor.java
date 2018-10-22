@@ -1,9 +1,11 @@
 package axisallies.gameplay;
 
-import axisallies.GameResponse;
-import axisallies.Pair;
-import axisallies.units.Unit;
-import com.google.common.collect.Sets;
+import static axisallies.Pair.integerPairs;
+import static java.lang.String.format;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,12 +17,11 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static axisallies.Pair.integerPairs;
-import static java.lang.String.format;
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
-import static java.util.stream.Collectors.toSet;
+import com.google.common.collect.Sets;
+
+import axisallies.GameResponse;
+import axisallies.Pair;
+import axisallies.units.Unit;
 
 public class GeneralCombatConductor {
 
