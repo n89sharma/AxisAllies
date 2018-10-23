@@ -7,6 +7,7 @@ import axisallies.nations.NationType;
 import axisallies.units.components.Combat;
 import axisallies.units.components.Movement;
 
+//TODO: add a method to print combat capability of the unit.
 public abstract class Unit extends GameEntity {
 
     private NationType nationType;

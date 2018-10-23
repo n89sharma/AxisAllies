@@ -1,8 +1,14 @@
 package axisallies;
 
+import static axisallies.GameResponse.createLumpedResponse;
+import static axisallies.GameResponse.successfulGameResponse;
+import static axisallies.GameResponse.successfulGameResponseWithPayload;
+import static axisallies.GameResponse.unsuccessfulGameResponse;
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //TODO: equals will break on null. fix later.
@@ -55,29 +61,35 @@ public class Pair<L, R> {
      * @param string
      * @return
      */
-    public static Pair<Integer, Integer> integerPair(String string) {
+    public static GameResponse<Pair<Integer, Integer>> integerPair(String string) {
         var numbers = string.replaceAll("[()]", "").split(",");
         var message = String.format("Cannot make a pair from %s. Pair expecting 2 numbers with the format: (int, int) or int, int.", string);
         if(numbers.length != 2) {
-            throw new RuntimeException(message);
+            @SuppressWarnings("unchecked")
+            var response = (GameResponse<Pair<Integer, Integer>>) unsuccessfulGameResponse(singletonList(message));
+            return response;
         }
         else {
             try{
-                Integer first = Integer.parseInt(numbers[0].trim());
-                Integer second = Integer.parseInt(numbers[1].trim());
-                return pair(first, second);
+                var left = Integer.parseInt(numbers[0].trim());
+                var right = Integer.parseInt(numbers[1].trim());
+                return successfulGameResponseWithPayload(pair(left, right));
             }
             catch(NumberFormatException e) {
-                throw new NumberFormatException(message);
+
+                @SuppressWarnings("unchecked")
+                var response = (GameResponse<Pair<Integer, Integer>>) unsuccessfulGameResponse(singletonList(message));
+                return response;
             }
         }
     }
 
-    public static List<Pair<Integer, Integer>> integerPairs(String string) {
-        return Arrays.stream(string.split(";"))
+    public static GameResponse<List<Pair<Integer, Integer>>> integerPairs(String string) {
+        var responses = Arrays.stream(string.split(";"))
             .map(String::trim)
             .map(Pair::integerPair)
             .collect(toList());
+        return createLumpedResponse(responses);
     }
 
 }
