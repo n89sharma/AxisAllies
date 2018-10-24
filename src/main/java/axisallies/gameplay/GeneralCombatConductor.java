@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static axisallies.GameResponse.successfulGameResponse;
 import static axisallies.GameResponse.successfulGameResponseWithPayload;
-import static axisallies.GameResponse.unsuccessfulGameResponse;
 import static axisallies.GameResponse.unsuccessfulGameResponseWithPayloadAndMessage;
 import static axisallies.Pair.integerPairs;
 import static java.lang.String.format;
@@ -76,46 +75,25 @@ public class GeneralCombatConductor {
     private void conductOneRoundOfCombat() {
         var successfulAttackers = rollAndGetSuccessfulUnits(attackers, CombatantType.ATTACKER);
         var successfulDefenders = rollAndGetSuccessfulUnits(defenders, CombatantType.DEFENDER);
-        var combatRoundData = new CombatRoundData(successfulAttackers, successfulDefenders);
         getCombatStatusForLastRound().forEach(System.out::println);
         System.out.println(format(ATTACKER_HIT_ASSIGNMENT, successfulDefenders.size()));
         System.out.println(HIT_ASSIGNMENT_FORMAT);
-        var attackerHitAssignments = collectHitAssignmentsFromTheUserUntilCorrectResponse(
-            combatRoundData,
-            CombatantType.ATTACKER);
+        var attackerHitAssignments = collectCorrectHitAssignmentsFromUser(successfulAttackers);
         System.out.println(format(DEFENDER_HIT_ASSIGNMENT, successfulAttackers.size()));
         System.out.println(HIT_ASSIGNMENT_FORMAT);
-        var defenderHitAssignments = collectHitAssignmentsFromTheUserUntilCorrectResponse(
-            combatRoundData,
-            CombatantType.DEFENDER);
-        combatRoundData.setHitAssignments(attackerHitAssignments, defenderHitAssignments);
-        combatRoundDataList.add(combatRoundData);
+        var defenderHitAssignments = collectCorrectHitAssignmentsFromUser(successfulDefenders);
+        combatRoundDataList.add(new CombatRoundData(
+            successfulAttackers,
+            successfulDefenders,
+            attackerHitAssignments,
+            defenderHitAssignments));
         currentCombatRound += 1;
     }
 
-    private List<Pair<Integer, Integer>> collectHitAssignmentsFromTheUserUntilCorrectResponse(
-        CombatRoundData combatRoundData,
-        CombatantType combatantAssigningHit) {
-
-        var manualHitAssignmentResponse = integerPairs(scanner.nextLine())
-            .map(hitAssignments -> manualHitAssignment(hitAssignments, combatRoundData, combatantAssigningHit));
-
-        while (!manualHitAssignmentResponse.isSuccessful()) {
-            manualHitAssignmentResponse.getAllMessages().forEach(System.out::println);
-            manualHitAssignmentResponse = integerPairs(scanner.nextLine())
-                .map(hitAssignments -> manualHitAssignment(hitAssignments, combatRoundData, combatantAssigningHit));
-        }
-        return manualHitAssignmentResponse.getPayload();
-    }
-
     private static Set<Unit> rollAndGetSuccessfulUnits(Set<Unit> units, CombatantType combatantType) {
-
-        Function<Unit, Integer> getRequiredRoll = unit -> unit.getCombat().getAttack();
-        if (combatantType.equals(CombatantType.ATTACKER)) {
-            getRequiredRoll = unit -> unit.getCombat().getAttack();
-        } else if (combatantType.equals(CombatantType.DEFENDER)) {
-            getRequiredRoll = unit -> unit.getCombat().getDefense();
-        }
+        Function<Unit, Integer> getRequiredRoll = combatantType.equals(CombatantType.ATTACKER)
+            ? unit -> unit.getCombat().getAttack()
+            : unit -> unit.getCombat().getDefense();
         for (var unit : units) {
             var roll = getRandomRoll();
             var requiredRoll = getRequiredRoll.apply(unit);
@@ -126,59 +104,55 @@ public class GeneralCombatConductor {
         return units.stream().filter(unit -> unit.getCombat().isSuccessful()).collect(toSet());
     }
 
-    //TODO: cannot assign two hits unless the unit is a battleship.
-    public GameResponse<List<Pair<Integer, Integer>>> manualHitAssignment(
-        List<Pair<Integer, Integer>> hitAssignments,
-        CombatRoundData combatRoundData,
-        CombatantType combatantAssigningHits) {
+    private List<Pair<Integer, Integer>> collectCorrectHitAssignmentsFromUser(Set<Unit> successfulUnits) {
+        GameResponse<List<Pair<Integer, Integer>>> validationResponse;
+        do {
+            validationResponse = integerPairs(scanner.nextLine()).map(hitAssignments -> validateHitAssignment(hitAssignments, successfulUnits));
+            validationResponse.getAllMessages().forEach(System.out::println);
+        } while (!validationResponse.isSuccessful());
+        return validationResponse.getPayload();
+    }
 
-        var success = true;
+    //TODO: cannot assign two hits unless the unit is a battleship.
+    private GameResponse<List<Pair<Integer, Integer>>> validateHitAssignment(
+        List<Pair<Integer, Integer>> hitAssignments,
+        Set<Unit> successfulUnits) {
+
         var assignedUnits = hitAssignments
             .stream()
             .map(Pair::getLeft)
             .map(id -> this.allUnitIds.get(id))
+            .filter(Objects::nonNull)
             .collect(toSet());
-        Sets.SetView<Unit> unsuccessfulAssignedUnits;
-        Sets.SetView<Unit> unassignedSuccessfulUnits;
-
-        if (combatantAssigningHits.equals(CombatantType.DEFENDER)) {
-            unsuccessfulAssignedUnits = Sets.difference(assignedUnits, combatRoundData.successfulAttackers);
-            unassignedSuccessfulUnits = Sets.difference(combatRoundData.successfulAttackers, assignedUnits);
-        } else {
-            unsuccessfulAssignedUnits = Sets.difference(assignedUnits, combatRoundData.successfulDefenders);
-            unassignedSuccessfulUnits = Sets.difference(combatRoundData.successfulDefenders, assignedUnits);
-        }
-        var messages = new ArrayList<List<String>>();
-        if (!unsuccessfulAssignedUnits.isEmpty()) {
-            success = false;
+        var unsuccessfulAssignedUnits = Sets.difference(assignedUnits, successfulUnits);
+        var unassignedSuccessfulUnits = Sets.difference(successfulUnits, assignedUnits);
+        if (!unsuccessfulAssignedUnits.isEmpty() || !unassignedSuccessfulUnits.isEmpty()) {
+            var messages = new ArrayList<List<String>>();
             messages.add(buildMessageForUnsuccessfulAssignedUnits(unsuccessfulAssignedUnits));
-        }
-        if (!unassignedSuccessfulUnits.isEmpty()) {
-            success = false;
             messages.add(buildMessageForUnassignedSuccessfulUnits(unassignedSuccessfulUnits));
-        }
-
-        if(success) {
-            return successfulGameResponseWithPayload(hitAssignments);
-        }
-        else {
             return unsuccessfulGameResponseWithPayloadAndMessage(messages, hitAssignments);
         }
+
+        return successfulGameResponseWithPayload(hitAssignments);
     }
 
-    private List<String> buildMessageForUnsuccessfulAssignedUnits(
-        Sets.SetView<Unit> unsuccessfulAssignedUnits) {
+    private List<String> buildMessageForUnsuccessfulAssignedUnits(Sets.SetView<Unit> unsuccessfulAssignedUnits) {
         var message = new ArrayList<String>();
-        message.add("The following units were unsuccessful but hits were assigned for them:");
-        message.addAll(getUnitDisplayData(unsuccessfulAssignedUnits, this::getUnitThreeColumnData));
+        //TODO: I want to take out this if statement.
+        if (!unsuccessfulAssignedUnits.isEmpty()) {
+            message.add("The following units were unsuccessful but hits were assigned for them:");
+            message.addAll(getUnitDisplayData(unsuccessfulAssignedUnits, this::getUnitThreeColumnData));
+        }
         return message;
     }
 
-    private List<String> buildMessageForUnassignedSuccessfulUnits(
-        Sets.SetView<Unit> unassignedSuccessfulUnits) {
+    private List<String> buildMessageForUnassignedSuccessfulUnits(Sets.SetView<Unit> unassignedSuccessfulUnits) {
         var message = new ArrayList<String>();
-        message.add("The following units were successful in combat round but hits were NOT assigned for them:");
-        message.addAll(getUnitDisplayData(unassignedSuccessfulUnits, this::getUnitThreeColumnData));
+        //TODO: I want to take out this if statement.
+        if (!unassignedSuccessfulUnits.isEmpty()) {
+            message.add("The following units were successful in combat round but hits were NOT assigned for them:");
+            message.addAll(getUnitDisplayData(unassignedSuccessfulUnits, this::getUnitThreeColumnData));
+        }
         return message;
     }
 
@@ -236,16 +210,14 @@ public class GeneralCombatConductor {
         List<Pair<Integer, Integer>> attackerHitAssignment;
         List<Pair<Integer, Integer>> defenderHitAssignment;
 
-        private CombatRoundData(Set<Unit> successfulAttackers, Set<Unit> successfulDefenders) {
-
-            this.successfulAttackers = Set.copyOf(successfulAttackers);
-            this.successfulDefenders = Set.copyOf(successfulDefenders);
-        }
-
-        public void setHitAssignments(
+        private CombatRoundData(
+            Set<Unit> successfulAttackers,
+            Set<Unit> successfulDefenders,
             List<Pair<Integer, Integer>> attackerHitAssignment,
             List<Pair<Integer, Integer>> defenderHitAssignment) {
 
+            this.successfulAttackers = Set.copyOf(successfulAttackers);
+            this.successfulDefenders = Set.copyOf(successfulDefenders);
             this.attackerHitAssignment = attackerHitAssignment;
             this.defenderHitAssignment = defenderHitAssignment;
         }

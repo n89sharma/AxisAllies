@@ -3,10 +3,9 @@ package axisallies;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 public class GameResponse<T> {
@@ -90,7 +89,7 @@ public class GameResponse<T> {
                 return mapper.apply(this.payload);
             }
             catch(Exception e){
-                this.getAllMessages().add(e.getMessage());
+                this.gameErrors.add(new GameError(singletonList(e.getMessage())));
                 @SuppressWarnings("unchecked")
                 GameResponse<U> gameResponse = (GameResponse<U>) unsuccessfulGameResponse(this.getAllMessages());
                 return gameResponse;

@@ -25,7 +25,7 @@ public class GeneralCombatTest {
 
         var defend = Set.of(infantry(GERMANY), tank(GERMANY), tank(GERMANY), tank(GERMANY));
         var gc = new GeneralCombatConductor(attack, defend);
-        gc.conductGeneralCombat();
+//        gc.conductGeneralCombat();
 //        gc.conductGeneralCombat();
 //        gc.getCombatStatusForLastRound().forEach(System.out::println);
 //        System.out.println("-------------------------");
