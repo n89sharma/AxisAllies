@@ -6,7 +6,7 @@ import axisallies.units.Unit;
 import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -15,12 +15,15 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static axisallies.GameResponse.successfulGameResponseWithPayload;
 import static axisallies.GameResponse.unsuccessfulGameResponseWithPayloadAndMessage;
 import static axisallies.Pair.integerPairs;
 import static java.lang.String.format;
 import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
@@ -30,10 +33,9 @@ public class GeneralCombatConductor {
 
     private Set<Unit> attackers;
     private Set<Unit> defenders;
-    private Set<Unit> allUnits = new HashSet<>();
-    private Map<Integer, Unit> allUnitIds;
+    private Map<Integer, Unit> attackerAndDefenderIds;
+    private GameUnitData gameUnitData;
     private List<CombatRoundData> combatRoundDataList = new ArrayList<>();
-    private int currentCombatRound = 0;
     private static final Random random = new Random();
     private static final String DISPLAY_FORMAT_FULL_STATUS = "%1$-6s%2$-20s%3$-12s%4$-16s%5$-10s";
     private static final String DISPLAY_FORMAT_SUCCESSFUL = "%1$-6s%2$-20s%3$-12s";
@@ -48,14 +50,13 @@ public class GeneralCombatConductor {
     private static final String HIT_ASSIGNMENT_FORMAT = "Assign hits in the form (<ID of unit>, <ID of unit>).";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public GeneralCombatConductor(Set<Unit> attackers, Set<Unit> defenders) {
+    public GeneralCombatConductor(Set<Unit> attackers, Set<Unit> defenders, GameUnitData gameUnitData) {
         this.attackers = attackers;
         this.defenders = defenders;
-        allUnits.addAll(attackers);
-        allUnits.addAll(defenders);
-        var unitList = new ArrayList<Unit>(allUnits);
+        var attackerAndDefenders = Stream.concat(attackers.stream(), defenders.stream()).collect(toSet());
+        var unitList = new ArrayList<Unit>(attackerAndDefenders);
         IntStream.rangeClosed(1, unitList.size()).boxed().forEach(id -> unitList.get(id - 1).setLocalID(id));
-        allUnitIds = allUnits.stream().collect(toMap(Unit::getLocalID, identity()));
+        attackerAndDefenderIds = attackerAndDefenders.stream().collect(toMap(Unit::getLocalID, identity()));
     }
 
     public void conductGeneralCombat() {
@@ -87,7 +88,6 @@ public class GeneralCombatConductor {
             successfulDefenders,
             attackerHitAssignments,
             defenderHitAssignments));
-        currentCombatRound += 1;
     }
 
     private static Set<Unit> rollAndGetSuccessfulUnits(Set<Unit> units, CombatantType combatantType) {
@@ -102,6 +102,16 @@ public class GeneralCombatConductor {
             unit.getCombat().setSuccessful(roll <= requiredRoll);
         }
         return units.stream().filter(unit -> unit.getCombat().isSuccessful()).collect(toSet());
+    }
+
+    private List<String> getCombatStatusForLastRound() {
+        var lines = new ArrayList<String>();
+        lines.add(ATTACK_STATUS_HEADER);
+        lines.addAll(getUnitDisplayData(attackers, this::getUnitFourColumnData));
+        lines.add("");
+        lines.add(DEFEND_STATUS_HEADER);
+        lines.addAll(getUnitDisplayData(defenders, this::getUnitFourColumnData));
+        return lines;
     }
 
     private List<Pair<Integer, Integer>> collectCorrectHitAssignmentsFromUser(Set<Unit> successfulUnits) {
@@ -121,17 +131,56 @@ public class GeneralCombatConductor {
         var assignedUnits = hitAssignments
             .stream()
             .map(Pair::getLeft)
-            .map(id -> this.allUnitIds.get(id))
+            .map(id -> this.attackerAndDefenderIds.get(id))
             .filter(Objects::nonNull)
             .collect(toSet());
+        var numberOfHitsPerUnit = hitAssignments
+            .stream()
+            .map(Pair::getLeft)
+            .collect(groupingBy(identity(), counting()));
+        var numberOfReceivingHitsPerUnit = hitAssignments
+            .stream()
+            .map(Pair::getRight)
+            .collect(groupingBy(identity(), counting()));
+
         var unsuccessfulAssignedUnits = Sets.difference(assignedUnits, successfulUnits);
         var unassignedSuccessfulUnits = Sets.difference(successfulUnits, assignedUnits);
-        if (!unsuccessfulAssignedUnits.isEmpty() || !unassignedSuccessfulUnits.isEmpty()) {
+        var nonExistingUnits = Stream
+            .concat(hitAssignments.stream().map(Pair::getLeft), hitAssignments.stream().map(Pair::getRight))
+            .filter(id -> !this.attackerAndDefenderIds.keySet().contains(id))
+            .collect(toList());
+        var unitsHittingMultipleTime = numberOfHitsPerUnit
+            .entrySet()
+            .stream()
+            .filter(entry -> entry.getValue() > 1)
+            .collect(toList());
+        var unitsReceivingMoreThanTwoHits = numberOfReceivingHitsPerUnit
+            .entrySet()
+            .stream()
+            .filter(entry -> entry.getValue() > 2)
+            .collect(toList());
+        var unitsOtherThanBattleshipReceivingTwoHits = numberOfReceivingHitsPerUnit
+            .entrySet()
+            .stream()
+            .filter(entry -> entry.getValue() == 2)
+            .filter(entry -> !this.gameUnitData.isBattleship(this.attackerAndDefenderIds.get(entry.getKey())))
+            .collect(toList());
+
+
+        var numberOfIncorrectUnits = Stream.of(
+            unsuccessfulAssignedUnits,
+            unassignedSuccessfulUnits,
+            nonExistingUnits,
+            unitsHittingMultipleTime,
+            unitsReceivingMoreThanTwoHits,
+            unitsOtherThanBattleshipReceivingTwoHits).mapToLong(Collection::size).sum();
+        if (numberOfIncorrectUnits > 0) {
             var messages = new ArrayList<List<String>>();
             messages.add(buildMessageForUnsuccessfulAssignedUnits(unsuccessfulAssignedUnits));
             messages.add(buildMessageForUnassignedSuccessfulUnits(unassignedSuccessfulUnits));
             return unsuccessfulGameResponseWithPayloadAndMessage(messages, hitAssignments);
         }
+
 
         return successfulGameResponseWithPayload(hitAssignments);
     }
@@ -154,16 +203,6 @@ public class GeneralCombatConductor {
             message.addAll(getUnitDisplayData(unassignedSuccessfulUnits, this::getUnitThreeColumnData));
         }
         return message;
-    }
-
-    public List<String> getCombatStatusForLastRound() {
-        var lines = new ArrayList<String>();
-        lines.add(ATTACK_STATUS_HEADER);
-        lines.addAll(getUnitDisplayData(attackers, this::getUnitFourColumnData));
-        lines.add("");
-        lines.add(DEFEND_STATUS_HEADER);
-        lines.addAll(getUnitDisplayData(defenders, this::getUnitFourColumnData));
-        return lines;
     }
 
     public List<String> getSuccessfulAttackersForRound(int round) {
@@ -220,6 +259,14 @@ public class GeneralCombatConductor {
             this.successfulDefenders = Set.copyOf(successfulDefenders);
             this.attackerHitAssignment = attackerHitAssignment;
             this.defenderHitAssignment = defenderHitAssignment;
+        }
+    }
+
+    private static class GameUnitData {
+        private Set<Unit> battleships;
+
+        public boolean isBattleship(Unit unit) {
+            return battleships.contains(unit);
         }
     }
 }
